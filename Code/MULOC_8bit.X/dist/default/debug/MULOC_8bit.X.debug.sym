@@ -112,7 +112,7 @@ __CFG_CPUDIV$OSC1_PLL2 0 0 ABS 0
 __pcstackBANK0 C4 0 BANK0 1
 __Htemp 43 0 COMRAM 1
 __Ltemp 42 0 COMRAM 1
-stacklo D5 0 ABS 0
+stacklo 400 0 ABS 0
 _getKey 810 0 CODE 0
 __Hrbit 0 0 COMRAM 1
 writeEEPROM@gie_Status 15 0 COMRAM 1
@@ -311,7 +311,7 @@ __CFG_CP0$OFF 0 0 ABS 0
 __smallconst 800 0 SMALLCONST 0
 __CFG_CP1$OFF 0 0 ABS 0
 __size_of_initStandbyTimer 0 0 ABS 0
-__Hreset_vec 4 0 CODE 0
+__Hreset_vec 6 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __CFG_CP2$OFF 0 0 ABS 0
 __CFG_CP3$OFF 0 0 ABS 0
@@ -362,7 +362,7 @@ passcodeCompare@i 20 0 COMRAM 1
 __end_of_check_password_presence F2E 0 CODE 0
 __CFG_LVP$OFF 0 0 ABS 0
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 intcode 8 11 CODE 8 0
 smallconst 800 80F SMALLCONST 800 0
 config 300000 30000D CONFIG 300000 0
@@ -372,9 +372,9 @@ bssBANK0 60 D4 BANK0 60 1
 text5 810 F9C CODE 810 0
 text4 F9E F9F CODE F9E 0
 %locals
-dist/default/production\MULOC_8bit.X.production.obj
+dist/default/debug\MULOC_8bit.X.debug.obj
 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
-C:\Users\Cardoz\AppData\Local\Temp\s844.
+C:\Users\Cardoz\AppData\Local\Temp\so0.
 1946 E4E 0 CODE 0
 1948 E4E 0 CODE 0
 1951 E4E 0 CODE 0

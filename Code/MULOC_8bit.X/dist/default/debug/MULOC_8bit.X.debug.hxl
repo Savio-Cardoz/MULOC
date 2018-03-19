@@ -1,15 +1,15 @@
 ### HEXMate logfile and output summary ###
 ### Memory Usage ###
  Unused memory ranges:
-  4h - 7h
+  6h - 7h
   12h - 7FFh
   F9Dh - F9Dh
   FA0h - 1FFFFFh
   200008h - 2FFFFFh
   30000Eh - 30003Fh
   
- dist/default/production\MULOC_8bit.X.production.hex ranges:
-  0h - 3h
+ dist/default/debug\MULOC_8bit.X.debug.hex ranges:
+  0h - 5h
   8h - 11h
   800h - F9Ch
   F9Eh - F9Fh
@@ -27,8 +27,8 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/production\MULOC_8bit.X.production.hex
-00000000: 1111----1111111111----------------------------------------------
+  1 = dist/default/debug\MULOC_8bit.X.debug.hex
+00000000: 111111--1111111111----------------------------------------------
 00000800: 1111111111111111111111111111111111111111111111111111111111111111
 00000840: 1111111111111111111111111111111111111111111111111111111111111111
 00000880: 1111111111111111111111111111111111111111111111111111111111111111

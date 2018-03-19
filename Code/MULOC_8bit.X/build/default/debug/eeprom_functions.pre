@@ -1,210 +1,15 @@
 
-# 1 "main.c"
-
-
-# 8
-#pragma config PLLDIV = 1
-#pragma config CPUDIV = OSC1_PLL2
-#pragma config USBDIV = 1
-
-
-#pragma config FOSC = INTOSCIO_EC
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOR = ON
-#pragma config BORV = 3
-#pragma config VREGEN = OFF
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config CCP2MX = OFF
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-#pragma config ICPRT = OFF
-#pragma config XINST = OFF
-
-
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
-
-
-#pragma config CPB = OFF
-#pragma config CPD = OFF
-
-
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
-
-
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
-
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h"
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\errno.h"
-extern int errno;
-
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 53
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-
-# 86 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdlib.h"
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
+# 1 "eeprom_functions.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
+
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
 
 # 50 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h"
 extern volatile unsigned char SPPDATA @ 0xF62;
@@ -5000,133 +4805,6 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 58 "Keypad4x4.h"
-enum button { button_0 = 0,
-button_1,
-button_2,
-button_3,
-button_4,
-button_5,
-button_6,
-button_7,
-button_8,
-button_9,
-NO_KEY_TUNE = 10,
-SP_FUNC_A = 11,
-SP_FUNC_B = 12,
-SP_FUNC_ON = 13,
-SP_FUNC_OFF = 14,
-SP_FUNC_ENTER = 15,
-NONE = 16,
-};
-
-typedef struct{
-char keyPressIndicator:1;
-char keyPressSound:1;
-char keyLock:1;
-char keyPressed;
-}keypadStatus;
-
-void initKeypad(void);
-void ackKeyPress();
-void getKey(keypadStatus *KeypadStatus);
-char buttonPressedIndicator();
-void delay_ms(unsigned int time);
-
-# 53 "main.h"
-enum timerType {
-ackTimer = 1,
-errorTimer = 2,
-okTimer = 3
-};
-
-enum codeType {
-general = 0,
-code1 = 1,
-code2 = 2,
-master1 = 3
-};
-
-struct configSound{
-char timerVal;
-int duration;
-char pitch;
-enum timerType playSeq ;
-char noSoundFlag : 1;
-};
-
-typedef struct
-{
-volatile unsigned char bit0:1;
-volatile unsigned char bit1:1;
-volatile unsigned char bit2:1;
-volatile unsigned char bit3:1;
-volatile unsigned char bit4:1;
-volatile unsigned char bit5:1;
-volatile unsigned char bit6:1;
-volatile unsigned char bit7:1;
-} _io_reg;
-
-# 103
-volatile unsigned char systemStateReg;
-unsigned char systemStateReg2;
-
-# 122
-unsigned char keyPressCount;
-unsigned char keyBuffer[25];
-volatile unsigned char timer1OVFcount;
-unsigned int timer2OVFcount;
-unsigned char wrongCodeEnteredCount;
-unsigned char bufferPtr = 0;
-
-struct configSound soundStuff;
-unsigned char *eepromCode;
-
-enum codeType LASTPASSCODE;
-
-const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
-const unsigned char defaultPassCode2[3] = {1,2,3};
-unsigned char factoryResetCode[4] = {8,0,8,0};
-unsigned char factoryResetCodeLenght = 4;
-const unsigned char defaultPassCodeLenght = 9;
-const unsigned char defaultPassCode2Lenght = 3;
-
-unsigned char tempCodeBuffer[25];
-unsigned char tempCodeKeyPressCount;
-
-void checkFirstFlash();
-void ackKeyPress();
-unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
-void handleSleep();
-void disableInterrupts();
-void interrupt ISR(void);
-void okTimerTone();
-void doorTimerTone();
-void errorTimerTone();
-void doorOpenAlarm(unsigned char alarmMute);
-void startTimer0();
-void updateTempCodeBuffer(char *keybuffer, char keycount);
-char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
-void doorOpenedTone(unsigned char tuneNumber);
-void setDefaultUserCodes();
-void setDefaultFactoryCodes();
-void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
-char monitorBattery();
-
-# 55 "timer.h"
-static char timerOVFcount;
-
-# 66
-void updateTimer();
-void ackKeyPressTimerTone(unsigned char noSoundFlag);
-void errorTone(unsigned char noSoundFlag);
-
-void alarmTimerTone();
-void initStandbyTimer();
-void startTimer(unsigned int time_val);
-void initDoorOpenTimer2();
-void beginDoorOpenCheck();
-
 # 36 "eeprom_functions.h"
 static unsigned char eepromCodeBuffer[25];
 
@@ -5135,249 +4813,40 @@ void eepromWriteCode(unsigned char eepromWriteAddr, unsigned char codeLenght, ch
 void writeEEPROM(unsigned char address, unsigned char datas);
 unsigned char readEEPROM(unsigned char address);
 
-# 86 "main.c"
-typedef enum {
-NORMAL = 0,
-UID_ENTERED = 1,
-PSWD_ENTERED
-}systemState_t;
-
-# 100
-unsigned char arr_to_num(unsigned char* arr, unsigned char num_of_elements, unsigned char* number)
+# 8 "eeprom_functions.c"
+void eepromWriteCode(unsigned char eepromWriteAddr, unsigned char codeLenght, char *codeBuffer)
 {
-unsigned char validity = 0;
-*number = 0;
-
-if(num_of_elements > 3)
-return validity;
-
-if((num_of_elements == 3) && (arr[0] == 2) && (arr[1] == 5) && (arr[2] == 6))
-return validity;
-for(unsigned char a = 0; a < num_of_elements; a++)
+writeEEPROM(eepromWriteAddr, codeLenght);
+for(unsigned char i=0; i <= codeLenght; i++)
 {
-*number = (*number * 10) + arr[a];
-}
-validity = 1;
-return validity;
-}
+eepromWriteAddr++;
 
-
-unsigned char check_lock_num_validity(unsigned char lock_num)
-{
-unsigned char validity = 0;
-if(lock_num)
-{
-lock_num <= 21 ? validity = 1 : validity = 0;
-}
-return validity;
-}
-
-unsigned char check_password_presence(unsigned char lock_num)
-{
-unsigned char validity = 0;
-
-unsigned char addr = (lock_num - 1) * 10;
-
-char a = readEEPROM(addr);
-if(readEEPROM(addr))
-validity = 1;
-return validity;
-}
-
-void interrupt ISR(void)
-{
-if(RBIF)
-{
-RBIF = 0;
-((volatile _io_reg*)&systemStateReg)->bit7 = 0;
-
-timer1OVFcount = 0;
-T1CONbits.TMR1ON = 1;
-
-if(PORTB)
-__nop();
-}
-if(PIR1bits.TMR1IF)
-{
-timer1OVFcount++;
-TMR1 = 0;
-if(timer1OVFcount == 10)
-{
-((volatile _io_reg*)&systemStateReg)->bit7 = 1;
-T1CONbits.TMR1ON = 0;
-((volatile _io_reg*)&systemStateReg)->bit5 = 1;
-
-}
-PIR1bits.TMR1IF = 0;
-}
-
-# 249
-}
-
-void initControllerIO()
-{
-
-}
-
-# 294
-void clear_keyArray(unsigned char* arr)
-{
-for(unsigned char a = 0; a < 10; a++)
-arr[a] = 0;
-}
-
-int main()
-{
-keypadStatus currentKeypadStatus;
-systemState_t currentSystemState = NORMAL;
-unsigned char keypressArray[10];
-unsigned char numOfKeysPressed = 0;
-unsigned char locker_num = 0;
-unsigned char addr = 0;
-initControllerIO();
-initKeypad();
-initStandbyTimer();
-
-INTCONbits.PEIE = 1;
-INTCONbits.GIE = 1;
-
-# 326
-clear_keyArray(keypressArray);
-
-writeEEPROM(0, 0x01);
-writeEEPROM(1, 0x01);
-char a = readEEPROM(0);
-
-while(1)
-{
-
-getKey(&currentKeypadStatus);
-
-if(currentKeypadStatus.keyPressIndicator == 1)
-{
-if(currentKeypadStatus.keyPressed == SP_FUNC_A)
-{
-
-}
-else if(currentKeypadStatus.keyPressed == SP_FUNC_B)
-{
-
-}
-else if(currentKeypadStatus.keyPressed == SP_FUNC_ENTER)
-{
-
-if(currentSystemState == NORMAL)
-{
-
-if(0 == arr_to_num(keypressArray, numOfKeysPressed, &locker_num))
-{
-
-break;
-}
-
-else if(0 == check_lock_num_validity(locker_num))
-{
-
-break;
-}
-else
-{
-currentSystemState = UID_ENTERED;
-}
-}
-else if(currentSystemState == UID_ENTERED)
-{
-
-if(0 == check_password_presence(locker_num))
-{
-
-break;
-}
-else
-{
-addr = (locker_num - 1) * 10;
-if(0 == passcodeCompare(keypressArray, numOfKeysPressed, addr))
-{
-
-break;
-}
-else
-{
-
-}
-}
-}
-clear_keyArray(keypressArray);
-numOfKeysPressed = 0;
-}
-else if(currentKeypadStatus.keyPressed == SP_FUNC_OFF)
-{
-
-}
-else if(currentKeypadStatus.keyPressed == SP_FUNC_ON)
-{
-if(currentSystemState == UID_ENTERED)
-{
-
-if(0 == check_password_presence(locker_num))
-{
-
-addr = (locker_num - 1) * 10;
-eepromWriteCode(addr, numOfKeysPressed, keypressArray);
-break;
-}
-else
-{
-
-
-}
-}
-clear_keyArray(keypressArray);
-numOfKeysPressed = 0;
-}
-else
-{
-keypressArray[numOfKeysPressed++] = currentKeypadStatus.keyPressed;
-if(numOfKeysPressed > 10)
-{
-numOfKeysPressed = 0;
-
-}
+writeEEPROM(eepromWriteAddr, *(codeBuffer + i));
 }
 }
 
-# 647
-}
-return (0);
+void writeEEPROM(unsigned char address, unsigned char datas)
+{
+unsigned char gie_Status;
+
+while(EECON1bits.WR);
+EEADR = address;
+EEDATA = datas;
+EECON1bits.WREN = 1;
+gie_Status = INTCONbits.GIE;
+INTCONbits.GIE = 0;
+EECON2 = 0x55;
+EECON2 = 0xaa;
+EECON1bits.WR = 1;
+INTCONbits.GIE = gie_Status;
+EECON1bits.WREN = 0;
 }
 
-unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr)
+unsigned char readEEPROM(unsigned char address)
 {
-unsigned char validity = 0;
-unsigned char storedCodeLenght = readEEPROM(compareAddr);
-if(compareLenght != storedCodeLenght)
-{
-((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
-validity = 0;
+EEADR = address;
 
-}
-else
-{
-for(unsigned char i = 0; i <= (compareLenght - 1); i++)
-{
-if(*keybuffer1 == readEEPROM(++compareAddr))
-{
-keybuffer1++;
-validity = 1;
-}
-else
-{
-((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
-validity = 0;
-break;
-}
-}
-}
-return validity;
+EECON1bits.RD = 1;
+return EEDATA;
 }
 

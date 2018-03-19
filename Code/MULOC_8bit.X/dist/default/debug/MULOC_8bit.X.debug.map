@@ -3,16 +3,18 @@ Microchip MPLAB XC8 Compiler V1.44 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.44\dat\en_msgs.txt -cs \
-  -h+dist/default/production\MULOC_8bit.X.production.sym \
-  --cmf=dist/default/production\MULOC_8bit.X.production.cmf -z -Q18F4550 \
-  -oC:\Users\Cardoz\AppData\Local\Temp\s844.2 \
-  -Mdist/default/production/MULOC_8bit.X.production.map -E1 -ver=XC8 \
-  -ASTACK=0D5h-07ffh -pstack=STACK -ACODE=00h-07FFFh -ACONST=00h-07FFFh \
-  -ASMALLCONST=0800h-08FFhx120 -AMEDIUMCONST=0800h-07FFFh -ACOMRAM=01h-05Fh \
-  -AABS1=00h-07FFh -ABIGRAM=01h-07FFh -ARAM=060h-0FFh,0100h-01FFhx7 \
-  -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
-  -ABANK3=0300h-03FFh -ABANK4=0400h-04FFh -ABANK5=0500h-05FFh \
-  -ABANK6=0600h-06FFh -ABANK7=0700h-07FFh -ASFR=0F60h-0FFFh \
+  -h+dist/default/debug\MULOC_8bit.X.debug.sym \
+  --cmf=dist/default/debug\MULOC_8bit.X.debug.cmf -z -Q18F4550 \
+  -oC:\Users\Cardoz\AppData\Local\Temp\so0.2 \
+  -Mdist/default/debug/MULOC_8bit.X.debug.map -E1 -ver=XC8 \
+  -ASTACK=0400h-07ffh -pstack=STACK -ACODE=00h-07CFFh -ACONST=00h-07CFFh \
+  -ASMALLCONST=0800h-08FFhx117 -AMEDIUMCONST=0800h-07CFFh -ACOMRAM=01h-05Fh \
+  -AABS1=00h-03EEh,0400h-07FFh -ABIGRAM=01h-03EEh,0400h-07FFh \
+  -ARAM=060h-0FFh,0100h-01FFhx2,0300h-03EEh,0400h-04FFhx4 -ABANK0=060h-0FFh \
+  -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh -ABANK3=0300h-03EEh \
+  -ABANK4=0400h-04FFh -ABANK5=0500h-05FFh -ABANK6=0600h-06FFh \
+  -ABANK7=0700h-07FFh \
+  -ASFR=0F60h-0F9Bh,0F9Dh-0FD3h,0FD5h-0FDAh,0FE0h-0FE2h,0FE8h-0FEAh,0FF0h-0FFBh \
   -preset_vec=00h,intcode=08h,intcodelo,powerup,init -pramtop=0800h \
   -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST -pconst=CONST \
   -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
@@ -22,8 +24,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Cardoz\AppData\Local\Temp\s844.obj \
-  dist/default/production\MULOC_8bit.X.production.obj 
+  C:\Users\Cardoz\AppData\Local\Temp\so0.obj \
+  dist/default/debug\MULOC_8bit.X.debug.obj 
 
 Object code version is 3.11
 
@@ -35,12 +37,12 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Cardoz\AppData\Local\Temp\s844.obj
+C:\Users\Cardoz\AppData\Local\Temp\so0.obj
                 init                                  E        E        4        4       0
-                reset_vec                             0        0        4        0       0
+                reset_vec                             0        0        6        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
-dist/default/production\MULOC_8bit.X.production.obj
+dist/default/debug\MULOC_8bit.X.debug.obj
                 intcode                               8        8        6        4       0
                 temp                                 42       42        1        1       1
                 smallconst                          800      800       10      400       0
@@ -72,7 +74,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   CODE           
                 intcode                               8        8        6         0
                 init                                  E        E        4         0
-                reset_vec                             0        0        4         0
+                reset_vec                             0        0        6         0
                 intcode_body                        C62      C62       C8         0
                 text12                              D2A      D2A       A4         0
                 text11                              F52      F52       1E         0
@@ -143,7 +145,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
-                reset_vec                      000000  000004  000004         0       0  CODE    
+                reset_vec                      000000  000006  000006         0       0  CODE    
                 cstackCOMRAM                   000001  000042  000043         1       1  COMRAM  
                 intcode                        000008  00000A  000012         4       0  CODE    
                 bssBANK0                       000060  000075  0000D5        60       1  BANK0   
@@ -160,30 +162,37 @@ UNUSED ADDRESS RANGES
         BANK0            0000D5-0000FF               2B
         BANK1            000100-0001FF              100
         BANK2            000200-0002FF              100
-        BANK3            000300-0003FF              100
+        BANK3            000300-0003EE               EF
         BANK4            000400-0004FF              100
         BANK5            000500-0005FF              100
         BANK6            000600-0006FF              100
         BANK7            000700-0007FF              100
         BIGRAM           000043-00005F               1D
-                         0000D5-0007FF              72B
-        CODE             000004-000007                4
+                         0000D5-0003EE              31A
+                         000400-0007FF              400
+        CODE             000006-000007                2
                          000012-0007FF              7EE
                          000F9D-000F9D                1
-                         000FA0-007FFF             7060
+                         000FA0-007CFF             6D60
         COMRAM           000043-00005F               1D
-        CONST            000004-000007                4
+        CONST            000006-000007                2
                          000012-0007FF              7EE
                          000F9D-000F9D                1
-                         000FA0-007FFF             7060
+                         000FA0-007CFF             6D60
         EEDATA           F00000-F000FF              100
         MEDIUMCONST      000F9D-000F9D                1
-                         000FA0-007FFF             7060
-        RAM              0000D5-0007FF              100
-        SFR              000F60-000FFF               A0
+                         000FA0-007CFF             6D60
+        RAM              0000D5-0003EE              100
+                         000400-0007FF              100
+        SFR              000F60-000F9B               3C
+                         000F9D-000FD3               37
+                         000FD5-000FDA                6
+                         000FE0-000FE2                3
+                         000FE8-000FEA                3
+                         000FF0-000FFB                C
         SMALLCONST       000F9D-000F9D                1
-                         000FA0-007FFF              100
-        STACK            0000D5-0007FF              72B
+                         000FA0-007CFF              100
+        STACK            000400-0007FF              400
 
                                   Symbol Table
 
@@ -298,7 +307,7 @@ __Hramtop                         ramtop       000800
 __Hrbit                           rbit         000000
 __Hrbss                           rbss         000000
 __Hrdata                          rdata        000000
-__Hreset_vec                      reset_vec    000004
+__Hreset_vec                      reset_vec    000006
 __Hrparam                         rparam       000000
 __Hsfr                            sfr          000000
 __Hsmallconst                     smallconst   000810
@@ -543,7 +552,7 @@ passcodeCompare@storedCodeLenght  cstackCOMRAM 00001F
 passcodeCompare@validity          cstackCOMRAM 000021
 readEEPROM@address                cstackCOMRAM 000013
 stackhi                           (abs)        0007FF
-stacklo                           (abs)        0000D5
+stacklo                           (abs)        000400
 start                             init         00000E
 start_initialization              cinit        000E4E
 writeEEPROM@address               cstackCOMRAM 000014

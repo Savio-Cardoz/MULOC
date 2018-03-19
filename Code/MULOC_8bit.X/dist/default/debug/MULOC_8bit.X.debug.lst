@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.44 build -154322312 
-                                                                                               Mon Mar 19 22:51:35 2018
+                                                                                               Mon Mar 19 22:51:40 2018
 
 Microchip Technology Omniscient Code Generator v1.44 (Free mode) build 201709140600
      1                           	processor	18F4550
@@ -125,25 +125,25 @@ Microchip Technology Omniscient Code Generator v1.44 (Free mode) build 201709140
    111  00080E  09                 	db	9
    112  00080F                     __end_of_defaultPassCodeLenght:
    113                           	opt stack 0
-   114  0000                     _TMR1	set	4046
-   115  0000                     _PIR1bits	set	3998
-   116  0000                     _PIE1bits	set	3997
-   117  0000                     _T1CONbits	set	4045
-   118  0000                     _CCPR1L	set	4030
-   119  0000                     _T2CON	set	4042
-   120  0000                     _PR2	set	4043
-   121  0000                     _CCP1CON	set	4029
-   122  0000                     _PORTB	set	3969
-   123  0000                     _INTCON2bits	set	4081
-   124  0000                     _LATB	set	3978
-   125  0000                     _TRISB	set	3987
+   114  0000                     _PORTB	set	3969
+   115  0000                     _LATB	set	3978
+   116  0000                     _TRISB	set	3987
+   117  0000                     _TRISA3	set	31891
+   118  0000                     _TMR1	set	4046
+   119  0000                     _PIR1bits	set	3998
+   120  0000                     _PIE1bits	set	3997
+   121  0000                     _T1CONbits	set	4045
+   122  0000                     _CCPR1L	set	4030
+   123  0000                     _T2CON	set	4042
+   124  0000                     _PR2	set	4043
+   125  0000                     _CCP1CON	set	4029
    126  0000                     _EECON2	set	4007
-   127  0000                     _INTCONbits	set	4082
-   128  0000                     _EEDATA	set	4008
-   129  0000                     _EEADR	set	4009
-   130  0000                     _EECON1bits	set	4006
-   131  0000                     _RBIF	set	32656
-   132  0000                     _TRISA3	set	31891
+   127  0000                     _EEDATA	set	4008
+   128  0000                     _EEADR	set	4009
+   129  0000                     _EECON1bits	set	4006
+   130  0000                     _INTCON2bits	set	4081
+   131  0000                     _INTCONbits	set	4082
+   132  0000                     _RBIF	set	32656
    133                           
    134                           ; #config settings
    135  00080F  00                 	db	0	; dummy byte at the end
@@ -2864,7 +2864,7 @@ Auto Spaces:
     BANK0           160     17     117
     BANK1           256      0       0
     BANK2           256      0       0
-    BANK3           256      0       0
+    BANK3           239      0       0
     BANK4           256      0       0
     BANK5           256      0       0
     BANK6           256      0       0
@@ -3058,37 +3058,48 @@ Call Graph Tables:
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BIGRAM             7FF      0       0      21        0.0%
+BIGRAM_1           400      0       0      21        0.0%
+BIGRAM             3EE      0       0      22        0.0%
 EEDATA             100      0       0       0        0.0%
-BITBANK7           100      0       0      18        0.0%
-BANK7              100      0       0      19        0.0%
-BITBANK6           100      0       0      16        0.0%
-BANK6              100      0       0      17        0.0%
-BITBANK5           100      0       0      14        0.0%
-BANK5              100      0       0      15        0.0%
-BITBANK4           100      0       0      12        0.0%
-BANK4              100      0       0      13        0.0%
-BITBANK3           100      0       0      10        0.0%
-BANK3              100      0       0      11        0.0%
+BITBANK7           100      0       0      19        0.0%
+BANK7              100      0       0      20        0.0%
+BITBANK6           100      0       0      17        0.0%
+BANK6              100      0       0      18        0.0%
+BITBANK5           100      0       0      15        0.0%
+BANK5              100      0       0      16        0.0%
+BITBANK4           100      0       0      13        0.0%
+BANK4              100      0       0      14        0.0%
 BITBANK2           100      0       0       8        0.0%
 BANK2              100      0       0       9        0.0%
 BITBANK1           100      0       0       6        0.0%
 BANK1              100      0       0       7        0.0%
+BITBANK3            EF      0       0      12        0.0%
+BANK3               EF      0       0      10        0.0%
 BITBANK0            A0      0       0       4        0.0%
 BANK0               A0     11      75       5       73.1%
 BITCOMRAM           5E      0       0       0        0.0%
 COMRAM              5E     21      41       1       69.1%
+BITSFR_5             0      0       0     200        0.0%
+SFR_5                0      0       0     200        0.0%
+BITSFR_4             0      0       0     200        0.0%
+SFR_4                0      0       0     200        0.0%
+BITSFR_3             0      0       0     200        0.0%
+SFR_3                0      0       0     200        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
 BITSFR               0      0       0     200        0.0%
 SFR                  0      0       0     200        0.0%
 STACK                0      0       0       2        0.0%
 NULL                 0      0       0       0        0.0%
-ABS                  0      0      B6      20        0.0%
+ABS                  0      0      B6      11        0.0%
 DATA                 0      0      B6       3        0.0%
 CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.44 build -154322312 
-Symbol Table                                                                                   Mon Mar 19 22:51:35 2018
+Symbol Table                                                                                   Mon Mar 19 22:51:40 2018
 
                               l17 0EC8                                l18 0EAA  
                               l51 086C                                l61 0914  

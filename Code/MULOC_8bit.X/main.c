@@ -107,9 +107,9 @@ unsigned char arr_to_num(unsigned char* arr, unsigned char num_of_elements, unsi
     /* Checking elements less than 255 */
     if((num_of_elements == 3) && (arr[0] == 2) && (arr[1] == 5) && (arr[2] == 6))
             return validity;
-    for(unsigned char a = 0, b = (num_of_elements - 1); a < num_of_elements, b >= 0; a++, b--)
+    for(unsigned char a = 0; a < num_of_elements; a++)
     {
-        *number += (arr[a] * 10 * b);
+        *number = (*number * 10) + arr[a];
     }
     validity = True;
     return validity;
@@ -132,6 +132,7 @@ unsigned char check_password_presence(unsigned char lock_num)
     /* Interpret lock number into address in eeprom */
     unsigned char addr = (lock_num - 1) * 10;
     /* Read for a length value at the address. If a value, representing length of password is present, a password is present */
+    char a = readEEPROM(addr);
     if(readEEPROM(addr))
         validity = True;
     return validity;
@@ -290,6 +291,11 @@ void initControllerIO()
 //    SLEEP();
 //    NOP();
 //}
+void clear_keyArray(unsigned char* arr)
+{
+    for(unsigned char a = 0; a < MAX_CODE_SIZE; a++)
+        arr[a] = 0;
+}
 
 int main() 
 {   
@@ -317,8 +323,11 @@ int main()
 //    handleSleep();
 //    
     /* Clear the keypressArray */
-    for(unsigned char a = 0; a < MAX_CODE_SIZE; a++)
-        keypressArray[a] = 0;
+    clear_keyArray(keypressArray);
+    
+    writeEEPROM(0, 0x01);
+    writeEEPROM(1, 0x01);
+    char a = readEEPROM(0);
     
     while(1)
     {
@@ -360,8 +369,27 @@ int main()
                 else if(currentSystemState == UID_ENTERED)
                 {
                     /* Compare the entered code with that saved previously */
-                    
+                    if(False == check_password_presence(locker_num))
+                    {
+                        /* No password exists. Send error code */
+                        break;
+                    }
+                    else 
+                    {
+                        addr = (locker_num - 1) * 10;
+                        if(False == passcodeCompare(keypressArray, numOfKeysPressed, addr))
+                        {
+                            /* Send error code */
+                            break;
+                        }
+                        else
+                        {
+                            /* Access OK */
+                        }
+                    }
                 }
+                clear_keyArray(keypressArray);
+                numOfKeysPressed = 0;
             }
             else if(currentKeypadStatus.keyPressed == SP_FUNC_OFF)
             {
@@ -385,6 +413,8 @@ int main()
                         
                     }
                 }
+                clear_keyArray(keypressArray);
+                numOfKeysPressed = 0;
             }
             else 
             {
@@ -621,7 +651,7 @@ int main()
 unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr)
 {
     unsigned char validity = False;
-    unsigned char storedCodeLenght = eeprom_read(compareAddr);      // The addr provided points to the lenght of the stored code.
+    unsigned char storedCodeLenght = readEEPROM(compareAddr);      // The addr provided points to the lenght of the stored code.
     if(compareLenght != storedCodeLenght)
     {
         VALIDCODEINDICATOR = False;
@@ -630,30 +660,20 @@ unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned cha
     }
     else
     {
-        for(unsigned char i=0; i <= (compareLenght-1); i++)
+        for(unsigned char i = 0; i <= (compareLenght - 1); i++)
         {
-            if(*keybuffer1 == eeprom_read(++compareAddr))
-                keybuffer1++; 
+            if(*keybuffer1 == readEEPROM(++compareAddr))
+            {
+                keybuffer1++;
+                validity = True;
+            }
             else 
             {
                 VALIDCODEINDICATOR = 0;
-                return 0;
-            }
-                
+                validity = False;
+                break;
+            }              
         }
-        ERROR_LED = 0;          // If error LED is ON, indicating Tamper, close it.
-        ACCESS_LED = 1;
-        VALIDCODEINDICATOR = 1;
-//        soundConfigParam(200, 1000, KEYPADSILENT, okTimer);
-//        __delay_ms(100);
-//        soundConfigParam(200, 1000, KEYPADSILENT, okTimer);
-//        __delay_ms(100);
-//        soundConfigParam(200, 1000, KEYPADSILENT, okTimer);
-//        __delay_ms(100);
-//        soundConfigParam(200, 1000, KEYPADSILENT, okTimer);
-        wrongCodeEnteredCount = 0;
-        SYSTAMPERED = 0;
-        validity = True;
     }
     return validity;
 }
