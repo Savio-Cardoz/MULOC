@@ -131,6 +131,10 @@ unsigned char *eepromCode;
 //extern enum timerType currentTimerState;
 enum codeType LASTPASSCODE;
 
+#define BUZZER_PIN LATAbits.LATA0
+#define BUZZER_ON (LATAbits.LATA0 = 1)
+#define BUZZER_OFF (LATAbits.LATA0 = 0)
+
 const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
 const unsigned char defaultPassCode2[3] = {1,2,3};
 unsigned char factoryResetCode[4] = {8,0,8,0};

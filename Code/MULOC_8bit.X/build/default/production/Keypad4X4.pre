@@ -4805,7 +4805,7 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 58 "Keypad4x4.h"
+# 63 "Keypad4x4.h"
 enum button { button_0 = 0,
 button_1,
 button_2,
@@ -4836,13 +4836,12 @@ void initKeypad(void);
 void ackKeyPress();
 void getKey(keypadStatus *KeypadStatus);
 char buttonPressedIndicator();
-void delay_ms(unsigned int time);
 
 # 14 "Keypad4X4.c"
 void initKeypad(void)
 {
-TRISB = 0x0F;
-LATB = 0xFF;
+TRISB = 0xF0;
+LATB = 0xF0;
 INTCON2bits.RBPU = 0;
 INTCONbits.RBIE = 1;
 }
@@ -4852,11 +4851,11 @@ void getKey(keypadStatus *KeypadStatus)
 {
 enum button buttonPressed;
 
-LATB = 0x7F;
-if ((PORTB & 0x08) == 0x00)
+LATB = 0xF7;
+if ((PORTB & 0x80) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
-if ((PORTB & 0x08) == 0x00)
+if ((PORTB & 0x80) == 0x00)
 {
 buttonPressed = button_1;
 KeypadStatus->keyPressIndicator = 1;
@@ -4865,53 +4864,53 @@ return;
 }
 }
 
-else if ((PORTB & 0x04) == 0x00)
+else if ((PORTB & 0x40) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
-if ((PORTB & 0x04) == 0x00)
+if ((PORTB & 0x40) == 0x00)
 {
-buttonPressed = button_2;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-}
-
-else if ((PORTB & 0x02) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-if ((PORTB & 0x02) == 0x00)
-{
-buttonPressed = button_3;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-}
-
-else if ((PORTB & 0x01) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-if ((PORTB & 0x01) == 0x00)
-{
-buttonPressed = NO_KEY_TUNE;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-}
-
-LATB = 0xBF;
-if ((PORTB & 0x08) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = button_4;
 KeypadStatus->keyPressIndicator = 1;
 KeypadStatus->keyPressed = buttonPressed;
 return;
 }
+}
 
-else if ((PORTB & 0x04) == 0x00)
+else if ((PORTB & 0x20) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+if ((PORTB & 0x20) == 0x00)
+{
+buttonPressed = button_7;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+}
+
+else if ((PORTB & 0x10) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+if ((PORTB & 0x10) == 0x00)
+{
+buttonPressed = SP_FUNC_ON;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+}
+
+LATB = 0xFB;
+if ((PORTB & 0x80) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = button_2;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x40) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = button_5;
@@ -4920,35 +4919,7 @@ KeypadStatus->keyPressed = buttonPressed;
 return;
 }
 
-else if ((PORTB & 0x02) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = button_6;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-else if ((PORTB & 0x01) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = SP_FUNC_A;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-LATB = 0xDF;
-if ((PORTB & 0x08) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = button_7;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-else if ((PORTB & 0x04) == 0x00)
+else if ((PORTB & 0x20) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = button_8;
@@ -4957,35 +4928,7 @@ KeypadStatus->keyPressed = buttonPressed;
 return;
 }
 
-else if ((PORTB & 0x02) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = button_9;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-else if ((PORTB & 0x01) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = SP_FUNC_B;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-LATB = 0xEF;
-if ((PORTB & 0x08) == 0x00)
-{
-_delay((unsigned long)((5)*(4000000/4000.0)));
-buttonPressed = SP_FUNC_ON;
-KeypadStatus->keyPressIndicator = 1;
-KeypadStatus->keyPressed = buttonPressed;
-return;
-}
-
-else if ((PORTB & 0x04) == 0x00)
+else if ((PORTB & 0x10) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = button_0;
@@ -4994,7 +4937,35 @@ KeypadStatus->keyPressed = buttonPressed;
 return;
 }
 
-else if ((PORTB & 0x02) == 0x00)
+LATB = 0xFD;
+if ((PORTB & 0x80) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = button_3;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x40) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = button_6;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x20) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = button_9;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x10) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = SP_FUNC_ENTER;
@@ -5003,7 +4974,35 @@ KeypadStatus->keyPressed = buttonPressed;
 return;
 }
 
-else if ((PORTB & 0x01) == 0x00)
+LATB = 0xFE;
+if ((PORTB & 0x80) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = SP_FUNC_A;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x40) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = SP_FUNC_B;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x20) == 0x00)
+{
+_delay((unsigned long)((5)*(4000000/4000.0)));
+buttonPressed = NO_KEY_TUNE;
+KeypadStatus->keyPressIndicator = 1;
+KeypadStatus->keyPressed = buttonPressed;
+return;
+}
+
+else if ((PORTB & 0x10) == 0x00)
 {
 _delay((unsigned long)((5)*(4000000/4000.0)));
 buttonPressed = SP_FUNC_OFF;
@@ -5022,18 +5021,7 @@ return;
 
 char buttonPressedIndicator()
 {
-keypadStatus KeypadStatus;
-getKey(&KeypadStatus);
-if(KeypadStatus.keyPressIndicator == 1)
-return 1;
-else return 0;
-}
-
-void delay_ms(unsigned int time)
-{
-int i, j;
-for(i=0;i<5000;i++)
-{
-;
-}
+keypadStatus keypad_state;
+getKey(&keypad_state);
+return keypad_state.keyPressIndicator;
 }

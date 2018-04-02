@@ -1,13 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "129 main.h
-[c E3822 1 2 3 .. ]
-[n E3822 timerType ackTimer errorTimer okTimer  ]
+[c E3820 1 2 3 .. ]
+[n E3820 timerType ackTimer errorTimer okTimer  ]
 "66
-[s S363 `uc 1 `i 1 `uc 1 `E3822 1 :1 `uc 1 ]
+[s S363 `uc 1 `i 1 `uc 1 `E3820 1 :1 `uc 1 ]
 [n S363 configSound timerVal duration pitch playSeq noSoundFlag ]
 "132
-[c E3826 0 1 2 3 .. ]
-[n E3826 codeType general code1 code2 master1  ]
+[c E3824 0 1 2 3 .. ]
+[n E3824 codeType general code1 code2 master1  ]
 "7419 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
 [s S312 :2 `uc 1 :1 `uc 1 ]
 [n S312 . . NOT_T1SYNC ]
@@ -3548,35 +3548,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;Keypad4x4.h: 58: enum button { button_0 = 0,
-[; ;Keypad4x4.h: 59: button_1,
-[; ;Keypad4x4.h: 60: button_2,
-[; ;Keypad4x4.h: 61: button_3,
-[; ;Keypad4x4.h: 62: button_4,
-[; ;Keypad4x4.h: 63: button_5,
-[; ;Keypad4x4.h: 64: button_6,
-[; ;Keypad4x4.h: 65: button_7,
-[; ;Keypad4x4.h: 66: button_8,
-[; ;Keypad4x4.h: 67: button_9,
-[; ;Keypad4x4.h: 68: NO_KEY_TUNE = 10,
-[; ;Keypad4x4.h: 69: SP_FUNC_A = 11,
-[; ;Keypad4x4.h: 70: SP_FUNC_B = 12,
-[; ;Keypad4x4.h: 71: SP_FUNC_ON = 13,
-[; ;Keypad4x4.h: 72: SP_FUNC_OFF = 14,
-[; ;Keypad4x4.h: 73: SP_FUNC_ENTER = 15,
-[; ;Keypad4x4.h: 74: NONE = 16,
-[; ;Keypad4x4.h: 75: };
-[; ;Keypad4x4.h: 77: typedef struct{
-[; ;Keypad4x4.h: 78: char keyPressIndicator:1;
-[; ;Keypad4x4.h: 79: char keyPressSound:1;
-[; ;Keypad4x4.h: 80: char keyLock:1;
-[; ;Keypad4x4.h: 81: char keyPressed;
-[; ;Keypad4x4.h: 82: }keypadStatus;
-[; ;Keypad4x4.h: 84: void initKeypad(void);
-[; ;Keypad4x4.h: 85: void ackKeyPress();
-[; ;Keypad4x4.h: 86: void getKey(keypadStatus *KeypadStatus);
-[; ;Keypad4x4.h: 87: char buttonPressedIndicator();
-[; ;Keypad4x4.h: 88: void delay_ms(unsigned int time);
+[; ;Keypad4x4.h: 63: enum button { button_0 = 0,
+[; ;Keypad4x4.h: 64: button_1,
+[; ;Keypad4x4.h: 65: button_2,
+[; ;Keypad4x4.h: 66: button_3,
+[; ;Keypad4x4.h: 67: button_4,
+[; ;Keypad4x4.h: 68: button_5,
+[; ;Keypad4x4.h: 69: button_6,
+[; ;Keypad4x4.h: 70: button_7,
+[; ;Keypad4x4.h: 71: button_8,
+[; ;Keypad4x4.h: 72: button_9,
+[; ;Keypad4x4.h: 73: NO_KEY_TUNE = 10,
+[; ;Keypad4x4.h: 74: SP_FUNC_A = 11,
+[; ;Keypad4x4.h: 75: SP_FUNC_B = 12,
+[; ;Keypad4x4.h: 76: SP_FUNC_ON = 13,
+[; ;Keypad4x4.h: 77: SP_FUNC_OFF = 14,
+[; ;Keypad4x4.h: 78: SP_FUNC_ENTER = 15,
+[; ;Keypad4x4.h: 79: NONE = 16,
+[; ;Keypad4x4.h: 80: };
+[; ;Keypad4x4.h: 82: typedef struct{
+[; ;Keypad4x4.h: 83: char keyPressIndicator:1;
+[; ;Keypad4x4.h: 84: char keyPressSound:1;
+[; ;Keypad4x4.h: 85: char keyLock:1;
+[; ;Keypad4x4.h: 86: char keyPressed;
+[; ;Keypad4x4.h: 87: }keypadStatus;
+[; ;Keypad4x4.h: 89: void initKeypad(void);
+[; ;Keypad4x4.h: 90: void ackKeyPress();
+[; ;Keypad4x4.h: 91: void getKey(keypadStatus *KeypadStatus);
+[; ;Keypad4x4.h: 92: char buttonPressedIndicator();
 [; ;main.h: 53: enum timerType {
 [; ;main.h: 54: ackTimer = 1,
 [; ;main.h: 55: errorTimer = 2,
@@ -3640,9 +3639,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _eepromCode `*uc ~T0 @X0 1 e ]
 [; ;main.h: 130: unsigned char *eepromCode;
 "132
-[v _LASTPASSCODE `E3826 ~T0 @X0 1 e ]
+[v _LASTPASSCODE `E3824 ~T0 @X0 1 e ]
 [; ;main.h: 132: enum codeType LASTPASSCODE;
-"134
+"138
 [v _defaultPassCode `Cuc ~T0 @X0 -> 9 `i e ]
 [i _defaultPassCode
 :U ..
@@ -3657,8 +3656,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ..
 ]
-[; ;main.h: 134: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
-"135
+[; ;main.h: 138: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
+"139
 [v _defaultPassCode2 `Cuc ~T0 @X0 -> 3 `i e ]
 [i _defaultPassCode2
 :U ..
@@ -3667,8 +3666,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 3 `i `uc
 ..
 ]
-[; ;main.h: 135: const unsigned char defaultPassCode2[3] = {1,2,3};
-"136
+[; ;main.h: 139: const unsigned char defaultPassCode2[3] = {1,2,3};
+"140
 [v _factoryResetCode `uc ~T0 @X0 -> 4 `i e ]
 [i _factoryResetCode
 :U ..
@@ -3678,49 +3677,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-[; ;main.h: 136: unsigned char factoryResetCode[4] = {8,0,8,0};
-"137
+[; ;main.h: 140: unsigned char factoryResetCode[4] = {8,0,8,0};
+"141
 [v _factoryResetCodeLenght `uc ~T0 @X0 1 e ]
 [i _factoryResetCodeLenght
 -> -> 4 `i `uc
 ]
-[; ;main.h: 137: unsigned char factoryResetCodeLenght = 4;
-"138
+[; ;main.h: 141: unsigned char factoryResetCodeLenght = 4;
+"142
 [v _defaultPassCodeLenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCodeLenght
 -> -> 9 `i `uc
 ]
-[; ;main.h: 138: const unsigned char defaultPassCodeLenght = 9;
-"139
+[; ;main.h: 142: const unsigned char defaultPassCodeLenght = 9;
+"143
 [v _defaultPassCode2Lenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCode2Lenght
 -> -> 3 `i `uc
 ]
-[; ;main.h: 139: const unsigned char defaultPassCode2Lenght = 3;
-"141
+[; ;main.h: 143: const unsigned char defaultPassCode2Lenght = 3;
+"145
 [v _tempCodeBuffer `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.h: 141: unsigned char tempCodeBuffer[25];
-"142
+[; ;main.h: 145: unsigned char tempCodeBuffer[25];
+"146
 [v _tempCodeKeyPressCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 142: unsigned char tempCodeKeyPressCount;
-[; ;main.h: 144: void checkFirstFlash();
-[; ;main.h: 145: void ackKeyPress();
-[; ;main.h: 146: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
-[; ;main.h: 147: void handleSleep();
-[; ;main.h: 148: void disableInterrupts();
-[; ;main.h: 149: void interrupt ISR(void);
-[; ;main.h: 150: void okTimerTone();
-[; ;main.h: 151: void doorTimerTone();
-[; ;main.h: 152: void errorTimerTone();
-[; ;main.h: 153: void doorOpenAlarm(unsigned char alarmMute);
-[; ;main.h: 154: void startTimer0();
-[; ;main.h: 155: void updateTempCodeBuffer(char *keybuffer, char keycount);
-[; ;main.h: 156: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
-[; ;main.h: 157: void doorOpenedTone(unsigned char tuneNumber);
-[; ;main.h: 158: void setDefaultUserCodes();
-[; ;main.h: 159: void setDefaultFactoryCodes();
-[; ;main.h: 160: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
-[; ;main.h: 161: char monitorBattery();
+[; ;main.h: 146: unsigned char tempCodeKeyPressCount;
+[; ;main.h: 148: void checkFirstFlash();
+[; ;main.h: 149: void ackKeyPress();
+[; ;main.h: 150: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
+[; ;main.h: 151: void handleSleep();
+[; ;main.h: 152: void disableInterrupts();
+[; ;main.h: 153: void interrupt ISR(void);
+[; ;main.h: 154: void okTimerTone();
+[; ;main.h: 155: void doorTimerTone();
+[; ;main.h: 156: void errorTimerTone();
+[; ;main.h: 157: void doorOpenAlarm(unsigned char alarmMute);
+[; ;main.h: 158: void startTimer0();
+[; ;main.h: 159: void updateTempCodeBuffer(char *keybuffer, char keycount);
+[; ;main.h: 160: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
+[; ;main.h: 161: void doorOpenedTone(unsigned char tuneNumber);
+[; ;main.h: 162: void setDefaultUserCodes();
+[; ;main.h: 163: void setDefaultFactoryCodes();
+[; ;main.h: 164: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
+[; ;main.h: 165: char monitorBattery();
 "55 timer.h
 [v _timerOVFcount `uc ~T0 @X0 1 s ]
 [; ;timer.h: 55: static char timerOVFcount;
@@ -3733,7 +3732,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;timer.h: 73: void initDoorOpenTimer2();
 [; ;timer.h: 74: void beginDoorOpenCheck();
 "8 timer.c
-[v _currentTimerState `E3822 ~T0 @X0 1 e ]
+[v _currentTimerState `E3820 ~T0 @X0 1 e ]
 [; ;timer.c: 8: enum timerType currentTimerState;
 "9
 [v _soundOut `S363 ~T0 @X0 1 e ]

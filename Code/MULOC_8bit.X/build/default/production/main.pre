@@ -5000,7 +5000,7 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 58 "Keypad4x4.h"
+# 63 "Keypad4x4.h"
 enum button { button_0 = 0,
 button_1,
 button_2,
@@ -5031,7 +5031,6 @@ void initKeypad(void);
 void ackKeyPress();
 void getKey(keypadStatus *KeypadStatus);
 char buttonPressedIndicator();
-void delay_ms(unsigned int time);
 
 # 53 "main.h"
 enum timerType {
@@ -5084,6 +5083,7 @@ unsigned char *eepromCode;
 
 enum codeType LASTPASSCODE;
 
+# 138
 const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
 const unsigned char defaultPassCode2[3] = {1,2,3};
 unsigned char factoryResetCode[4] = {8,0,8,0};
@@ -5216,10 +5216,30 @@ PIR1bits.TMR1IF = 0;
 
 void initControllerIO()
 {
-
+ADCON1 = 0x0F;
+CMCON = 0x07;
+TRISAbits.RA0 = 0;
 }
 
-# 294
+void beep()
+{
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+}
+
+void beep_ok()
+{
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((2)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+_delay((unsigned long)((1)*(8000000/4000.0)));
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((2)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+}
+
+# 314
 void clear_keyArray(unsigned char* arr)
 {
 for(unsigned char a = 0; a < 10; a++)
@@ -5241,7 +5261,7 @@ initStandbyTimer();
 INTCONbits.PEIE = 1;
 INTCONbits.GIE = 1;
 
-# 326
+# 346
 clear_keyArray(keypressArray);
 
 writeEEPROM(0, 0x01);
@@ -5255,6 +5275,7 @@ getKey(&currentKeypadStatus);
 
 if(currentKeypadStatus.keyPressIndicator == 1)
 {
+beep();
 if(currentKeypadStatus.keyPressed == SP_FUNC_A)
 {
 
@@ -5282,6 +5303,7 @@ break;
 }
 else
 {
+beep_ok();
 currentSystemState = UID_ENTERED;
 }
 }
@@ -5344,9 +5366,11 @@ numOfKeysPressed = 0;
 
 }
 }
+
+while(buttonPressedIndicator());
 }
 
-# 647
+# 671
 }
 return (0);
 }

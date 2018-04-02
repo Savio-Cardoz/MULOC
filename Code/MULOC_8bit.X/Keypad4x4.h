@@ -36,19 +36,24 @@
 #define KEYPAD_PORT_IN PORTB
 #define KEYPAD_PORT_OUT LATB
 #define KEYPAD_PORT_DIR TRISB
-#define ROW_1 RB7
-#define ROW_2 RB6
-#define ROW_3 RB5
-#define ROW_4 RB4
-#define COL_1 RB3
-#define COL_2 RB2
-#define COL_3 RB1
-#define COL_4 RB0
+#define ROW_1 RB3
+#define ROW_2 RB2
+#define ROW_3 RB1
+#define ROW_4 RB0
+#define COL_1 RB7
+#define COL_2 RB6
+#define COL_3 RB5
+#define COL_4 RB4
 
-#define SCAN_ROW_1 0x7F
-#define SCAN_ROW_2 0xBF
-#define SCAN_ROW_3 0xDF
-#define SCAN_ROW_4 0xEF
+#define SCAN_ROW_1 0xF7
+#define SCAN_ROW_2 0xFB
+#define SCAN_ROW_3 0xFD
+#define SCAN_ROW_4 0xFE
+
+#define ROW_BUTTON_1_MASK 0x80
+#define ROW_BUTTON_2_MASK 0x40
+#define ROW_BUTTON_3_MASK 0x20
+#define ROW_BUTTON_4_MASK 0x10
 
 #define keyLocked 1
 #define keyUnlocked 0
@@ -85,7 +90,6 @@ void initKeypad(void);
 void ackKeyPress();
 void getKey(keypadStatus *KeypadStatus);
 char buttonPressedIndicator();
-void delay_ms(unsigned int time);
 
 #endif  /* KEYPAD4X4_H */
 

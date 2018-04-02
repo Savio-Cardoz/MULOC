@@ -31,7 +31,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S354 . . . . ]
 "8612
 [v _INTCONbits `VS354 ~T0 @X0 0 e@4082 ]
-"77 Keypad4x4.h
+"82 Keypad4x4.h
 [s S362 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 ]
 [n S362 . keyPressIndicator keyPressSound keyLock keyPressed ]
 "30 Keypad4X4.c
@@ -3553,35 +3553,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;Keypad4x4.h: 58: enum button { button_0 = 0,
-[; ;Keypad4x4.h: 59: button_1,
-[; ;Keypad4x4.h: 60: button_2,
-[; ;Keypad4x4.h: 61: button_3,
-[; ;Keypad4x4.h: 62: button_4,
-[; ;Keypad4x4.h: 63: button_5,
-[; ;Keypad4x4.h: 64: button_6,
-[; ;Keypad4x4.h: 65: button_7,
-[; ;Keypad4x4.h: 66: button_8,
-[; ;Keypad4x4.h: 67: button_9,
-[; ;Keypad4x4.h: 68: NO_KEY_TUNE = 10,
-[; ;Keypad4x4.h: 69: SP_FUNC_A = 11,
-[; ;Keypad4x4.h: 70: SP_FUNC_B = 12,
-[; ;Keypad4x4.h: 71: SP_FUNC_ON = 13,
-[; ;Keypad4x4.h: 72: SP_FUNC_OFF = 14,
-[; ;Keypad4x4.h: 73: SP_FUNC_ENTER = 15,
-[; ;Keypad4x4.h: 74: NONE = 16,
-[; ;Keypad4x4.h: 75: };
-[; ;Keypad4x4.h: 77: typedef struct{
-[; ;Keypad4x4.h: 78: char keyPressIndicator:1;
-[; ;Keypad4x4.h: 79: char keyPressSound:1;
-[; ;Keypad4x4.h: 80: char keyLock:1;
-[; ;Keypad4x4.h: 81: char keyPressed;
-[; ;Keypad4x4.h: 82: }keypadStatus;
-[; ;Keypad4x4.h: 84: void initKeypad(void);
-[; ;Keypad4x4.h: 85: void ackKeyPress();
-[; ;Keypad4x4.h: 86: void getKey(keypadStatus *KeypadStatus);
-[; ;Keypad4x4.h: 87: char buttonPressedIndicator();
-[; ;Keypad4x4.h: 88: void delay_ms(unsigned int time);
+[; ;Keypad4x4.h: 63: enum button { button_0 = 0,
+[; ;Keypad4x4.h: 64: button_1,
+[; ;Keypad4x4.h: 65: button_2,
+[; ;Keypad4x4.h: 66: button_3,
+[; ;Keypad4x4.h: 67: button_4,
+[; ;Keypad4x4.h: 68: button_5,
+[; ;Keypad4x4.h: 69: button_6,
+[; ;Keypad4x4.h: 70: button_7,
+[; ;Keypad4x4.h: 71: button_8,
+[; ;Keypad4x4.h: 72: button_9,
+[; ;Keypad4x4.h: 73: NO_KEY_TUNE = 10,
+[; ;Keypad4x4.h: 74: SP_FUNC_A = 11,
+[; ;Keypad4x4.h: 75: SP_FUNC_B = 12,
+[; ;Keypad4x4.h: 76: SP_FUNC_ON = 13,
+[; ;Keypad4x4.h: 77: SP_FUNC_OFF = 14,
+[; ;Keypad4x4.h: 78: SP_FUNC_ENTER = 15,
+[; ;Keypad4x4.h: 79: NONE = 16,
+[; ;Keypad4x4.h: 80: };
+[; ;Keypad4x4.h: 82: typedef struct{
+[; ;Keypad4x4.h: 83: char keyPressIndicator:1;
+[; ;Keypad4x4.h: 84: char keyPressSound:1;
+[; ;Keypad4x4.h: 85: char keyLock:1;
+[; ;Keypad4x4.h: 86: char keyPressed;
+[; ;Keypad4x4.h: 87: }keypadStatus;
+[; ;Keypad4x4.h: 89: void initKeypad(void);
+[; ;Keypad4x4.h: 90: void ackKeyPress();
+[; ;Keypad4x4.h: 91: void getKey(keypadStatus *KeypadStatus);
+[; ;Keypad4x4.h: 92: char buttonPressedIndicator();
 "14 Keypad4X4.c
 [v _initKeypad `(v ~T0 @X0 1 ef ]
 "15
@@ -3590,12 +3589,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Keypad4X4.c: 15: {
 [e :U _initKeypad ]
 [f ]
-[; ;Keypad4X4.c: 16: TRISB = 0x0F;
+[; ;Keypad4X4.c: 16: TRISB = 0xF0;
 "16
-[e = _TRISB -> -> 15 `i `uc ]
-[; ;Keypad4X4.c: 17: LATB = 0xFF;
+[e = _TRISB -> -> 240 `i `uc ]
+[; ;Keypad4X4.c: 17: LATB = 0xF0;
 "17
-[e = _LATB -> -> 255 `i `uc ]
+[e = _LATB -> -> 240 `i `uc ]
 [; ;Keypad4X4.c: 18: INTCON2bits.RBPU = 0;
 "18
 [e = . . _INTCON2bits 2 3 -> -> 0 `i `uc ]
@@ -3620,21 +3619,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 "30
 [v _buttonPressed `E3790 ~T0 @X0 1 a ]
 [; ;Keypad4X4.c: 30: enum button buttonPressed;
-[; ;Keypad4X4.c: 32: LATB = 0x7F;
+[; ;Keypad4X4.c: 32: LATB = 0xF7;
 "32
-[e = _LATB -> -> 127 `i `uc ]
-[; ;Keypad4X4.c: 33: if ((PORTB & 0x08) == 0x00)
+[e = _LATB -> -> 247 `i `uc ]
+[; ;Keypad4X4.c: 33: if ((PORTB & 0x80) == 0x00)
 "33
-[e $ ! == & -> _PORTB `i -> 8 `i -> 0 `i 365  ]
+[e $ ! == & -> _PORTB `i -> 128 `i -> 0 `i 365  ]
 [; ;Keypad4X4.c: 34: {
 "34
 {
 [; ;Keypad4X4.c: 35: _delay((unsigned long)((5)*(4000000/4000.0)));
 "35
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 36: if ((PORTB & 0x08) == 0x00)
+[; ;Keypad4X4.c: 36: if ((PORTB & 0x80) == 0x00)
 "36
-[e $ ! == & -> _PORTB `i -> 8 `i -> 0 `i 366  ]
+[e $ ! == & -> _PORTB `i -> 128 `i -> 0 `i 366  ]
 [; ;Keypad4X4.c: 37: {
 "37
 {
@@ -3660,23 +3659,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 367  ]
 "45
 [e :U 365 ]
-[; ;Keypad4X4.c: 45: else if ((PORTB & 0x04) == 0x00)
-[e $ ! == & -> _PORTB `i -> 4 `i -> 0 `i 368  ]
+[; ;Keypad4X4.c: 45: else if ((PORTB & 0x40) == 0x00)
+[e $ ! == & -> _PORTB `i -> 64 `i -> 0 `i 368  ]
 [; ;Keypad4X4.c: 46: {
 "46
 {
 [; ;Keypad4X4.c: 47: _delay((unsigned long)((5)*(4000000/4000.0)));
 "47
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 48: if ((PORTB & 0x04) == 0x00)
+[; ;Keypad4X4.c: 48: if ((PORTB & 0x40) == 0x00)
 "48
-[e $ ! == & -> _PORTB `i -> 4 `i -> 0 `i 369  ]
+[e $ ! == & -> _PORTB `i -> 64 `i -> 0 `i 369  ]
 [; ;Keypad4X4.c: 49: {
 "49
 {
-[; ;Keypad4X4.c: 50: buttonPressed = button_2;
+[; ;Keypad4X4.c: 50: buttonPressed = button_4;
 "50
-[e = _buttonPressed . `E3790 2 ]
+[e = _buttonPressed . `E3790 4 ]
 [; ;Keypad4X4.c: 51: KeypadStatus->keyPressIndicator = 1;
 "51
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3696,23 +3695,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 370  ]
 "57
 [e :U 368 ]
-[; ;Keypad4X4.c: 57: else if ((PORTB & 0x02) == 0x00)
-[e $ ! == & -> _PORTB `i -> 2 `i -> 0 `i 371  ]
+[; ;Keypad4X4.c: 57: else if ((PORTB & 0x20) == 0x00)
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 371  ]
 [; ;Keypad4X4.c: 58: {
 "58
 {
 [; ;Keypad4X4.c: 59: _delay((unsigned long)((5)*(4000000/4000.0)));
 "59
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 60: if ((PORTB & 0x02) == 0x00)
+[; ;Keypad4X4.c: 60: if ((PORTB & 0x20) == 0x00)
 "60
-[e $ ! == & -> _PORTB `i -> 2 `i -> 0 `i 372  ]
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 372  ]
 [; ;Keypad4X4.c: 61: {
 "61
 {
-[; ;Keypad4X4.c: 62: buttonPressed = button_3;
+[; ;Keypad4X4.c: 62: buttonPressed = button_7;
 "62
-[e = _buttonPressed . `E3790 3 ]
+[e = _buttonPressed . `E3790 7 ]
 [; ;Keypad4X4.c: 63: KeypadStatus->keyPressIndicator = 1;
 "63
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3732,23 +3731,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 373  ]
 "69
 [e :U 371 ]
-[; ;Keypad4X4.c: 69: else if ((PORTB & 0x01) == 0x00)
-[e $ ! == & -> _PORTB `i -> 1 `i -> 0 `i 374  ]
+[; ;Keypad4X4.c: 69: else if ((PORTB & 0x10) == 0x00)
+[e $ ! == & -> _PORTB `i -> 16 `i -> 0 `i 374  ]
 [; ;Keypad4X4.c: 70: {
 "70
 {
 [; ;Keypad4X4.c: 71: _delay((unsigned long)((5)*(4000000/4000.0)));
 "71
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 72: if ((PORTB & 0x01) == 0x00)
+[; ;Keypad4X4.c: 72: if ((PORTB & 0x10) == 0x00)
 "72
-[e $ ! == & -> _PORTB `i -> 1 `i -> 0 `i 375  ]
+[e $ ! == & -> _PORTB `i -> 16 `i -> 0 `i 375  ]
 [; ;Keypad4X4.c: 73: {
 "73
 {
-[; ;Keypad4X4.c: 74: buttonPressed = NO_KEY_TUNE;
+[; ;Keypad4X4.c: 74: buttonPressed = SP_FUNC_ON;
 "74
-[e = _buttonPressed . `E3790 10 ]
+[e = _buttonPressed . `E3790 13 ]
 [; ;Keypad4X4.c: 75: KeypadStatus->keyPressIndicator = 1;
 "75
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3770,20 +3769,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 367 ]
 [; ;Keypad4X4.c: 78: }
 [; ;Keypad4X4.c: 79: }
-[; ;Keypad4X4.c: 81: LATB = 0xBF;
-[e = _LATB -> -> 191 `i `uc ]
-[; ;Keypad4X4.c: 82: if ((PORTB & 0x08) == 0x00)
+[; ;Keypad4X4.c: 81: LATB = 0xFB;
+[e = _LATB -> -> 251 `i `uc ]
+[; ;Keypad4X4.c: 82: if ((PORTB & 0x80) == 0x00)
 "82
-[e $ ! == & -> _PORTB `i -> 8 `i -> 0 `i 376  ]
+[e $ ! == & -> _PORTB `i -> 128 `i -> 0 `i 376  ]
 [; ;Keypad4X4.c: 83: {
 "83
 {
 [; ;Keypad4X4.c: 84: _delay((unsigned long)((5)*(4000000/4000.0)));
 "84
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 85: buttonPressed = button_4;
+[; ;Keypad4X4.c: 85: buttonPressed = button_2;
 "85
-[e = _buttonPressed . `E3790 4 ]
+[e = _buttonPressed . `E3790 2 ]
 [; ;Keypad4X4.c: 86: KeypadStatus->keyPressIndicator = 1;
 "86
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3799,8 +3798,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 377  ]
 "91
 [e :U 376 ]
-[; ;Keypad4X4.c: 91: else if ((PORTB & 0x04) == 0x00)
-[e $ ! == & -> _PORTB `i -> 4 `i -> 0 `i 378  ]
+[; ;Keypad4X4.c: 91: else if ((PORTB & 0x40) == 0x00)
+[e $ ! == & -> _PORTB `i -> 64 `i -> 0 `i 378  ]
 [; ;Keypad4X4.c: 92: {
 "92
 {
@@ -3825,17 +3824,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 379  ]
 "100
 [e :U 378 ]
-[; ;Keypad4X4.c: 100: else if ((PORTB & 0x02) == 0x00)
-[e $ ! == & -> _PORTB `i -> 2 `i -> 0 `i 380  ]
+[; ;Keypad4X4.c: 100: else if ((PORTB & 0x20) == 0x00)
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 380  ]
 [; ;Keypad4X4.c: 101: {
 "101
 {
 [; ;Keypad4X4.c: 102: _delay((unsigned long)((5)*(4000000/4000.0)));
 "102
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 103: buttonPressed = button_6;
+[; ;Keypad4X4.c: 103: buttonPressed = button_8;
 "103
-[e = _buttonPressed . `E3790 6 ]
+[e = _buttonPressed . `E3790 8 ]
 [; ;Keypad4X4.c: 104: KeypadStatus->keyPressIndicator = 1;
 "104
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3851,17 +3850,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 381  ]
 "109
 [e :U 380 ]
-[; ;Keypad4X4.c: 109: else if ((PORTB & 0x01) == 0x00)
-[e $ ! == & -> _PORTB `i -> 1 `i -> 0 `i 382  ]
+[; ;Keypad4X4.c: 109: else if ((PORTB & 0x10) == 0x00)
+[e $ ! == & -> _PORTB `i -> 16 `i -> 0 `i 382  ]
 [; ;Keypad4X4.c: 110: {
 "110
 {
 [; ;Keypad4X4.c: 111: _delay((unsigned long)((5)*(4000000/4000.0)));
 "111
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 112: buttonPressed = SP_FUNC_A;
+[; ;Keypad4X4.c: 112: buttonPressed = button_0;
 "112
-[e = _buttonPressed . `E3790 11 ]
+[e = _buttonPressed . `E3790 0 ]
 [; ;Keypad4X4.c: 113: KeypadStatus->keyPressIndicator = 1;
 "113
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3879,20 +3878,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 379 ]
 [e :U 377 ]
 [; ;Keypad4X4.c: 116: }
-[; ;Keypad4X4.c: 118: LATB = 0xDF;
-[e = _LATB -> -> 223 `i `uc ]
-[; ;Keypad4X4.c: 119: if ((PORTB & 0x08) == 0x00)
+[; ;Keypad4X4.c: 118: LATB = 0xFD;
+[e = _LATB -> -> 253 `i `uc ]
+[; ;Keypad4X4.c: 119: if ((PORTB & 0x80) == 0x00)
 "119
-[e $ ! == & -> _PORTB `i -> 8 `i -> 0 `i 383  ]
+[e $ ! == & -> _PORTB `i -> 128 `i -> 0 `i 383  ]
 [; ;Keypad4X4.c: 120: {
 "120
 {
 [; ;Keypad4X4.c: 121: _delay((unsigned long)((5)*(4000000/4000.0)));
 "121
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 122: buttonPressed = button_7;
+[; ;Keypad4X4.c: 122: buttonPressed = button_3;
 "122
-[e = _buttonPressed . `E3790 7 ]
+[e = _buttonPressed . `E3790 3 ]
 [; ;Keypad4X4.c: 123: KeypadStatus->keyPressIndicator = 1;
 "123
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3908,17 +3907,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 384  ]
 "128
 [e :U 383 ]
-[; ;Keypad4X4.c: 128: else if ((PORTB & 0x04) == 0x00)
-[e $ ! == & -> _PORTB `i -> 4 `i -> 0 `i 385  ]
+[; ;Keypad4X4.c: 128: else if ((PORTB & 0x40) == 0x00)
+[e $ ! == & -> _PORTB `i -> 64 `i -> 0 `i 385  ]
 [; ;Keypad4X4.c: 129: {
 "129
 {
 [; ;Keypad4X4.c: 130: _delay((unsigned long)((5)*(4000000/4000.0)));
 "130
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 131: buttonPressed = button_8;
+[; ;Keypad4X4.c: 131: buttonPressed = button_6;
 "131
-[e = _buttonPressed . `E3790 8 ]
+[e = _buttonPressed . `E3790 6 ]
 [; ;Keypad4X4.c: 132: KeypadStatus->keyPressIndicator = 1;
 "132
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3934,8 +3933,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 386  ]
 "137
 [e :U 385 ]
-[; ;Keypad4X4.c: 137: else if ((PORTB & 0x02) == 0x00)
-[e $ ! == & -> _PORTB `i -> 2 `i -> 0 `i 387  ]
+[; ;Keypad4X4.c: 137: else if ((PORTB & 0x20) == 0x00)
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 387  ]
 [; ;Keypad4X4.c: 138: {
 "138
 {
@@ -3960,17 +3959,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 388  ]
 "146
 [e :U 387 ]
-[; ;Keypad4X4.c: 146: else if ((PORTB & 0x01) == 0x00)
-[e $ ! == & -> _PORTB `i -> 1 `i -> 0 `i 389  ]
+[; ;Keypad4X4.c: 146: else if ((PORTB & 0x10) == 0x00)
+[e $ ! == & -> _PORTB `i -> 16 `i -> 0 `i 389  ]
 [; ;Keypad4X4.c: 147: {
 "147
 {
 [; ;Keypad4X4.c: 148: _delay((unsigned long)((5)*(4000000/4000.0)));
 "148
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 149: buttonPressed = SP_FUNC_B;
+[; ;Keypad4X4.c: 149: buttonPressed = SP_FUNC_ENTER;
 "149
-[e = _buttonPressed . `E3790 12 ]
+[e = _buttonPressed . `E3790 15 ]
 [; ;Keypad4X4.c: 150: KeypadStatus->keyPressIndicator = 1;
 "150
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -3988,20 +3987,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 386 ]
 [e :U 384 ]
 [; ;Keypad4X4.c: 153: }
-[; ;Keypad4X4.c: 155: LATB = 0xEF;
-[e = _LATB -> -> 239 `i `uc ]
-[; ;Keypad4X4.c: 156: if ((PORTB & 0x08) == 0x00)
+[; ;Keypad4X4.c: 155: LATB = 0xFE;
+[e = _LATB -> -> 254 `i `uc ]
+[; ;Keypad4X4.c: 156: if ((PORTB & 0x80) == 0x00)
 "156
-[e $ ! == & -> _PORTB `i -> 8 `i -> 0 `i 390  ]
+[e $ ! == & -> _PORTB `i -> 128 `i -> 0 `i 390  ]
 [; ;Keypad4X4.c: 157: {
 "157
 {
 [; ;Keypad4X4.c: 158: _delay((unsigned long)((5)*(4000000/4000.0)));
 "158
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 159: buttonPressed = SP_FUNC_ON;
+[; ;Keypad4X4.c: 159: buttonPressed = SP_FUNC_A;
 "159
-[e = _buttonPressed . `E3790 13 ]
+[e = _buttonPressed . `E3790 11 ]
 [; ;Keypad4X4.c: 160: KeypadStatus->keyPressIndicator = 1;
 "160
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -4017,17 +4016,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 391  ]
 "165
 [e :U 390 ]
-[; ;Keypad4X4.c: 165: else if ((PORTB & 0x04) == 0x00)
-[e $ ! == & -> _PORTB `i -> 4 `i -> 0 `i 392  ]
+[; ;Keypad4X4.c: 165: else if ((PORTB & 0x40) == 0x00)
+[e $ ! == & -> _PORTB `i -> 64 `i -> 0 `i 392  ]
 [; ;Keypad4X4.c: 166: {
 "166
 {
 [; ;Keypad4X4.c: 167: _delay((unsigned long)((5)*(4000000/4000.0)));
 "167
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 168: buttonPressed = button_0;
+[; ;Keypad4X4.c: 168: buttonPressed = SP_FUNC_B;
 "168
-[e = _buttonPressed . `E3790 0 ]
+[e = _buttonPressed . `E3790 12 ]
 [; ;Keypad4X4.c: 169: KeypadStatus->keyPressIndicator = 1;
 "169
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -4043,17 +4042,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 393  ]
 "174
 [e :U 392 ]
-[; ;Keypad4X4.c: 174: else if ((PORTB & 0x02) == 0x00)
-[e $ ! == & -> _PORTB `i -> 2 `i -> 0 `i 394  ]
+[; ;Keypad4X4.c: 174: else if ((PORTB & 0x20) == 0x00)
+[e $ ! == & -> _PORTB `i -> 32 `i -> 0 `i 394  ]
 [; ;Keypad4X4.c: 175: {
 "175
 {
 [; ;Keypad4X4.c: 176: _delay((unsigned long)((5)*(4000000/4000.0)));
 "176
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;Keypad4X4.c: 177: buttonPressed = SP_FUNC_ENTER;
+[; ;Keypad4X4.c: 177: buttonPressed = NO_KEY_TUNE;
 "177
-[e = _buttonPressed . `E3790 15 ]
+[e = _buttonPressed . `E3790 10 ]
 [; ;Keypad4X4.c: 178: KeypadStatus->keyPressIndicator = 1;
 "178
 [e = . *U _KeypadStatus 0 -> -> 1 `i `uc ]
@@ -4069,8 +4068,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 395  ]
 "183
 [e :U 394 ]
-[; ;Keypad4X4.c: 183: else if ((PORTB & 0x01) == 0x00)
-[e $ ! == & -> _PORTB `i -> 1 `i -> 0 `i 396  ]
+[; ;Keypad4X4.c: 183: else if ((PORTB & 0x10) == 0x00)
+[e $ ! == & -> _PORTB `i -> 16 `i -> 0 `i 396  ]
 [; ;Keypad4X4.c: 184: {
 "184
 {
@@ -4126,65 +4125,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _buttonPressedIndicator ]
 [f ]
 "202
-[v _KeypadStatus `S362 ~T0 @X0 1 a ]
-[; ;Keypad4X4.c: 202: keypadStatus KeypadStatus;
-[; ;Keypad4X4.c: 203: getKey(&KeypadStatus);
+[v _keypad_state `S362 ~T0 @X0 1 a ]
+[; ;Keypad4X4.c: 202: keypadStatus keypad_state;
+[; ;Keypad4X4.c: 203: getKey(&keypad_state);
 "203
-[e ( _getKey (1 &U _KeypadStatus ]
-[; ;Keypad4X4.c: 204: if(KeypadStatus.keyPressIndicator == 1)
+[e ( _getKey (1 &U _keypad_state ]
+[; ;Keypad4X4.c: 204: return keypad_state.keyPressIndicator;
 "204
-[e $ ! == -> . _KeypadStatus 0 `i -> 1 `i 399  ]
-[; ;Keypad4X4.c: 205: return 1;
+[e ) . _keypad_state 0 ]
+[e $UE 398  ]
+[; ;Keypad4X4.c: 205: }
 "205
-[e ) -> -> 1 `i `uc ]
-[e $UE 398  ]
-[e $U 400  ]
-"206
-[e :U 399 ]
-[; ;Keypad4X4.c: 206: else return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 398  ]
-[e :U 400 ]
-[; ;Keypad4X4.c: 207: }
-"207
 [e :UE 398 ]
-}
-"209
-[v _delay_ms `(v ~T0 @X0 1 ef1`ui ]
-"210
-{
-[; ;Keypad4X4.c: 209: void delay_ms(unsigned int time)
-[; ;Keypad4X4.c: 210: {
-[e :U _delay_ms ]
-"209
-[v _time `ui ~T0 @X0 1 r1 ]
-"210
-[f ]
-"211
-[v _i `i ~T0 @X0 1 a ]
-[v _j `i ~T0 @X0 1 a ]
-[; ;Keypad4X4.c: 211: int i, j;
-[; ;Keypad4X4.c: 212: for(i=0;i<5000;i++)
-"212
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 5000 `i 402  ]
-[e $U 403  ]
-"213
-[e :U 402 ]
-[; ;Keypad4X4.c: 213: {
-{
-[; ;Keypad4X4.c: 214: ;
-"215
-}
-"212
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 5000 `i 402  ]
-[e :U 403 ]
-"215
-}
-[; ;Keypad4X4.c: 215: }
-[; ;Keypad4X4.c: 216: }
-"216
-[e :UE 401 ]
 }

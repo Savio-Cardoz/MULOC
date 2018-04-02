@@ -250,7 +250,27 @@ void interrupt ISR(void)
 
 void initControllerIO()
 {
-    
+    ADCON1 = 0x0F;      // All digital pins
+    CMCON = 0x07;       // No comparator output on the pins
+    TRISAbits.RA0 = 0;  // Buzzer output
+}
+
+void beep()
+{
+    BUZZER_ON;
+    __delay_ms(10);
+    BUZZER_OFF;
+}
+
+void beep_ok()
+{
+    BUZZER_ON;
+    __delay_ms(2);
+    BUZZER_OFF;
+    __delay_ms(1);
+    BUZZER_ON;
+    __delay_ms(2);
+    BUZZER_OFF;
 }
 //
 //void handleSleep()
@@ -336,6 +356,7 @@ int main()
         // Identify and store any numeric key pressed. And for any special key perform the necessary actions
         if(currentKeypadStatus.keyPressIndicator == True)
         {
+            beep();
             if(currentKeypadStatus.keyPressed == SP_FUNC_A)
             {
                 
@@ -363,6 +384,7 @@ int main()
                     }
                     else
                     {
+                        beep_ok();
                         currentSystemState = UID_ENTERED;
                     }
                 }
@@ -425,6 +447,8 @@ int main()
                     // Give a audible indication
                 }
             }
+            
+            while(buttonPressedIndicator());    // Wait for release of button
         }
       
 ////        if(STATE_SLEEP && (DOORSWITCH == DOOR_SW_OPEN)) // Not to enter sleep mode if Safe Door is open. Due to Door open timer running.
