@@ -62,7 +62,8 @@ static char timerOVFcount;
 #define okTimerVal 0//0xFF10
 #define timer2BaseValue 45      // for 10ms time @ prescalar 0f 1:16 and a post scalar 0f 1:3 giving a full period of 12ms.
 
-
+void setup_timer0();
+void state_timer0(unsigned char state);
 void updateTimer();
 void ackKeyPressTimerTone(unsigned char noSoundFlag);
 void errorTone(unsigned char noSoundFlag);

@@ -4875,7 +4875,7 @@ volatile unsigned char bit7:1;
 volatile unsigned char systemStateReg;
 unsigned char systemStateReg2;
 
-# 122
+# 124
 unsigned char keyPressCount;
 unsigned char keyBuffer[25];
 volatile unsigned char timer1OVFcount;
@@ -4888,7 +4888,7 @@ unsigned char *eepromCode;
 
 enum codeType LASTPASSCODE;
 
-# 138
+# 163
 const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
 const unsigned char defaultPassCode2[3] = {1,2,3};
 unsigned char factoryResetCode[4] = {8,0,8,0};
@@ -4921,7 +4921,9 @@ char monitorBattery();
 # 55 "timer.h"
 static char timerOVFcount;
 
-# 66
+# 65
+void setup_timer0();
+void state_timer0(unsigned char state);
 void updateTimer();
 void ackKeyPressTimerTone(unsigned char noSoundFlag);
 void errorTone(unsigned char noSoundFlag);
@@ -4938,7 +4940,25 @@ struct configSound soundOut;
 void initTimer();
 void startTimer(unsigned int time_val);
 
-# 96
+void setup_timer0()
+{
+T0CONbits.TMR0ON = 0;
+T0CONbits.T08BIT = 0;
+T0CONbits.T0CS = 0;
+INTCONbits.TMR0IE = 1;
+TMR0 = 0;
+T0CONbits.PSA = 0;
+}
+
+void state_timer0(unsigned char state)
+{
+if(state = 1)
+T0CONbits.TMR0ON = 1;
+else
+T0CONbits.TMR0ON = 0;
+}
+
+# 114
 void initStandbyTimer()
 {
 T1CONbits.T1CKPS0 = 1;

@@ -5070,7 +5070,7 @@ volatile unsigned char bit7:1;
 volatile unsigned char systemStateReg;
 unsigned char systemStateReg2;
 
-# 122
+# 124
 unsigned char keyPressCount;
 unsigned char keyBuffer[25];
 volatile unsigned char timer1OVFcount;
@@ -5083,7 +5083,7 @@ unsigned char *eepromCode;
 
 enum codeType LASTPASSCODE;
 
-# 138
+# 163
 const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
 const unsigned char defaultPassCode2[3] = {1,2,3};
 unsigned char factoryResetCode[4] = {8,0,8,0};
@@ -5116,7 +5116,9 @@ char monitorBattery();
 # 55 "timer.h"
 static char timerOVFcount;
 
-# 66
+# 65
+void setup_timer0();
+void state_timer0(unsigned char state);
 void updateTimer();
 void ackKeyPressTimerTone(unsigned char noSoundFlag);
 void errorTone(unsigned char noSoundFlag);
@@ -5135,14 +5137,22 @@ void eepromWriteCode(unsigned char eepromWriteAddr, unsigned char codeLenght, ch
 void writeEEPROM(unsigned char address, unsigned char datas);
 unsigned char readEEPROM(unsigned char address);
 
-# 86 "main.c"
+# 88 "main.c"
 typedef enum {
 NORMAL = 0,
 UID_ENTERED = 1,
 PSWD_ENTERED
 }systemState_t;
 
-# 100
+void beep_long();
+void beep_error();
+void close_lock(unsigned char lock_num);
+
+
+unsigned char open_lock_arr[10];
+unsigned char num_of_doors_open = 0;
+
+# 110
 unsigned char arr_to_num(unsigned char* arr, unsigned char num_of_elements, unsigned char* number)
 {
 unsigned char validity = 0;
@@ -5210,8 +5220,19 @@ T1CONbits.TMR1ON = 0;
 }
 PIR1bits.TMR1IF = 0;
 }
+if(INTCONbits.TMR0IF)
+{
+INTCONbits.TMR0IF = 0;
+beep_error();
+TMR0 = 0;
+close_lock(open_lock_arr[0]);
+num_of_doors_open--;
 
-# 249
+for(unsigned char i = 0; i < num_of_doors_open; i++)
+open_lock_arr[i] = open_lock_arr[i+1];
+}
+
+# 270
 }
 
 void initControllerIO()
@@ -5219,6 +5240,16 @@ void initControllerIO()
 ADCON1 = 0x0F;
 CMCON = 0x07;
 TRISAbits.RA0 = 0;
+
+TRISD = 0x00;
+TRISC = 0x00;
+TRISE = 0x00;
+TRISA = 0x00;
+
+LATD = 0x00;
+LATC = 0x00;
+LATE = 0x00;
+
 }
 
 void beep()
@@ -5228,22 +5259,197 @@ _delay((unsigned long)((10)*(8000000/4000.0)));
 (LATAbits.LATA0 = 0);
 }
 
-void beep_ok()
+void beep_long()
 {
 (LATAbits.LATA0 = 1);
-_delay((unsigned long)((2)*(8000000/4000.0)));
-(LATAbits.LATA0 = 0);
-_delay((unsigned long)((1)*(8000000/4000.0)));
-(LATAbits.LATA0 = 1);
-_delay((unsigned long)((2)*(8000000/4000.0)));
+_delay((unsigned long)((100)*(8000000/4000.0)));
 (LATAbits.LATA0 = 0);
 }
 
-# 314
+void beep_ok()
+{
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+_delay((unsigned long)((5)*(8000000/4000.0)));
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+}
+
+void beep_error()
+{
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((100)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 1);
+_delay((unsigned long)((10)*(8000000/4000.0)));
+(LATAbits.LATA0 = 0);
+}
+
+void configure_door_timer()
+{
+setup_timer0();
+}
+
+void start_door_timer()
+{
+state_timer0(1);
+}
+
+void stop_door_timer()
+{
+state_timer0(0);
+}
+
+# 382
 void clear_keyArray(unsigned char* arr)
 {
 for(unsigned char a = 0; a < 10; a++)
 arr[a] = 0;
+}
+
+void open_lock(unsigned char lock_num)
+{
+switch(lock_num)
+{
+case 1: (LATCbits.LATC0) = 1;
+break;
+
+case 2: (LATEbits.LATE2) = 1;
+break;
+
+case 3: (LATEbits.LATE1) = 1;
+break;
+
+case 4: (LATEbits.LATE0) = 1;
+break;
+
+case 5: (LATAbits.LATA5) = 1;
+break;
+
+case 6: (LATAbits.LATA4) = 1;
+break;
+
+case 7: (LATAbits.LATA3) = 1;
+break;
+
+case 8: (LATDbits.LATD7) = 1;
+break;
+
+case 9: (LATDbits.LATD6) = 1;
+break;
+
+case 10: (LATDbits.LATD5) = 1;
+break;
+
+case 11: (LATDbits.LATD4) = 1;
+break;
+
+case 12: (LATCbits.LATC7) = 1;
+break;
+
+case 13: (LATCbits.LATC6) = 1;
+break;
+
+
+
+
+case 15: (LATDbits.LATD2) = 1;
+break;
+
+case 16: (LATDbits.LATD3) = 1;
+break;
+
+
+
+
+case 18: (LATCbits.LATC1) = 1;
+break;
+
+case 19: (LATCbits.LATC2) = 1;
+break;
+
+case 20: (LATDbits.LATD0) = 1;
+break;
+
+case 21: (LATDbits.LATD1) = 1;
+break;
+}
+}
+
+void close_lock(unsigned char lock_num)
+{
+switch(lock_num)
+{
+case 1: (LATCbits.LATC0) = 0;
+break;
+
+case 2: (LATEbits.LATE2) = 0;
+break;
+
+case 3: (LATEbits.LATE1) = 0;
+break;
+
+case 4: (LATEbits.LATE0) = 0;
+break;
+
+case 5: (LATAbits.LATA5) = 0;
+break;
+
+case 6: (LATAbits.LATA4) = 0;
+break;
+
+case 7: (LATAbits.LATA3) = 0;
+break;
+
+case 8: (LATDbits.LATD7) = 0;
+break;
+
+case 9: (LATDbits.LATD6) = 0;
+break;
+
+case 10: (LATDbits.LATD5) = 0;
+break;
+
+case 11: (LATDbits.LATD4) = 0;
+break;
+
+case 12: (LATCbits.LATC7) = 0;
+break;
+
+case 13: (LATCbits.LATC6) = 0;
+break;
+
+
+
+
+case 15: (LATDbits.LATD2) = 0;
+break;
+
+case 16: (LATDbits.LATD3) = 0;
+break;
+
+
+
+
+case 18: (LATCbits.LATC1) = 0;
+break;
+
+case 19: (LATCbits.LATC2) = 0;
+break;
+
+case 20: (LATDbits.LATD0) = 0;
+break;
+
+case 21: (LATDbits.LATD1) = 0;
+break;
+}
 }
 
 int main()
@@ -5257,16 +5463,15 @@ unsigned char addr = 0;
 initControllerIO();
 initKeypad();
 initStandbyTimer();
-
+configure_door_timer();
 INTCONbits.PEIE = 1;
 INTCONbits.GIE = 1;
 
-# 346
+# 553
 clear_keyArray(keypressArray);
 
-writeEEPROM(0, 0x01);
-writeEEPROM(1, 0x01);
-char a = readEEPROM(0);
+beep_error();
+state_timer0(1);
 
 while(1)
 {
@@ -5275,7 +5480,8 @@ getKey(&currentKeypadStatus);
 
 if(currentKeypadStatus.keyPressIndicator == 1)
 {
-beep();
+
+
 if(currentKeypadStatus.keyPressed == SP_FUNC_A)
 {
 
@@ -5310,23 +5516,20 @@ currentSystemState = UID_ENTERED;
 else if(currentSystemState == UID_ENTERED)
 {
 
-if(0 == check_password_presence(locker_num))
-{
-
-break;
-}
-else
-{
 addr = (locker_num - 1) * 10;
 if(0 == passcodeCompare(keypressArray, numOfKeysPressed, addr))
 {
 
+
 break;
 }
 else
 {
+beep_ok();
+open_lock(locker_num);
+start_door_timer();
+open_lock_arr[num_of_doors_open++] = locker_num;
 
-}
 }
 }
 clear_keyArray(keypressArray);
@@ -5341,24 +5544,23 @@ else if(currentKeypadStatus.keyPressed == SP_FUNC_ON)
 if(currentSystemState == UID_ENTERED)
 {
 
-if(0 == check_password_presence(locker_num))
-{
-
 addr = (locker_num - 1) * 10;
 eepromWriteCode(addr, numOfKeysPressed, keypressArray);
+beep_ok();
 break;
-}
-else
-{
-
-
-}
 }
 clear_keyArray(keypressArray);
 numOfKeysPressed = 0;
 }
 else
 {
+
+for(unsigned char i = 0; i < currentKeypadStatus.keyPressed; i++)
+{
+beep();
+_delay((unsigned long)((20)*(8000000/4000.0)));
+}
+
 keypressArray[numOfKeysPressed++] = currentKeypadStatus.keyPressed;
 if(numOfKeysPressed > 10)
 {
@@ -5366,11 +5568,20 @@ numOfKeysPressed = 0;
 
 }
 }
-
 while(buttonPressedIndicator());
 }
 
-# 671
+
+if(((volatile _io_reg*)&systemStateReg)->bit7 == 1)
+{
+((volatile _io_reg*)&systemStateReg)->bit7 = 0;
+beep_long();
+clear_keyArray(keypressArray);
+numOfKeysPressed = 0;
+currentSystemState = NORMAL;
+}
+
+# 883
 }
 return (0);
 }

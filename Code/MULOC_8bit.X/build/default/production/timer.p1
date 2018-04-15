@@ -1,14 +1,41 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"129 main.h
+"131 main.h
 [c E3820 1 2 3 .. ]
 [n E3820 timerType ackTimer errorTimer okTimer  ]
 "66
 [s S363 `uc 1 `i 1 `uc 1 `E3820 1 :1 `uc 1 ]
 [n S363 configSound timerVal duration pitch playSeq noSoundFlag ]
-"132
+"134
 [c E3824 0 1 2 3 .. ]
 [n E3824 codeType general code1 code2 master1  ]
-"7419 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
+"8073 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
+[s S342 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S342 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
+"8081
+[s S343 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S343 . T0PS0 T0PS1 T0PS2 ]
+"8072
+[u S341 `S342 1 `S343 1 ]
+[n S341 . . . ]
+"8087
+[v _T0CONbits `VS341 ~T0 @X0 0 e@4053 ]
+"8586
+[s S355 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S355 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"8596
+[s S356 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S356 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"8606
+[s S357 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S357 . . GIEL GIEH ]
+"8585
+[u S354 `S355 1 `S356 1 `S357 1 ]
+[n S354 . . . . ]
+"8612
+[v _INTCONbits `VS354 ~T0 @X0 0 e@4082 ]
+"8137
+[v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
+"7419
 [s S312 :2 `uc 1 :1 `uc 1 ]
 [n S312 . . NOT_T1SYNC ]
 "7423
@@ -3611,37 +3638,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 "104
 [v _systemStateReg2 `uc ~T0 @X0 1 e ]
 [; ;main.h: 104: unsigned char systemStateReg2;
-"122
-[v _keyPressCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 122: unsigned char keyPressCount;
-"123
-[v _keyBuffer `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.h: 123: unsigned char keyBuffer[25];
 "124
-[v _timer1OVFcount `Vuc ~T0 @X0 1 e ]
-[; ;main.h: 124: volatile unsigned char timer1OVFcount;
+[v _keyPressCount `uc ~T0 @X0 1 e ]
+[; ;main.h: 124: unsigned char keyPressCount;
 "125
-[v _timer2OVFcount `ui ~T0 @X0 1 e ]
-[; ;main.h: 125: unsigned int timer2OVFcount;
+[v _keyBuffer `uc ~T0 @X0 -> 25 `i e ]
+[; ;main.h: 125: unsigned char keyBuffer[25];
 "126
-[v _wrongCodeEnteredCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 126: unsigned char wrongCodeEnteredCount;
+[v _timer1OVFcount `Vuc ~T0 @X0 1 e ]
+[; ;main.h: 126: volatile unsigned char timer1OVFcount;
 "127
+[v _timer2OVFcount `ui ~T0 @X0 1 e ]
+[; ;main.h: 127: unsigned int timer2OVFcount;
+"128
+[v _wrongCodeEnteredCount `uc ~T0 @X0 1 e ]
+[; ;main.h: 128: unsigned char wrongCodeEnteredCount;
+"129
 [v _bufferPtr `uc ~T0 @X0 1 e ]
 [i _bufferPtr
 -> -> 0 `i `uc
 ]
-[; ;main.h: 127: unsigned char bufferPtr = 0;
-"129
+[; ;main.h: 129: unsigned char bufferPtr = 0;
+"131
 [v _soundStuff `S363 ~T0 @X0 1 e ]
-[; ;main.h: 129: struct configSound soundStuff;
-"130
-[v _eepromCode `*uc ~T0 @X0 1 e ]
-[; ;main.h: 130: unsigned char *eepromCode;
+[; ;main.h: 131: struct configSound soundStuff;
 "132
+[v _eepromCode `*uc ~T0 @X0 1 e ]
+[; ;main.h: 132: unsigned char *eepromCode;
+"134
 [v _LASTPASSCODE `E3824 ~T0 @X0 1 e ]
-[; ;main.h: 132: enum codeType LASTPASSCODE;
-"138
+[; ;main.h: 134: enum codeType LASTPASSCODE;
+"163
 [v _defaultPassCode `Cuc ~T0 @X0 -> 9 `i e ]
 [i _defaultPassCode
 :U ..
@@ -3656,8 +3683,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ..
 ]
-[; ;main.h: 138: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
-"139
+[; ;main.h: 163: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
+"164
 [v _defaultPassCode2 `Cuc ~T0 @X0 -> 3 `i e ]
 [i _defaultPassCode2
 :U ..
@@ -3666,8 +3693,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 3 `i `uc
 ..
 ]
-[; ;main.h: 139: const unsigned char defaultPassCode2[3] = {1,2,3};
-"140
+[; ;main.h: 164: const unsigned char defaultPassCode2[3] = {1,2,3};
+"165
 [v _factoryResetCode `uc ~T0 @X0 -> 4 `i e ]
 [i _factoryResetCode
 :U ..
@@ -3677,60 +3704,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-[; ;main.h: 140: unsigned char factoryResetCode[4] = {8,0,8,0};
-"141
+[; ;main.h: 165: unsigned char factoryResetCode[4] = {8,0,8,0};
+"166
 [v _factoryResetCodeLenght `uc ~T0 @X0 1 e ]
 [i _factoryResetCodeLenght
 -> -> 4 `i `uc
 ]
-[; ;main.h: 141: unsigned char factoryResetCodeLenght = 4;
-"142
+[; ;main.h: 166: unsigned char factoryResetCodeLenght = 4;
+"167
 [v _defaultPassCodeLenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCodeLenght
 -> -> 9 `i `uc
 ]
-[; ;main.h: 142: const unsigned char defaultPassCodeLenght = 9;
-"143
+[; ;main.h: 167: const unsigned char defaultPassCodeLenght = 9;
+"168
 [v _defaultPassCode2Lenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCode2Lenght
 -> -> 3 `i `uc
 ]
-[; ;main.h: 143: const unsigned char defaultPassCode2Lenght = 3;
-"145
+[; ;main.h: 168: const unsigned char defaultPassCode2Lenght = 3;
+"170
 [v _tempCodeBuffer `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.h: 145: unsigned char tempCodeBuffer[25];
-"146
+[; ;main.h: 170: unsigned char tempCodeBuffer[25];
+"171
 [v _tempCodeKeyPressCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 146: unsigned char tempCodeKeyPressCount;
-[; ;main.h: 148: void checkFirstFlash();
-[; ;main.h: 149: void ackKeyPress();
-[; ;main.h: 150: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
-[; ;main.h: 151: void handleSleep();
-[; ;main.h: 152: void disableInterrupts();
-[; ;main.h: 153: void interrupt ISR(void);
-[; ;main.h: 154: void okTimerTone();
-[; ;main.h: 155: void doorTimerTone();
-[; ;main.h: 156: void errorTimerTone();
-[; ;main.h: 157: void doorOpenAlarm(unsigned char alarmMute);
-[; ;main.h: 158: void startTimer0();
-[; ;main.h: 159: void updateTempCodeBuffer(char *keybuffer, char keycount);
-[; ;main.h: 160: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
-[; ;main.h: 161: void doorOpenedTone(unsigned char tuneNumber);
-[; ;main.h: 162: void setDefaultUserCodes();
-[; ;main.h: 163: void setDefaultFactoryCodes();
-[; ;main.h: 164: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
-[; ;main.h: 165: char monitorBattery();
+[; ;main.h: 171: unsigned char tempCodeKeyPressCount;
+[; ;main.h: 173: void checkFirstFlash();
+[; ;main.h: 174: void ackKeyPress();
+[; ;main.h: 175: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
+[; ;main.h: 176: void handleSleep();
+[; ;main.h: 177: void disableInterrupts();
+[; ;main.h: 178: void interrupt ISR(void);
+[; ;main.h: 179: void okTimerTone();
+[; ;main.h: 180: void doorTimerTone();
+[; ;main.h: 181: void errorTimerTone();
+[; ;main.h: 182: void doorOpenAlarm(unsigned char alarmMute);
+[; ;main.h: 183: void startTimer0();
+[; ;main.h: 184: void updateTempCodeBuffer(char *keybuffer, char keycount);
+[; ;main.h: 185: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
+[; ;main.h: 186: void doorOpenedTone(unsigned char tuneNumber);
+[; ;main.h: 187: void setDefaultUserCodes();
+[; ;main.h: 188: void setDefaultFactoryCodes();
+[; ;main.h: 189: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
+[; ;main.h: 190: char monitorBattery();
 "55 timer.h
 [v _timerOVFcount `uc ~T0 @X0 1 s ]
 [; ;timer.h: 55: static char timerOVFcount;
-[; ;timer.h: 66: void updateTimer();
-[; ;timer.h: 67: void ackKeyPressTimerTone(unsigned char noSoundFlag);
-[; ;timer.h: 68: void errorTone(unsigned char noSoundFlag);
-[; ;timer.h: 70: void alarmTimerTone();
-[; ;timer.h: 71: void initStandbyTimer();
-[; ;timer.h: 72: void startTimer(unsigned int time_val);
-[; ;timer.h: 73: void initDoorOpenTimer2();
-[; ;timer.h: 74: void beginDoorOpenCheck();
+[; ;timer.h: 65: void setup_timer0();
+[; ;timer.h: 66: void state_timer0(unsigned char state);
+[; ;timer.h: 67: void updateTimer();
+[; ;timer.h: 68: void ackKeyPressTimerTone(unsigned char noSoundFlag);
+[; ;timer.h: 69: void errorTone(unsigned char noSoundFlag);
+[; ;timer.h: 71: void alarmTimerTone();
+[; ;timer.h: 72: void initStandbyTimer();
+[; ;timer.h: 73: void startTimer(unsigned int time_val);
+[; ;timer.h: 74: void initDoorOpenTimer2();
+[; ;timer.h: 75: void beginDoorOpenCheck();
 "8 timer.c
 [v _currentTimerState `E3820 ~T0 @X0 1 e ]
 [; ;timer.c: 8: enum timerType currentTimerState;
@@ -3739,27 +3768,86 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;timer.c: 9: struct configSound soundOut;
 [; ;timer.c: 10: void initTimer();
 [; ;timer.c: 11: void startTimer(unsigned int time_val);
-"96
-[v _initStandbyTimer `(v ~T0 @X0 1 ef ]
-"97
+"13
+[v _setup_timer0 `(v ~T0 @X0 1 ef ]
+"14
 {
-[; ;timer.c: 96: void initStandbyTimer()
-[; ;timer.c: 97: {
+[; ;timer.c: 13: void setup_timer0()
+[; ;timer.c: 14: {
+[e :U _setup_timer0 ]
+[f ]
+[; ;timer.c: 15: T0CONbits.TMR0ON = 0;
+"15
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;timer.c: 16: T0CONbits.T08BIT = 0;
+"16
+[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
+[; ;timer.c: 17: T0CONbits.T0CS = 0;
+"17
+[e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
+[; ;timer.c: 18: INTCONbits.TMR0IE = 1;
+"18
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+[; ;timer.c: 19: TMR0 = 0;
+"19
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;timer.c: 20: T0CONbits.PSA = 0;
+"20
+[e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
+[; ;timer.c: 21: }
+"21
+[e :UE 365 ]
+}
+"23
+[v _state_timer0 `(v ~T0 @X0 1 ef1`uc ]
+"24
+{
+[; ;timer.c: 23: void state_timer0(unsigned char state)
+[; ;timer.c: 24: {
+[e :U _state_timer0 ]
+"23
+[v _state `uc ~T0 @X0 1 r1 ]
+"24
+[f ]
+[; ;timer.c: 25: if(state = 1)
+"25
+[e $ ! != -> = _state -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 367  ]
+[; ;timer.c: 26: T0CONbits.TMR0ON = 1;
+"26
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+[e $U 368  ]
+"27
+[e :U 367 ]
+[; ;timer.c: 27: else
+[; ;timer.c: 28: T0CONbits.TMR0ON = 0;
+"28
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[e :U 368 ]
+[; ;timer.c: 29: }
+"29
+[e :UE 366 ]
+}
+"114
+[v _initStandbyTimer `(v ~T0 @X0 1 ef ]
+"115
+{
+[; ;timer.c: 114: void initStandbyTimer()
+[; ;timer.c: 115: {
 [e :U _initStandbyTimer ]
 [f ]
-[; ;timer.c: 98: T1CONbits.T1CKPS0 = 1;
-"98
+[; ;timer.c: 116: T1CONbits.T1CKPS0 = 1;
+"116
 [e = . . _T1CONbits 2 3 -> -> 1 `i `uc ]
-[; ;timer.c: 99: T1CONbits.T1CKPS1 = 1;
-"99
+[; ;timer.c: 117: T1CONbits.T1CKPS1 = 1;
+"117
 [e = . . _T1CONbits 2 4 -> -> 1 `i `uc ]
-[; ;timer.c: 100: TMR1 = 0;
-"100
+[; ;timer.c: 118: TMR1 = 0;
+"118
 [e = _TMR1 -> -> 0 `i `us ]
-[; ;timer.c: 101: PIE1bits.TMR1IE = 1;
-"101
+[; ;timer.c: 119: PIE1bits.TMR1IE = 1;
+"119
 [e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
-[; ;timer.c: 102: }
-"102
-[e :UE 365 ]
+[; ;timer.c: 120: }
+"120
+[e :UE 369 ]
 }

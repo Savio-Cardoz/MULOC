@@ -23,39 +23,39 @@ SP_FUNC_OFF 14
 SP_FUNC_ENTER 15
 NONE 16
 ]
-"129 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.h
+"131 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.h
 [e E3820 timerType `uc
 ackTimer 1
 errorTimer 2
 okTimer 3
 ]
-"132
+"134
 [e E3824 codeType `uc
 general 0
 code1 1
 code2 2
 master1 3
 ]
-"129
+"131
 [e E4001 timerType `uc
 ackTimer 1
 errorTimer 2
 okTimer 3
 ]
-"132
+"134
 [e E4005 codeType `uc
 general 0
 code1 1
 code2 2
 master1 3
 ]
-"323 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
-[e E4103 . `uc
+"529 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+[e E4106 . `uc
 NORMAL 0
 UID_ENTERED 1
 PSWD_ENTERED 2
 ]
-"360
+"567
 [e E3971 button `uc
 button_0 0
 button_1 1
@@ -97,9 +97,9 @@ NONE 16
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "8 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\eeprom_functions.c
 [v _eepromWriteCode eepromWriteCode `(v  1 e 1 0 ]
-"19
+"18
 [v _writeEEPROM writeEEPROM `(v  1 e 1 0 ]
-"36
+"37
 [v _readEEPROM readEEPROM `(uc  1 e 1 0 ]
 "14 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\Keypad4X4.c
 [v _initKeypad initKeypad `(v  1 e 1 0 ]
@@ -107,33 +107,48 @@ NONE 16
 [v _getKey getKey `(v  1 e 1 0 ]
 "200
 [v _buttonPressedIndicator buttonPressedIndicator `(uc  1 e 1 0 ]
-"100 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+"110 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _arr_to_num arr_to_num `(uc  1 e 1 0 ]
-"119
-[v _check_lock_num_validity check_lock_num_validity `(uc  1 e 1 0 ]
 "129
-[v _check_password_presence check_password_presence `(uc  1 e 1 0 ]
-"141
+[v _check_lock_num_validity check_lock_num_validity `(uc  1 e 1 0 ]
+"151
 [v _ISR ISR `II(v  1 e 1 0 ]
-"251
+"272
 [v _initControllerIO initControllerIO `(v  1 e 1 0 ]
-"258
+"289
 [v _beep beep `(v  1 e 1 0 ]
-"265
+"296
+[v _beep_long beep_long `(v  1 e 1 0 ]
+"303
 [v _beep_ok beep_ok `(v  1 e 1 0 ]
 "314
+[v _beep_error beep_error `(v  1 e 1 0 ]
+[v i2_beep_error beep_error `(v  1 e 1 0 ]
+"329
+[v _configure_door_timer configure_door_timer `(v  1 e 1 0 ]
+"334
+[v _start_door_timer start_door_timer `(v  1 e 1 0 ]
+"382
 [v _clear_keyArray clear_keyArray `(v  1 e 1 0 ]
-"320
+"388
+[v _open_lock open_lock `(v  1 e 1 0 ]
+"457
+[v _close_lock close_lock `(v  1 e 1 0 ]
+"526
 [v _main main `(i  1 e 2 0 ]
-"675
+"887
 [v _passcodeCompare passcodeCompare `(uc  1 e 1 0 ]
 "25 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\PWM.c
 [v _SetPWMDutyCycle SetPWMDutyCycle `(v  1 e 1 0 ]
-"96 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
+"13 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
+[v _setup_timer0 setup_timer0 `(v  1 e 1 0 ]
+"23
+[v _state_timer0 state_timer0 `(v  1 e 1 0 ]
+"114
 [v _initStandbyTimer initStandbyTimer `(v  1 e 1 0 ]
 "2451 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
-[s S551 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S658 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -142,7 +157,7 @@ NONE 16
 `uc 1 LATA6 1 0 :1:6 
 ]
 "2996
-[s S559 . 1 `uc 1 LA0 1 0 :1:0 
+[s S666 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -150,11 +165,68 @@ NONE 16
 `uc 1 LA5 1 0 :1:5 
 `uc 1 LA6 1 0 :1:6 
 ]
-[u S567 . 1 `S551 1 . 1 0 `S559 1 . 1 0 ]
-[v _LATAbits LATAbits `VES567  1 e 1 @3977 ]
+[u S674 . 1 `S658 1 . 1 0 `S666 1 . 1 0 ]
+[v _LATAbits LATAbits `VES674  1 e 1 @3977 ]
 "3071
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S515 . 1 `uc 1 TRISA0 1 0 :1:0 
+"3183
+[v _LATC LATC `VEuc  1 e 1 @3979 ]
+[s S698 . 1 `uc 1 LATC0 1 0 :1:0 
+`uc 1 LATC1 1 0 :1:1 
+`uc 1 LATC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 LATC6 1 0 :1:6 
+`uc 1 LATC7 1 0 :1:7 
+]
+"3206
+[s S705 . 1 `uc 1 LC0 1 0 :1:0 
+`uc 1 LC1 1 0 :1:1 
+`uc 1 LC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 LC6 1 0 :1:6 
+`uc 1 LC7 1 0 :1:7 
+]
+[u S712 . 1 `S698 1 . 1 0 `S705 1 . 1 0 ]
+[v _LATCbits LATCbits `VES712  1 e 1 @3979 ]
+"3261
+[v _LATD LATD `VEuc  1 e 1 @3980 ]
+[s S750 . 1 `uc 1 LATD0 1 0 :1:0 
+`uc 1 LATD1 1 0 :1:1 
+`uc 1 LATD2 1 0 :1:2 
+`uc 1 LATD3 1 0 :1:3 
+`uc 1 LATD4 1 0 :1:4 
+`uc 1 LATD5 1 0 :1:5 
+`uc 1 LATD6 1 0 :1:6 
+`uc 1 LATD7 1 0 :1:7 
+]
+"3288
+[s S759 . 1 `uc 1 LD0 1 0 :1:0 
+`uc 1 LD1 1 0 :1:1 
+`uc 1 LD2 1 0 :1:2 
+`uc 1 LD3 1 0 :1:3 
+`uc 1 LD4 1 0 :1:4 
+`uc 1 LD5 1 0 :1:5 
+`uc 1 LD6 1 0 :1:6 
+`uc 1 LD7 1 0 :1:7 
+]
+[u S768 . 1 `S750 1 . 1 0 `S759 1 . 1 0 ]
+[v _LATDbits LATDbits `VES768  1 e 1 @3980 ]
+"3373
+[v _LATE LATE `VEuc  1 e 1 @3981 ]
+[s S730 . 1 `uc 1 LATE0 1 0 :1:0 
+`uc 1 LATE1 1 0 :1:1 
+`uc 1 LATE2 1 0 :1:2 
+]
+"3390
+[s S734 . 1 `uc 1 LE0 1 0 :1:0 
+`uc 1 LE1 1 0 :1:1 
+`uc 1 LE2 1 0 :1:2 
+]
+[u S738 . 1 `S730 1 . 1 0 `S734 1 . 1 0 ]
+[v _LATEbits LATEbits `VES738  1 e 1 @3981 ]
+"3425
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+[s S615 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -163,7 +235,7 @@ NONE 16
 `uc 1 TRISA6 1 0 :1:6 
 ]
 "3455
-[s S523 . 1 `uc 1 RA0 1 0 :1:0 
+[s S623 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -171,11 +243,17 @@ NONE 16
 `uc 1 RA5 1 0 :1:5 
 `uc 1 RA6 1 0 :1:6 
 ]
-[u S531 . 1 `S515 1 . 1 0 `S523 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES531  1 e 1 @3986 ]
+[u S631 . 1 `S615 1 . 1 0 `S623 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES631  1 e 1 @3986 ]
 "3623
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S339 . 1 `uc 1 TMR1IE 1 0 :1:0 
+"3845
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"3999
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"4221
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+[s S393 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -185,15 +263,15 @@ NONE 16
 `uc 1 SPPIE 1 0 :1:7 
 ]
 "4406
-[s S348 . 1 `uc 1 . 1 0 :4:0 
+[s S402 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[u S354 . 1 `S339 1 . 1 0 `S348 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES354  1 e 1 @3997 ]
-[s S478 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S408 . 1 `S393 1 . 1 0 `S402 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES408  1 e 1 @3997 ]
+[s S541 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -203,14 +281,14 @@ NONE 16
 `uc 1 SPPIF 1 0 :1:7 
 ]
 "4490
-[s S487 . 1 `uc 1 . 1 0 :4:0 
+[s S550 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIF 1 0 :1:7 
 ]
-[u S493 . 1 `S478 1 . 1 0 `S487 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES493  1 e 1 @3998 ]
+[u S556 . 1 `S541 1 . 1 0 `S550 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES556  1 e 1 @3998 ]
 [s S27 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
@@ -244,11 +322,11 @@ NONE 16
 [v _T2CON T2CON `VEuc  1 e 1 @4042 ]
 "7296
 [v _PR2 PR2 `VEuc  1 e 1 @4043 ]
-[s S288 . 1 `uc 1 . 1 0 :2:0 
+[s S342 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T1SYNC 1 0 :1:2 
 ]
 "7446
-[s S291 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S345 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 TMR1CS 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
@@ -256,21 +334,37 @@ NONE 16
 `uc 1 T1RUN 1 0 :1:6 
 `uc 1 RD16 1 0 :1:7 
 ]
-[s S299 . 1 `uc 1 . 1 0 :2:0 
+[s S353 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T1SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T1CKPS0 1 0 :1:4 
 `uc 1 T1CKPS1 1 0 :1:5 
 ]
-[s S305 . 1 `uc 1 . 1 0 :3:0 
+[s S359 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SOSCEN 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 T1RD16 1 0 :1:7 
 ]
-[u S310 . 1 `S288 1 . 1 0 `S291 1 . 1 0 `S299 1 . 1 0 `S305 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES310  1 e 1 @4045 ]
+[u S364 . 1 `S342 1 . 1 0 `S345 1 . 1 0 `S353 1 . 1 0 `S359 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES364  1 e 1 @4045 ]
 "7516
 [v _TMR1 TMR1 `VEus  1 e 2 @4046 ]
+[s S288 . 1 `uc 1 T0PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 T08BIT 1 0 :1:6 
+`uc 1 TMR0ON 1 0 :1:7 
+]
+"8087
+[s S295 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+]
+[u S299 . 1 `S288 1 . 1 0 `S295 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES299  1 e 1 @4053 ]
+"8137
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
 [s S137 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_RBPU 1 0 :1:7 
 ]
@@ -320,136 +414,154 @@ NONE 16
 [v _RBIF RBIF `VEb  1 e 0 @32656 ]
 "10225
 [v _TRISA3 TRISA3 `VEb  1 e 0 @31891 ]
+"99 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+[v _open_lock_arr open_lock_arr `[10]uc  1 e 10 0 ]
+"100
+[v _num_of_doors_open num_of_doors_open `uc  1 e 1 0 ]
 "103 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.h
 [v _systemStateReg systemStateReg `VEuc  1 e 1 0 ]
 "104
 [v _systemStateReg2 systemStateReg2 `uc  1 e 1 0 ]
-"124
+"126
 [v _timer1OVFcount timer1OVFcount `VEuc  1 e 1 0 ]
-"320 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+"526 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"324
-[v main@keypressArray keypressArray `[10]uc  1 a 10 1 ]
+"640
+[v main@i i `uc  1 a 1 17 ]
+"530
+[v main@keypressArray keypressArray `[10]uc  1 a 10 7 ]
 [s S203 . 2 `uc 1 keyPressIndicator 1 0 :1:0 
 `uc 1 keyPressSound 1 0 :1:1 
 `uc 1 keyLock 1 0 :1:2 
 `uc 1 keyPressed 1 1 ]
-"322
-[v main@currentKeypadStatus currentKeypadStatus `S203  1 a 2 15 ]
-"326
-[v main@locker_num locker_num `uc  1 a 1 14 ]
-"325
-[v main@numOfKeysPressed numOfKeysPressed `uc  1 a 1 13 ]
-"323
-[v main@currentSystemState currentSystemState `E4103  1 a 1 12 ]
-"327
-[v main@addr addr `uc  1 a 1 11 ]
-"350
-[v main@a a `uc  1 a 1 0 ]
-"673
+"528
+[v main@currentKeypadStatus currentKeypadStatus `S203  1 a 2 22 ]
+"532
+[v main@locker_num locker_num `uc  1 a 1 21 ]
+"531
+[v main@numOfKeysPressed numOfKeysPressed `uc  1 a 1 20 ]
+"529
+[v main@currentSystemState currentSystemState `E4106  1 a 1 19 ]
+"533
+[v main@addr addr `uc  1 a 1 18 ]
+"885
 } 0
-"675
+"334
+[v _start_door_timer start_door_timer `(v  1 e 1 0 ]
+{
+"337
+} 0
+"23 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
+[v _state_timer0 state_timer0 `(v  1 e 1 0 ]
+{
+[v state_timer0@state state `uc  1 a 1 wreg ]
+[v state_timer0@state state `uc  1 a 1 wreg ]
+"29
+} 0
+"887 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _passcodeCompare passcodeCompare `(uc  1 e 1 0 ]
 {
-"687
-[v passcodeCompare@i i `uc  1 a 1 31 ]
-"677
-[v passcodeCompare@validity validity `uc  1 a 1 32 ]
-"678
-[v passcodeCompare@storedCodeLenght storedCodeLenght `uc  1 a 1 30 ]
-"675
-[v passcodeCompare@keybuffer1 keybuffer1 `*.39uc  1 p 2 19 ]
-[v passcodeCompare@compareLenght compareLenght `uc  1 p 1 21 ]
-[v passcodeCompare@compareAddr compareAddr `uc  1 p 1 22 ]
-"703
+"899
+[v passcodeCompare@i i `uc  1 a 1 29 ]
+"889
+[v passcodeCompare@validity validity `uc  1 a 1 30 ]
+"890
+[v passcodeCompare@storedCodeLenght storedCodeLenght `uc  1 a 1 28 ]
+"887
+[v passcodeCompare@keybuffer1 keybuffer1 `*.39uc  1 p 2 24 ]
+[v passcodeCompare@compareLenght compareLenght `uc  1 p 1 26 ]
+[v passcodeCompare@compareAddr compareAddr `uc  1 p 1 27 ]
+"915
 } 0
-"96 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
+"37 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\eeprom_functions.c
+[v _readEEPROM readEEPROM `(uc  1 e 1 0 ]
+{
+[v readEEPROM@address address `uc  1 a 1 wreg ]
+[v readEEPROM@address address `uc  1 a 1 wreg ]
+"39
+[v readEEPROM@address address `uc  1 a 1 23 ]
+"43
+} 0
+"388 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+[v _open_lock open_lock `(v  1 e 1 0 ]
+{
+[v open_lock@lock_num lock_num `uc  1 a 1 wreg ]
+[v open_lock@lock_num lock_num `uc  1 a 1 wreg ]
+[v open_lock@lock_num lock_num `uc  1 a 1 23 ]
+"455
+} 0
+"114 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
 [v _initStandbyTimer initStandbyTimer `(v  1 e 1 0 ]
 {
-"102
+"120
 } 0
 "14 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\Keypad4X4.c
 [v _initKeypad initKeypad `(v  1 e 1 0 ]
 {
 "20
 } 0
-"251 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+"272 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _initControllerIO initControllerIO `(v  1 e 1 0 ]
 {
-"256
+"287
 } 0
 "8 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\eeprom_functions.c
 [v _eepromWriteCode eepromWriteCode `(v  1 e 1 0 ]
 {
 [v eepromWriteCode@eepromWriteAddr eepromWriteAddr `uc  1 a 1 wreg ]
 "11
-[v eepromWriteCode@i i `uc  1 a 1 25 ]
+[v eepromWriteCode@i i `uc  1 a 1 30 ]
 "8
 [v eepromWriteCode@eepromWriteAddr eepromWriteAddr `uc  1 a 1 wreg ]
-[v eepromWriteCode@codeLenght codeLenght `uc  1 p 1 21 ]
-[v eepromWriteCode@codeBuffer codeBuffer `*.39uc  1 p 2 22 ]
+[v eepromWriteCode@codeLenght codeLenght `uc  1 p 1 26 ]
+[v eepromWriteCode@codeBuffer codeBuffer `*.39uc  1 p 2 27 ]
 "10
-[v eepromWriteCode@eepromWriteAddr eepromWriteAddr `uc  1 a 1 24 ]
-"17
+[v eepromWriteCode@eepromWriteAddr eepromWriteAddr `uc  1 a 1 29 ]
+"16
 } 0
-"19
+"18
 [v _writeEEPROM writeEEPROM `(v  1 e 1 0 ]
 {
 [v writeEEPROM@address address `uc  1 a 1 wreg ]
-"21
-[v writeEEPROM@gie_Status gie_Status `uc  1 a 1 20 ]
-"19
+"20
+[v writeEEPROM@gie_Status gie_Status `uc  1 a 1 25 ]
+"18
 [v writeEEPROM@address address `uc  1 a 1 wreg ]
-[v writeEEPROM@datas datas `uc  1 p 1 18 ]
-[v writeEEPROM@address address `uc  1 a 1 19 ]
-"34
+[v writeEEPROM@datas datas `uc  1 p 1 23 ]
+[v writeEEPROM@address address `uc  1 a 1 24 ]
+"35
 } 0
-"314 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+"329 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+[v _configure_door_timer configure_door_timer `(v  1 e 1 0 ]
+{
+"332
+} 0
+"13 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\timer.c
+[v _setup_timer0 setup_timer0 `(v  1 e 1 0 ]
+{
+"21
+} 0
+"382 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _clear_keyArray clear_keyArray `(v  1 e 1 0 ]
 {
-"316
-[v clear_keyArray@a a `uc  1 a 1 20 ]
-"314
-[v clear_keyArray@arr arr `*.39uc  1 p 2 18 ]
-"318
+"384
+[v clear_keyArray@a a `uc  1 a 1 25 ]
+"382
+[v clear_keyArray@arr arr `*.39uc  1 p 2 23 ]
+"386
 } 0
 "129
-[v _check_password_presence check_password_presence `(uc  1 e 1 0 ]
-{
-[v check_password_presence@lock_num lock_num `uc  1 a 1 wreg ]
-"133
-[v check_password_presence@addr addr `uc  1 a 1 22 ]
-"131
-[v check_password_presence@validity validity `uc  1 a 1 21 ]
-"135
-[v check_password_presence@a a `uc  1 a 1 19 ]
-"129
-[v check_password_presence@lock_num lock_num `uc  1 a 1 wreg ]
-"131
-[v check_password_presence@lock_num lock_num `uc  1 a 1 20 ]
-"139
-} 0
-"36 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\eeprom_functions.c
-[v _readEEPROM readEEPROM `(uc  1 e 1 0 ]
-{
-[v readEEPROM@address address `uc  1 a 1 wreg ]
-[v readEEPROM@address address `uc  1 a 1 wreg ]
-"38
-[v readEEPROM@address address `uc  1 a 1 18 ]
-"42
-} 0
-"119 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _check_lock_num_validity check_lock_num_validity `(uc  1 e 1 0 ]
 {
 [v check_lock_num_validity@lock_num lock_num `uc  1 a 1 wreg ]
-"121
-[v check_lock_num_validity@validity validity `uc  1 a 1 18 ]
-"119
+"131
+[v check_lock_num_validity@validity validity `uc  1 a 1 23 ]
+"129
 [v check_lock_num_validity@lock_num lock_num `uc  1 a 1 wreg ]
-"121
-[v check_lock_num_validity@lock_num lock_num `uc  1 a 1 19 ]
-"127
+"131
+[v check_lock_num_validity@lock_num lock_num `uc  1 a 1 24 ]
+"137
 } 0
 "200 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\Keypad4X4.c
 [v _buttonPressedIndicator buttonPressedIndicator `(uc  1 e 1 0 ]
@@ -459,47 +571,72 @@ NONE 16
 `uc 1 keyLock 1 0 :1:2 
 `uc 1 keyPressed 1 1 ]
 "202
-[v buttonPressedIndicator@keypad_state keypad_state `S203  1 a 2 22 ]
+[v buttonPressedIndicator@keypad_state keypad_state `S203  1 a 2 27 ]
 "205
 } 0
 "28
 [v _getKey getKey `(v  1 e 1 0 ]
 {
 "30
-[v getKey@buttonPressed buttonPressed `E3790  1 a 1 21 ]
+[v getKey@buttonPressed buttonPressed `E3790  1 a 1 26 ]
 [s S203 . 2 `uc 1 keyPressIndicator 1 0 :1:0 
 `uc 1 keyPressSound 1 0 :1:1 
 `uc 1 keyLock 1 0 :1:2 
 `uc 1 keyPressed 1 1 ]
 "28
-[v getKey@KeypadStatus KeypadStatus `*.39S203  1 p 2 18 ]
+[v getKey@KeypadStatus KeypadStatus `*.39S203  1 p 2 23 ]
 "198
 } 0
-"265 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
+"303 G:\Savio\Embedded Projects\RealGuard_MULOC_8bit\Code\MULOC_8bit.X\main.c
 [v _beep_ok beep_ok `(v  1 e 1 0 ]
 {
-"274
+"312
 } 0
-"258
+"296
+[v _beep_long beep_long `(v  1 e 1 0 ]
+{
+"301
+} 0
+"314
+[v _beep_error beep_error `(v  1 e 1 0 ]
+{
+"327
+} 0
+"289
 [v _beep beep `(v  1 e 1 0 ]
 {
-"263
+"294
 } 0
-"100
+"110
 [v _arr_to_num arr_to_num `(uc  1 e 1 0 ]
 {
+"120
+[v arr_to_num@a a `uc  1 a 1 29 ]
+"112
+[v arr_to_num@validity validity `uc  1 a 1 30 ]
 "110
-[v arr_to_num@a a `uc  1 a 1 24 ]
-"102
-[v arr_to_num@validity validity `uc  1 a 1 25 ]
-"100
-[v arr_to_num@arr arr `*.39uc  1 p 2 18 ]
-[v arr_to_num@num_of_elements num_of_elements `uc  1 p 1 20 ]
-[v arr_to_num@number number `*.39uc  1 p 2 21 ]
-"116
+[v arr_to_num@arr arr `*.39uc  1 p 2 23 ]
+[v arr_to_num@num_of_elements num_of_elements `uc  1 p 1 25 ]
+[v arr_to_num@number number `*.39uc  1 p 2 26 ]
+"126
 } 0
-"141
+"151
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"249
+"185
+[v ISR@i i `uc  1 a 1 22 ]
+"270
+} 0
+"314
+[v i2_beep_error beep_error `(v  1 e 1 0 ]
+{
+"327
+} 0
+"457
+[v _close_lock close_lock `(v  1 e 1 0 ]
+{
+[v close_lock@lock_num lock_num `uc  1 a 1 wreg ]
+[v close_lock@lock_num lock_num `uc  1 a 1 wreg ]
+[v close_lock@lock_num lock_num `uc  1 a 1 0 ]
+"524
 } 0

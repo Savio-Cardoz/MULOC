@@ -119,6 +119,8 @@ unsigned char systemStateReg2;          // Flags that dont need to be save to EE
 #define ON_BUZZER 0
 #define OFF_BUZZER 1
 
+
+
 unsigned char keyPressCount;
 unsigned char keyBuffer[25];     // Buffer that will hold the values of the keys pressed
 volatile unsigned char timer1OVFcount;
@@ -134,6 +136,29 @@ enum codeType LASTPASSCODE;
 #define BUZZER_PIN LATAbits.LATA0
 #define BUZZER_ON (LATAbits.LATA0 = 1)
 #define BUZZER_OFF (LATAbits.LATA0 = 0)
+
+/* LOCK output pins */
+#define LOCK_1 (LATCbits.LATC0)
+#define LOCK_2 (LATEbits.LATE2)
+#define LOCK_3 (LATEbits.LATE1)
+#define LOCK_4 (LATEbits.LATE0)
+#define LOCK_5 (LATAbits.LATA5)
+#define LOCK_6 (LATAbits.LATA4)
+#define LOCK_7 (LATAbits.LATA3)
+#define LOCK_8 (LATDbits.LATD7)
+#define LOCK_9 (LATDbits.LATD6)
+#define LOCK_10 (LATDbits.LATD5)
+#define LOCK_11 (LATDbits.LATD4)
+#define LOCK_12 (LATCbits.LATC7)
+#define LOCK_13 (LATCbits.LATC6)
+//#define LOCK_14 (LATCbits.LATC5)
+#define LOCK_15 (LATDbits.LATD2)
+#define LOCK_16 (LATDbits.LATD3)
+//#define LOCK_17 (LATCbits.LATC4)
+#define LOCK_18 (LATCbits.LATC1)
+#define LOCK_19 (LATCbits.LATC2)
+#define LOCK_20 (LATDbits.LATD0)
+#define LOCK_21 (LATDbits.LATD1)
 
 const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
 const unsigned char defaultPassCode2[3] = {1,2,3};

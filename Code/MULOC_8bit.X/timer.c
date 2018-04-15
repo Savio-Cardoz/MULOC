@@ -10,6 +10,24 @@ struct configSound soundOut;
 void initTimer();
 void startTimer(unsigned int time_val);
 
+void setup_timer0()
+{
+    T0CONbits.TMR0ON = 0;
+    T0CONbits.T08BIT = 0;   // !6bit timer
+    T0CONbits.T0CS = 0;     // Internal clock as source
+    INTCONbits.TMR0IE = 1;
+    TMR0 = 0;           // To count 640 parts for 20ms @ 8Mhz clock
+    T0CONbits.PSA = 0;      // Enable use of prescalar
+}
+
+void state_timer0(unsigned char state)
+{
+    if(state = ON)
+        T0CONbits.TMR0ON = 1;
+    else
+        T0CONbits.TMR0ON = 0;
+}
+
 //void updateTimer()
 //{
 //    timerOVFcount++;

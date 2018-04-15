@@ -4820,7 +4820,6 @@ writeEEPROM(eepromWriteAddr, codeLenght);
 for(unsigned char i=0; i <= codeLenght; i++)
 {
 eepromWriteAddr++;
-
 writeEEPROM(eepromWriteAddr, *(codeBuffer + i));
 }
 }
@@ -4832,6 +4831,8 @@ unsigned char gie_Status;
 while(EECON1bits.WR);
 EEADR = address;
 EEDATA = datas;
+EECON1bits.EEPGD = 0;
+EECON1bits.CFGS = 0;
 EECON1bits.WREN = 1;
 gie_Status = INTCONbits.GIE;
 INTCONbits.GIE = 0;
@@ -4845,8 +4846,7 @@ EECON1bits.WREN = 0;
 unsigned char readEEPROM(unsigned char address)
 {
 EEADR = address;
-
+EECON1bits.EEPGD = 0;
 EECON1bits.RD = 1;
 return EEDATA;
 }
-

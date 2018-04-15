@@ -3578,101 +3578,110 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_functions.c: 13: eepromWriteAddr++;
 "13
 [e ++ _eepromWriteAddr -> -> 1 `i `uc ]
-[; ;eeprom_functions.c: 15: writeEEPROM(eepromWriteAddr, *(codeBuffer + i));
-"15
+[; ;eeprom_functions.c: 14: writeEEPROM(eepromWriteAddr, *(codeBuffer + i));
+"14
 [e ( _writeEEPROM (2 , _eepromWriteAddr *U + _codeBuffer * -> _i `ux -> -> # *U _codeBuffer `ui `ux ]
-"16
+"15
 }
 "11
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 366 ]
 [e $ <= -> _i `i -> _codeLenght `i 363  ]
 [e :U 364 ]
-"16
+"15
 }
+[; ;eeprom_functions.c: 15: }
 [; ;eeprom_functions.c: 16: }
-[; ;eeprom_functions.c: 17: }
-"17
+"16
 [e :UE 362 ]
 }
-"19
+"18
 [v _writeEEPROM `(v ~T0 @X0 1 ef2`uc`uc ]
-"20
-{
-[; ;eeprom_functions.c: 19: void writeEEPROM(unsigned char address, unsigned char datas)
-[; ;eeprom_functions.c: 20: {
-[e :U _writeEEPROM ]
 "19
+{
+[; ;eeprom_functions.c: 18: void writeEEPROM(unsigned char address, unsigned char datas)
+[; ;eeprom_functions.c: 19: {
+[e :U _writeEEPROM ]
+"18
 [v _address `uc ~T0 @X0 1 r1 ]
 [v _datas `uc ~T0 @X0 1 r2 ]
-"20
+"19
 [f ]
-"21
+"20
 [v _gie_Status `uc ~T0 @X0 1 a ]
-[; ;eeprom_functions.c: 21: unsigned char gie_Status;
-[; ;eeprom_functions.c: 23: while(EECON1bits.WR);
-"23
+[; ;eeprom_functions.c: 20: unsigned char gie_Status;
+[; ;eeprom_functions.c: 22: while(EECON1bits.WR);
+"22
 [e $U 368  ]
 [e :U 369 ]
 [e :U 368 ]
 [e $ != -> . . _EECON1bits 0 1 `i -> -> -> 0 `i `Vuc `i 369  ]
 [e :U 370 ]
-[; ;eeprom_functions.c: 24: EEADR = address;
-"24
+[; ;eeprom_functions.c: 23: EEADR = address;
+"23
 [e = _EEADR _address ]
-[; ;eeprom_functions.c: 25: EEDATA = datas;
-"25
+[; ;eeprom_functions.c: 24: EEDATA = datas;
+"24
 [e = _EEDATA _datas ]
-[; ;eeprom_functions.c: 26: EECON1bits.WREN = 1;
+[; ;eeprom_functions.c: 25: EECON1bits.EEPGD = 0;
+"25
+[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
+[; ;eeprom_functions.c: 26: EECON1bits.CFGS = 0;
 "26
-[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
-[; ;eeprom_functions.c: 27: gie_Status = INTCONbits.GIE;
+[e = . . _EECON1bits 0 6 -> -> 0 `i `uc ]
+[; ;eeprom_functions.c: 27: EECON1bits.WREN = 1;
 "27
-[e = _gie_Status . . _INTCONbits 1 7 ]
-[; ;eeprom_functions.c: 28: INTCONbits.GIE = 0;
+[e = . . _EECON1bits 0 2 -> -> 1 `i `uc ]
+[; ;eeprom_functions.c: 28: gie_Status = INTCONbits.GIE;
 "28
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;eeprom_functions.c: 29: EECON2 = 0x55;
+[e = _gie_Status . . _INTCONbits 1 7 ]
+[; ;eeprom_functions.c: 29: INTCONbits.GIE = 0;
 "29
-[e = _EECON2 -> -> 85 `i `uc ]
-[; ;eeprom_functions.c: 30: EECON2 = 0xaa;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;eeprom_functions.c: 30: EECON2 = 0x55;
 "30
-[e = _EECON2 -> -> 170 `i `uc ]
-[; ;eeprom_functions.c: 31: EECON1bits.WR = 1;
+[e = _EECON2 -> -> 85 `i `uc ]
+[; ;eeprom_functions.c: 31: EECON2 = 0xaa;
 "31
-[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
-[; ;eeprom_functions.c: 32: INTCONbits.GIE = gie_Status;
+[e = _EECON2 -> -> 170 `i `uc ]
+[; ;eeprom_functions.c: 32: EECON1bits.WR = 1;
 "32
-[e = . . _INTCONbits 1 7 _gie_Status ]
-[; ;eeprom_functions.c: 33: EECON1bits.WREN = 0;
+[e = . . _EECON1bits 0 1 -> -> 1 `i `uc ]
+[; ;eeprom_functions.c: 33: INTCONbits.GIE = gie_Status;
 "33
-[e = . . _EECON1bits 0 2 -> -> 0 `i `uc ]
-[; ;eeprom_functions.c: 34: }
+[e = . . _INTCONbits 1 7 _gie_Status ]
+[; ;eeprom_functions.c: 34: EECON1bits.WREN = 0;
 "34
+[e = . . _EECON1bits 0 2 -> -> 0 `i `uc ]
+[; ;eeprom_functions.c: 35: }
+"35
 [e :UE 367 ]
 }
-"36
+"37
 [v _readEEPROM `(uc ~T0 @X0 1 ef1`uc ]
-"37
-{
-[; ;eeprom_functions.c: 36: unsigned char readEEPROM(unsigned char address)
-[; ;eeprom_functions.c: 37: {
-[e :U _readEEPROM ]
-"36
-[v _address `uc ~T0 @X0 1 r1 ]
-"37
-[f ]
-[; ;eeprom_functions.c: 38: EEADR = address;
 "38
+{
+[; ;eeprom_functions.c: 37: unsigned char readEEPROM(unsigned char address)
+[; ;eeprom_functions.c: 38: {
+[e :U _readEEPROM ]
+"37
+[v _address `uc ~T0 @X0 1 r1 ]
+"38
+[f ]
+[; ;eeprom_functions.c: 39: EEADR = address;
+"39
 [e = _EEADR _address ]
-[; ;eeprom_functions.c: 40: EECON1bits.RD = 1;
+[; ;eeprom_functions.c: 40: EECON1bits.EEPGD = 0;
 "40
-[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
-[; ;eeprom_functions.c: 41: return EEDATA;
+[e = . . _EECON1bits 0 7 -> -> 0 `i `uc ]
+[; ;eeprom_functions.c: 41: EECON1bits.RD = 1;
 "41
+[e = . . _EECON1bits 0 0 -> -> 1 `i `uc ]
+[; ;eeprom_functions.c: 42: return EEDATA;
+"42
 [e ) _EEDATA ]
 [e $UE 371  ]
-[; ;eeprom_functions.c: 42: }
-"42
+[; ;eeprom_functions.c: 43: }
+"43
 [e :UE 371 ]
 }

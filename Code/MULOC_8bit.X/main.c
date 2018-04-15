@@ -82,12 +82,22 @@
 #define MAX_NUM_OF_LOCKS 21
 #define True 1
 #define False 0
+#define open 1
+#define close 0
 
 typedef enum {
     NORMAL = 0,
     UID_ENTERED = 1,
     PSWD_ENTERED
 }systemState_t;
+
+void beep_long();
+void beep_error();
+void close_lock(unsigned char lock_num);
+
+/* Global variables */
+unsigned char open_lock_arr[10];        // This hold the lockers open in equential order
+unsigned char num_of_doors_open = 0;
 
 /* Convert elements in a array to a 8bit number 
    Arguments: arr - Array of elements to be made to a number
@@ -163,6 +173,19 @@ void interrupt ISR(void)
 //            INTCONbits.TMR0IE = 0;
         }
         PIR1bits.TMR1IF = 0;
+    }
+    if(INTCONbits.TMR0IF)
+    {
+        INTCONbits.TMR0IF = 0;
+        beep_error();
+        TMR0 = 0;
+        close_lock(open_lock_arr[0]);       // The doors opened are saved in FIFO order in the array
+        num_of_doors_open--;    
+        /* move the doors one UP */
+        for(unsigned char i = 0; i < num_of_doors_open; i++)
+            open_lock_arr[i] = open_lock_arr[i+1];
+        if(!num_of_doors_open)
+            stop_door_timer();
     }
 //    if(TMR2IF)
 //    {
@@ -253,6 +276,16 @@ void initControllerIO()
     ADCON1 = 0x0F;      // All digital pins
     CMCON = 0x07;       // No comparator output on the pins
     TRISAbits.RA0 = 0;  // Buzzer output
+    
+    TRISD = 0x00;       // Entire port D is output
+    TRISC = 0x00;
+    TRISE = 0x00;
+    TRISA = 0x00;
+    
+    LATD = 0x00;
+    LATC = 0x00;
+    LATE = 0x00;
+    
 }
 
 void beep()
@@ -262,17 +295,54 @@ void beep()
     BUZZER_OFF;
 }
 
+void beep_long()
+{
+    BUZZER_ON;
+    __delay_ms(100);
+    BUZZER_OFF;
+}
+
 void beep_ok()
 {
     BUZZER_ON;
-    __delay_ms(2);
+    __delay_ms(10);
     BUZZER_OFF;
-    __delay_ms(1);
+    __delay_ms(5);
     BUZZER_ON;
-    __delay_ms(2);
+    __delay_ms(10);
     BUZZER_OFF;
 }
-//
+
+void beep_error()
+{
+    BUZZER_ON;
+    __delay_ms(100);
+    BUZZER_OFF;
+    __delay_ms(10);
+    BUZZER_ON;
+    __delay_ms(10);
+    BUZZER_OFF;
+    __delay_ms(10);
+    BUZZER_ON;
+    __delay_ms(10);
+    BUZZER_OFF;
+}
+
+void configure_door_timer()
+{
+    setup_timer0();
+}
+
+void start_door_timer()
+{
+    state_timer0(ON);
+}
+
+void stop_door_timer()
+{
+    state_timer0(OFF);
+}
+
 //void handleSleep()
 //{
 //    /********   Intentional introduction of BUG   Remove @ final release  *************/
@@ -317,6 +387,144 @@ void clear_keyArray(unsigned char* arr)
         arr[a] = 0;
 }
 
+void open_lock(unsigned char lock_num)
+{
+    switch(lock_num)
+    {
+        case 1: LOCK_1 = open;
+        break;
+        
+        case 2: LOCK_2 = open;
+        break;
+        
+        case 3: LOCK_3 = open;
+        break;
+        
+        case 4: LOCK_4 = open;
+        break;
+        
+        case 5: LOCK_5 = open;
+        break;
+        
+        case 6: LOCK_6 = open;
+        break;
+        
+        case 7: LOCK_7 = open;
+        break;
+        
+        case 8: LOCK_8 = open;
+        break;
+        
+        case 9: LOCK_9 = open;
+        break;
+        
+        case 10: LOCK_10 = open;
+        break;
+        
+        case 11: LOCK_11 = open;
+        break;
+        
+        case 12: LOCK_12 = open;
+        break;
+        
+        case 13: LOCK_13 = open;
+        break;
+        
+//        case 14: LOCK_14 = open;
+//        break;
+        
+        case 15: LOCK_15 = open;
+        break;
+        
+        case 16: LOCK_16 = open;
+        break;
+        
+//        case 17: LOCK_17 = open;
+//        break;
+        
+        case 18: LOCK_18 = open;
+        break;
+        
+        case 19: LOCK_19 = open;
+        break;
+        
+        case 20: LOCK_20 = open;
+        break;
+        
+        case 21: LOCK_21 = open;
+        break;
+    }
+}
+
+void close_lock(unsigned char lock_num)
+{
+    switch(lock_num)
+    {
+        case 1: LOCK_1 = close;
+        break;
+        
+        case 2: LOCK_2 = close;
+        break;
+        
+        case 3: LOCK_3 = close;
+        break;
+        
+        case 4: LOCK_4 = close;
+        break;
+        
+        case 5: LOCK_5 = close;
+        break;
+        
+        case 6: LOCK_6 = close;
+        break;
+        
+        case 7: LOCK_7 = close;
+        break;
+        
+        case 8: LOCK_8 = close;
+        break;
+        
+        case 9: LOCK_9 = close;
+        break;
+        
+        case 10: LOCK_10 = close;
+        break;
+        
+        case 11: LOCK_11 = close;
+        break;
+        
+        case 12: LOCK_12 = close;
+        break;
+        
+        case 13: LOCK_13 = close;
+        break;
+        
+//        case 14: LOCK_14 = close;
+//        break;
+        
+        case 15: LOCK_15 = close;
+        break;
+        
+        case 16: LOCK_16 = close;
+        break;
+        
+//        case 17: LOCK_17 = close;
+//        break;
+        
+        case 18: LOCK_18 = close;
+        break;
+        
+        case 19: LOCK_19 = close;
+        break;
+        
+        case 20: LOCK_20 = close;
+        break;
+        
+        case 21: LOCK_21 = close;
+        break;
+    }
+}
+
 int main() 
 {   
     keypadStatus currentKeypadStatus;
@@ -328,9 +536,9 @@ int main()
     initControllerIO();
     initKeypad();
     initStandbyTimer();
-    
+    configure_door_timer();
     INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;     // Enable interrupts
+    INTCONbits.GIE = 1;     // Enable interrupt
 ////    initDoorOpenTimer2();
 //    systemStateReg2 = 0;
 //
@@ -342,12 +550,12 @@ int main()
 //
 //    handleSleep();
 //    
+  
     /* Clear the keypressArray */
     clear_keyArray(keypressArray);
     
-    writeEEPROM(0, 0x01);
-    writeEEPROM(1, 0x01);
-    char a = readEEPROM(0);
+    beep_error();
+    state_timer0(ON);
     
     while(1)
     {
@@ -356,7 +564,8 @@ int main()
         // Identify and store any numeric key pressed. And for any special key perform the necessary actions
         if(currentKeypadStatus.keyPressIndicator == True)
         {
-            beep();
+            
+            
             if(currentKeypadStatus.keyPressed == SP_FUNC_A)
             {
                 
@@ -391,23 +600,20 @@ int main()
                 else if(currentSystemState == UID_ENTERED)
                 {
                     /* Compare the entered code with that saved previously */
-                    if(False == check_password_presence(locker_num))
+                    addr = (locker_num - 1) * 10;
+                    if(False == passcodeCompare(keypressArray, numOfKeysPressed, addr))
                     {
-                        /* No password exists. Send error code */
+                        /* Send error code */
+                        //beep_error();
                         break;
                     }
-                    else 
+                    else
                     {
-                        addr = (locker_num - 1) * 10;
-                        if(False == passcodeCompare(keypressArray, numOfKeysPressed, addr))
-                        {
-                            /* Send error code */
-                            break;
-                        }
-                        else
-                        {
-                            /* Access OK */
-                        }
+                        beep_ok();
+                        open_lock(locker_num);
+                        start_door_timer();
+                        open_lock_arr[num_of_doors_open++] = locker_num;
+                        /* Access OK */
                     }
                 }
                 clear_keyArray(keypressArray);
@@ -421,25 +627,24 @@ int main()
             {
                 if(currentSystemState == UID_ENTERED)
                 {
-                    /* Check for presence of a password */
-                    if(False == check_password_presence(locker_num))
-                    {
-                        /* Save the entered code as the password */
-                        addr = (locker_num - 1) * 10;
-                        eepromWriteCode(addr, numOfKeysPressed, keypressArray);
-                        break;
-                    }
-                    else
-                    {
-                        /* Use the array to save the password */
-                        
-                    }
+                    /* Save the entered code as the password */
+                    addr = (locker_num - 1) * 10;
+                    eepromWriteCode(addr, numOfKeysPressed, keypressArray);
+                    beep_ok();
+                    break;
                 }
                 clear_keyArray(keypressArray);
                 numOfKeysPressed = 0;
             }
             else 
             {
+                /* temporary audible button detection */
+                for(unsigned char i = 0; i < currentKeypadStatus.keyPressed; i++)
+                {
+                    beep();
+                    __delay_ms(20);
+                }
+                
                 keypressArray[numOfKeysPressed++] = currentKeypadStatus.keyPressed;
                 if(numOfKeysPressed > MAX_CODE_SIZE)
                 {
@@ -447,8 +652,17 @@ int main()
                     // Give a audible indication
                 }
             }
-            
             while(buttonPressedIndicator());    // Wait for release of button
+        }
+        
+        /* If the system times out, reset everything to normal */
+        if(TIMERINTERRUPT == True)
+        {
+            TIMERINTERRUPT = False;
+            beep_long();
+            clear_keyArray(keypressArray);
+            numOfKeysPressed = 0;
+            currentSystemState = NORMAL;
         }
       
 ////        if(STATE_SLEEP && (DOORSWITCH == DOOR_SW_OPEN)) // Not to enter sleep mode if Safe Door is open. Due to Door open timer running.

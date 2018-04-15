@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"129 main.h
+"131 main.h
 [c E4001 1 2 3 .. ]
 [n E4001 timerType ackTimer errorTimer okTimer  ]
 "66
 [s S368 `uc 1 `i 1 `uc 1 `E4001 1 :1 `uc 1 ]
 [n S368 configSound timerVal duration pitch playSeq noSoundFlag ]
-"132
+"134
 [c E4005 0 1 2 3 .. ]
 [n E4005 codeType general code1 code2 master1  ]
 "41 eeprom_functions.h
@@ -50,7 +50,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS177 ~T0 @X0 0 e@3998 ]
 "7516
 [v _TMR1 `Vus ~T0 @X0 0 e@4046 ]
-"6579
+"8586
+[s S360 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S360 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"8596
+[s S361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S361 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"8606
+[s S362 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S362 . . GIEL GIEH ]
+"8585
+[u S359 `S360 1 `S361 1 `S362 1 ]
+[n S359 . . . . ]
+"8612
+[v _INTCONbits `VS359 ~T0 @X0 0 e@4082 ]
+"95 main.c
+[v _beep_error `(v ~T0 @X0 0 ef ]
+"8137 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
+[v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
+"96 main.c
+[v _close_lock `(v ~T0 @X0 0 ef1`uc ]
+"6579 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "5585
 [v _CMCON `Vuc ~T0 @X0 0 e@4020 ]
@@ -65,6 +85,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S141 . . . ]
 "3455
 [v _TRISAbits `VS141 ~T0 @X0 0 e@3986 ]
+"3999
+[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
+"3845
+[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
+"4221
+[v _TRISE `Vuc ~T0 @X0 0 e@3990 ]
+"3425
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"3261
+[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
+"3183
+[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
+"3373
+[v _LATE `Vuc ~T0 @X0 0 e@3981 ]
 "2977
 [s S127 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S127 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 ]
@@ -80,39 +114,60 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18.h
 [v __delay `JF3964 ~T0 @X0 0 e ]
 [p i __delay ]
+"65 timer.h
+[v _setup_timer0 `(v ~T0 @X0 0 ef ]
+"66
+[v _state_timer0 `(v ~T0 @X0 0 ef1`uc ]
+"3189 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
+[s S133 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S133 . LATC0 LATC1 LATC2 . LATC6 LATC7 ]
+"3197
+[s S134 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S134 . LC0 LC1 LC2 . LC6 LC7 ]
+"3188
+[u S132 `S133 1 `S134 1 ]
+[n S132 . . . ]
+"3206
+[v _LATCbits `VS132 ~T0 @X0 0 e@3979 ]
+"3379
+[s S139 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S139 . LATE0 LATE1 LATE2 ]
+"3384
+[s S140 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S140 . LE0 LE1 LE2 ]
+"3378
+[u S138 `S139 1 `S140 1 ]
+[n S138 . . . ]
+"3390
+[v _LATEbits `VS138 ~T0 @X0 0 e@3981 ]
+"3267
+[s S136 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S136 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"3277
+[s S137 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S137 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"3266
+[u S135 `S136 1 `S137 1 ]
+[n S135 . . . ]
+"3288
+[v _LATDbits `VS135 ~T0 @X0 0 e@3980 ]
 [p mainexit ]
 "82 Keypad4x4.h
 [s S367 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 ]
 [n S367 . keyPressIndicator keyPressSound keyLock keyPressed ]
-"323 main.c
-[c E4103 0 1 2 .. ]
-[n E4103 . NORMAL UID_ENTERED PSWD_ENTERED  ]
+"529 main.c
+[c E4106 0 1 2 .. ]
+[n E4106 . NORMAL UID_ENTERED PSWD_ENTERED  ]
 "89 Keypad4x4.h
 [v _initKeypad `(v ~T0 @X0 0 ef ]
-"71 timer.h
+"72 timer.h
 [v _initStandbyTimer `(v ~T0 @X0 0 ef ]
-"8586 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4550.h
-[s S360 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S360 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"8596
-[s S361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S361 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"8606
-[s S362 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S362 . . GIEL GIEH ]
-"8585
-[u S359 `S360 1 `S361 1 `S362 1 ]
-[n S359 . . . . ]
-"8612
-[v _INTCONbits `VS359 ~T0 @X0 0 e@4082 ]
-"40 eeprom_functions.h
-[v _writeEEPROM `(v ~T0 @X0 0 ef2`uc`uc ]
 "91 Keypad4x4.h
 [v _getKey `(v ~T0 @X0 0 ef1`*S367 ]
-"360 main.c
+"567 main.c
 [c E3971 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .. ]
 [n E3971 button button_0 button_1 button_2 button_3 button_4 button_5 button_6 button_7 button_8 button_9 NO_KEY_TUNE SP_FUNC_A SP_FUNC_B SP_FUNC_ON SP_FUNC_OFF SP_FUNC_ENTER NONE  ]
-"150 main.h
+"175 main.h
 [v _passcodeCompare `(uc ~T0 @X0 0 ef3`*uc`uc`uc ]
 "39 eeprom_functions.h
 [v _eepromWriteCode `(v ~T0 @X0 0 ef3`uc`uc`*uc ]
@@ -3847,37 +3902,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 "104
 [v _systemStateReg2 `uc ~T0 @X0 1 e ]
 [; ;main.h: 104: unsigned char systemStateReg2;
-"122
-[v _keyPressCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 122: unsigned char keyPressCount;
-"123
-[v _keyBuffer `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.h: 123: unsigned char keyBuffer[25];
 "124
-[v _timer1OVFcount `Vuc ~T0 @X0 1 e ]
-[; ;main.h: 124: volatile unsigned char timer1OVFcount;
+[v _keyPressCount `uc ~T0 @X0 1 e ]
+[; ;main.h: 124: unsigned char keyPressCount;
 "125
-[v _timer2OVFcount `ui ~T0 @X0 1 e ]
-[; ;main.h: 125: unsigned int timer2OVFcount;
+[v _keyBuffer `uc ~T0 @X0 -> 25 `i e ]
+[; ;main.h: 125: unsigned char keyBuffer[25];
 "126
-[v _wrongCodeEnteredCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 126: unsigned char wrongCodeEnteredCount;
+[v _timer1OVFcount `Vuc ~T0 @X0 1 e ]
+[; ;main.h: 126: volatile unsigned char timer1OVFcount;
 "127
+[v _timer2OVFcount `ui ~T0 @X0 1 e ]
+[; ;main.h: 127: unsigned int timer2OVFcount;
+"128
+[v _wrongCodeEnteredCount `uc ~T0 @X0 1 e ]
+[; ;main.h: 128: unsigned char wrongCodeEnteredCount;
+"129
 [v _bufferPtr `uc ~T0 @X0 1 e ]
 [i _bufferPtr
 -> -> 0 `i `uc
 ]
-[; ;main.h: 127: unsigned char bufferPtr = 0;
-"129
+[; ;main.h: 129: unsigned char bufferPtr = 0;
+"131
 [v _soundStuff `S368 ~T0 @X0 1 e ]
-[; ;main.h: 129: struct configSound soundStuff;
-"130
-[v _eepromCode `*uc ~T0 @X0 1 e ]
-[; ;main.h: 130: unsigned char *eepromCode;
+[; ;main.h: 131: struct configSound soundStuff;
 "132
+[v _eepromCode `*uc ~T0 @X0 1 e ]
+[; ;main.h: 132: unsigned char *eepromCode;
+"134
 [v _LASTPASSCODE `E4005 ~T0 @X0 1 e ]
-[; ;main.h: 132: enum codeType LASTPASSCODE;
-"138
+[; ;main.h: 134: enum codeType LASTPASSCODE;
+"163
 [v _defaultPassCode `Cuc ~T0 @X0 -> 9 `i e ]
 [i _defaultPassCode
 :U ..
@@ -3892,8 +3947,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ..
 ]
-[; ;main.h: 138: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
-"139
+[; ;main.h: 163: const unsigned char defaultPassCode[9] = {9,8,7,6,5,4,3,2,1};
+"164
 [v _defaultPassCode2 `Cuc ~T0 @X0 -> 3 `i e ]
 [i _defaultPassCode2
 :U ..
@@ -3902,8 +3957,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 3 `i `uc
 ..
 ]
-[; ;main.h: 139: const unsigned char defaultPassCode2[3] = {1,2,3};
-"140
+[; ;main.h: 164: const unsigned char defaultPassCode2[3] = {1,2,3};
+"165
 [v _factoryResetCode `uc ~T0 @X0 -> 4 `i e ]
 [i _factoryResetCode
 :U ..
@@ -3913,60 +3968,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-[; ;main.h: 140: unsigned char factoryResetCode[4] = {8,0,8,0};
-"141
+[; ;main.h: 165: unsigned char factoryResetCode[4] = {8,0,8,0};
+"166
 [v _factoryResetCodeLenght `uc ~T0 @X0 1 e ]
 [i _factoryResetCodeLenght
 -> -> 4 `i `uc
 ]
-[; ;main.h: 141: unsigned char factoryResetCodeLenght = 4;
-"142
+[; ;main.h: 166: unsigned char factoryResetCodeLenght = 4;
+"167
 [v _defaultPassCodeLenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCodeLenght
 -> -> 9 `i `uc
 ]
-[; ;main.h: 142: const unsigned char defaultPassCodeLenght = 9;
-"143
+[; ;main.h: 167: const unsigned char defaultPassCodeLenght = 9;
+"168
 [v _defaultPassCode2Lenght `Cuc ~T0 @X0 1 e ]
 [i _defaultPassCode2Lenght
 -> -> 3 `i `uc
 ]
-[; ;main.h: 143: const unsigned char defaultPassCode2Lenght = 3;
-"145
+[; ;main.h: 168: const unsigned char defaultPassCode2Lenght = 3;
+"170
 [v _tempCodeBuffer `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.h: 145: unsigned char tempCodeBuffer[25];
-"146
+[; ;main.h: 170: unsigned char tempCodeBuffer[25];
+"171
 [v _tempCodeKeyPressCount `uc ~T0 @X0 1 e ]
-[; ;main.h: 146: unsigned char tempCodeKeyPressCount;
-[; ;main.h: 148: void checkFirstFlash();
-[; ;main.h: 149: void ackKeyPress();
-[; ;main.h: 150: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
-[; ;main.h: 151: void handleSleep();
-[; ;main.h: 152: void disableInterrupts();
-[; ;main.h: 153: void interrupt ISR(void);
-[; ;main.h: 154: void okTimerTone();
-[; ;main.h: 155: void doorTimerTone();
-[; ;main.h: 156: void errorTimerTone();
-[; ;main.h: 157: void doorOpenAlarm(unsigned char alarmMute);
-[; ;main.h: 158: void startTimer0();
-[; ;main.h: 159: void updateTempCodeBuffer(char *keybuffer, char keycount);
-[; ;main.h: 160: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
-[; ;main.h: 161: void doorOpenedTone(unsigned char tuneNumber);
-[; ;main.h: 162: void setDefaultUserCodes();
-[; ;main.h: 163: void setDefaultFactoryCodes();
-[; ;main.h: 164: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
-[; ;main.h: 165: char monitorBattery();
+[; ;main.h: 171: unsigned char tempCodeKeyPressCount;
+[; ;main.h: 173: void checkFirstFlash();
+[; ;main.h: 174: void ackKeyPress();
+[; ;main.h: 175: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr);
+[; ;main.h: 176: void handleSleep();
+[; ;main.h: 177: void disableInterrupts();
+[; ;main.h: 178: void interrupt ISR(void);
+[; ;main.h: 179: void okTimerTone();
+[; ;main.h: 180: void doorTimerTone();
+[; ;main.h: 181: void errorTimerTone();
+[; ;main.h: 182: void doorOpenAlarm(unsigned char alarmMute);
+[; ;main.h: 183: void startTimer0();
+[; ;main.h: 184: void updateTempCodeBuffer(char *keybuffer, char keycount);
+[; ;main.h: 185: char confirmationCodeCheck(char *keybuffer1, char *keybuffer2, char keycount1, char keycount2);
+[; ;main.h: 186: void doorOpenedTone(unsigned char tuneNumber);
+[; ;main.h: 187: void setDefaultUserCodes();
+[; ;main.h: 188: void setDefaultFactoryCodes();
+[; ;main.h: 189: void soundConfigParam(unsigned int timerStartValue, unsigned int timerDuration, unsigned char soundONOFF, unsigned char soundType);
+[; ;main.h: 190: char monitorBattery();
 "55 timer.h
 [v _timerOVFcount `uc ~T0 @X0 1 s ]
 [; ;timer.h: 55: static char timerOVFcount;
-[; ;timer.h: 66: void updateTimer();
-[; ;timer.h: 67: void ackKeyPressTimerTone(unsigned char noSoundFlag);
-[; ;timer.h: 68: void errorTone(unsigned char noSoundFlag);
-[; ;timer.h: 70: void alarmTimerTone();
-[; ;timer.h: 71: void initStandbyTimer();
-[; ;timer.h: 72: void startTimer(unsigned int time_val);
-[; ;timer.h: 73: void initDoorOpenTimer2();
-[; ;timer.h: 74: void beginDoorOpenCheck();
+[; ;timer.h: 65: void setup_timer0();
+[; ;timer.h: 66: void state_timer0(unsigned char state);
+[; ;timer.h: 67: void updateTimer();
+[; ;timer.h: 68: void ackKeyPressTimerTone(unsigned char noSoundFlag);
+[; ;timer.h: 69: void errorTone(unsigned char noSoundFlag);
+[; ;timer.h: 71: void alarmTimerTone();
+[; ;timer.h: 72: void initStandbyTimer();
+[; ;timer.h: 73: void startTimer(unsigned int time_val);
+[; ;timer.h: 74: void initDoorOpenTimer2();
+[; ;timer.h: 75: void beginDoorOpenCheck();
 "36 eeprom_functions.h
 [v _eepromCodeBuffer `uc ~T0 @X0 -> 25 `i s ]
 [; ;eeprom_functions.h: 36: static unsigned char eepromCodeBuffer[25];
@@ -3974,124 +4031,100 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_functions.h: 39: void eepromWriteCode(unsigned char eepromWriteAddr, unsigned char codeLenght, char *codeBuffer);
 [; ;eeprom_functions.h: 40: void writeEEPROM(unsigned char address, unsigned char datas);
 [; ;eeprom_functions.h: 41: unsigned char readEEPROM(unsigned char address);
-[; ;main.c: 86: typedef enum {
-[; ;main.c: 87: NORMAL = 0,
-[; ;main.c: 88: UID_ENTERED = 1,
-[; ;main.c: 89: PSWD_ENTERED
-[; ;main.c: 90: }systemState_t;
-"100 main.c
-[v _arr_to_num `(uc ~T0 @X0 1 ef3`*uc`uc`*uc ]
-"101
-{
-[; ;main.c: 100: unsigned char arr_to_num(unsigned char* arr, unsigned char num_of_elements, unsigned char* number)
-[; ;main.c: 101: {
-[e :U _arr_to_num ]
+[; ;main.c: 88: typedef enum {
+[; ;main.c: 89: NORMAL = 0,
+[; ;main.c: 90: UID_ENTERED = 1,
+[; ;main.c: 91: PSWD_ENTERED
+[; ;main.c: 92: }systemState_t;
+[; ;main.c: 94: void beep_long();
+[; ;main.c: 95: void beep_error();
+[; ;main.c: 96: void close_lock(unsigned char lock_num);
+"99 main.c
+[v _open_lock_arr `uc ~T0 @X0 -> 10 `i e ]
+[; ;main.c: 99: unsigned char open_lock_arr[10];
 "100
+[v _num_of_doors_open `uc ~T0 @X0 1 e ]
+[i _num_of_doors_open
+-> -> 0 `i `uc
+]
+[; ;main.c: 100: unsigned char num_of_doors_open = 0;
+"110
+[v _arr_to_num `(uc ~T0 @X0 1 ef3`*uc`uc`*uc ]
+"111
+{
+[; ;main.c: 110: unsigned char arr_to_num(unsigned char* arr, unsigned char num_of_elements, unsigned char* number)
+[; ;main.c: 111: {
+[e :U _arr_to_num ]
+"110
 [v _arr `*uc ~T0 @X0 1 r1 ]
 [v _num_of_elements `uc ~T0 @X0 1 r2 ]
 [v _number `*uc ~T0 @X0 1 r3 ]
-"101
+"111
 [f ]
-"102
+"112
 [v _validity `uc ~T0 @X0 1 a ]
-[; ;main.c: 102: unsigned char validity = 0;
+[; ;main.c: 112: unsigned char validity = 0;
 [e = _validity -> -> 0 `i `uc ]
-[; ;main.c: 103: *number = 0;
-"103
+[; ;main.c: 113: *number = 0;
+"113
 [e = *U _number -> -> 0 `i `uc ]
-[; ;main.c: 105: if(num_of_elements > 3)
-"105
+[; ;main.c: 115: if(num_of_elements > 3)
+"115
 [e $ ! > -> _num_of_elements `i -> 3 `i 371  ]
-[; ;main.c: 106: return validity;
-"106
+[; ;main.c: 116: return validity;
+"116
 [e ) _validity ]
 [e $UE 370  ]
 [e :U 371 ]
-[; ;main.c: 108: if((num_of_elements == 3) && (arr[0] == 2) && (arr[1] == 5) && (arr[2] == 6))
-"108
+[; ;main.c: 118: if((num_of_elements == 3) && (arr[0] == 2) && (arr[1] == 5) && (arr[2] == 6))
+"118
 [e $ ! && && && == -> _num_of_elements `i -> 3 `i == -> *U + _arr * -> -> 0 `i `x -> -> # *U _arr `i `x `i -> 2 `i == -> *U + _arr * -> -> 1 `i `x -> -> # *U _arr `i `x `i -> 5 `i == -> *U + _arr * -> -> 2 `i `x -> -> # *U _arr `i `x `i -> 6 `i 372  ]
-[; ;main.c: 109: return validity;
-"109
+[; ;main.c: 119: return validity;
+"119
 [e ) _validity ]
 [e $UE 370  ]
 [e :U 372 ]
-[; ;main.c: 110: for(unsigned char a = 0; a < num_of_elements; a++)
-"110
+[; ;main.c: 120: for(unsigned char a = 0; a < num_of_elements; a++)
+"120
 {
 [v _a `uc ~T0 @X0 1 a ]
 [e = _a -> -> 0 `i `uc ]
 [e $U 376  ]
-"111
+"121
 [e :U 373 ]
-[; ;main.c: 111: {
+[; ;main.c: 121: {
 {
-[; ;main.c: 112: *number = (*number * 10) + arr[a];
-"112
+[; ;main.c: 122: *number = (*number * 10) + arr[a];
+"122
 [e = *U _number -> + * -> *U _number `i -> 10 `i -> *U + _arr * -> _a `ux -> -> # *U _arr `ui `ux `i `uc ]
-"113
+"123
 }
-"110
+"120
 [e ++ _a -> -> 1 `i `uc ]
 [e :U 376 ]
 [e $ < -> _a `i -> _num_of_elements `i 373  ]
 [e :U 374 ]
-"113
+"123
 }
-[; ;main.c: 113: }
-[; ;main.c: 114: validity = 1;
-"114
+[; ;main.c: 123: }
+[; ;main.c: 124: validity = 1;
+"124
 [e = _validity -> -> 1 `i `uc ]
-[; ;main.c: 115: return validity;
-"115
+[; ;main.c: 125: return validity;
+"125
 [e ) _validity ]
 [e $UE 370  ]
-[; ;main.c: 116: }
-"116
+[; ;main.c: 126: }
+"126
 [e :UE 370 ]
 }
-"119
-[v _check_lock_num_validity `(uc ~T0 @X0 1 ef1`uc ]
-"120
-{
-[; ;main.c: 119: unsigned char check_lock_num_validity(unsigned char lock_num)
-[; ;main.c: 120: {
-[e :U _check_lock_num_validity ]
-"119
-[v _lock_num `uc ~T0 @X0 1 r1 ]
-"120
-[f ]
-"121
-[v _validity `uc ~T0 @X0 1 a ]
-[; ;main.c: 121: unsigned char validity = 0;
-[e = _validity -> -> 0 `i `uc ]
-[; ;main.c: 122: if(lock_num)
-"122
-[e $ ! != -> _lock_num `i -> -> -> 0 `i `uc `i 378  ]
-[; ;main.c: 123: {
-"123
-{
-[; ;main.c: 124: lock_num <= 21 ? validity = 1 : validity = 0;
-"124
-[e ? <= -> _lock_num `i -> 21 `i : -> = _validity -> -> 1 `i `uc `i -> = _validity -> -> 0 `i `uc `i ]
-"125
-}
-[e :U 378 ]
-[; ;main.c: 125: }
-[; ;main.c: 126: return validity;
-"126
-[e ) _validity ]
-[e $UE 377  ]
-[; ;main.c: 127: }
-"127
-[e :UE 377 ]
-}
 "129
-[v _check_password_presence `(uc ~T0 @X0 1 ef1`uc ]
+[v _check_lock_num_validity `(uc ~T0 @X0 1 ef1`uc ]
 "130
 {
-[; ;main.c: 129: unsigned char check_password_presence(unsigned char lock_num)
+[; ;main.c: 129: unsigned char check_lock_num_validity(unsigned char lock_num)
 [; ;main.c: 130: {
-[e :U _check_password_presence ]
+[e :U _check_lock_num_validity ]
 "129
 [v _lock_num `uc ~T0 @X0 1 r1 ]
 "130
@@ -4100,677 +4133,1270 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _validity `uc ~T0 @X0 1 a ]
 [; ;main.c: 131: unsigned char validity = 0;
 [e = _validity -> -> 0 `i `uc ]
+[; ;main.c: 132: if(lock_num)
+"132
+[e $ ! != -> _lock_num `i -> -> -> 0 `i `uc `i 378  ]
+[; ;main.c: 133: {
 "133
-[v _addr `uc ~T0 @X0 1 a ]
-[; ;main.c: 133: unsigned char addr = (lock_num - 1) * 10;
-[e = _addr -> * - -> _lock_num `i -> 1 `i -> 10 `i `uc ]
+{
+[; ;main.c: 134: lock_num <= 21 ? validity = 1 : validity = 0;
+"134
+[e ? <= -> _lock_num `i -> 21 `i : -> = _validity -> -> 1 `i `uc `i -> = _validity -> -> 0 `i `uc `i ]
 "135
-[v _a `uc ~T0 @X0 1 a ]
-[; ;main.c: 135: char a = readEEPROM(addr);
-[e = _a ( _readEEPROM (1 _addr ]
-[; ;main.c: 136: if(readEEPROM(addr))
+}
+[e :U 378 ]
+[; ;main.c: 135: }
+[; ;main.c: 136: return validity;
 "136
-[e $ ! != -> ( _readEEPROM (1 _addr `i -> -> -> 0 `i `uc `i 380  ]
-[; ;main.c: 137: validity = 1;
+[e ) _validity ]
+[e $UE 377  ]
+[; ;main.c: 137: }
 "137
+[e :UE 377 ]
+}
+"139
+[v _check_password_presence `(uc ~T0 @X0 1 ef1`uc ]
+"140
+{
+[; ;main.c: 139: unsigned char check_password_presence(unsigned char lock_num)
+[; ;main.c: 140: {
+[e :U _check_password_presence ]
+"139
+[v _lock_num `uc ~T0 @X0 1 r1 ]
+"140
+[f ]
+"141
+[v _validity `uc ~T0 @X0 1 a ]
+[; ;main.c: 141: unsigned char validity = 0;
+[e = _validity -> -> 0 `i `uc ]
+"143
+[v _addr `uc ~T0 @X0 1 a ]
+[; ;main.c: 143: unsigned char addr = (lock_num - 1) * 10;
+[e = _addr -> * - -> _lock_num `i -> 1 `i -> 10 `i `uc ]
+"145
+[v _a `uc ~T0 @X0 1 a ]
+[; ;main.c: 145: char a = readEEPROM(addr);
+[e = _a ( _readEEPROM (1 _addr ]
+[; ;main.c: 146: if(readEEPROM(addr))
+"146
+[e $ ! != -> ( _readEEPROM (1 _addr `i -> -> -> 0 `i `uc `i 380  ]
+[; ;main.c: 147: validity = 1;
+"147
 [e = _validity -> -> 1 `i `uc ]
 [e :U 380 ]
-[; ;main.c: 138: return validity;
-"138
+[; ;main.c: 148: return validity;
+"148
 [e ) _validity ]
 [e $UE 379  ]
-[; ;main.c: 139: }
-"139
+[; ;main.c: 149: }
+"149
 [e :UE 379 ]
 }
 [v $root$_ISR `(v ~T0 @X0 0 e ]
 [v F4054 `(v ~T0 @X0 1 tf ]
-"141
+"151
 [v _ISR `IF4054 ~T0 @X0 1 e ]
-"142
+"152
 {
-[; ;main.c: 141: void interrupt ISR(void)
-[; ;main.c: 142: {
+[; ;main.c: 151: void interrupt ISR(void)
+[; ;main.c: 152: {
 [e :U _ISR ]
 [f ]
-[; ;main.c: 143: if(RBIF)
-"143
+[; ;main.c: 153: if(RBIF)
+"153
 [e $ ! _RBIF 382  ]
-[; ;main.c: 144: {
-"144
+[; ;main.c: 154: {
+"154
 {
-[; ;main.c: 145: RBIF = 0;
-"145
+[; ;main.c: 155: RBIF = 0;
+"155
 [e = _RBIF -> -> 0 `i `b ]
-[; ;main.c: 146: ((volatile _io_reg*)&systemStateReg)->bit7 = 0;
-"146
+[; ;main.c: 156: ((volatile _io_reg*)&systemStateReg)->bit7 = 0;
+"156
 [e = . *U -> &U _systemStateReg `*VS369 7 -> -> 0 `i `uc ]
-[; ;main.c: 148: timer1OVFcount = 0;
-"148
+[; ;main.c: 158: timer1OVFcount = 0;
+"158
 [e = _timer1OVFcount -> -> 0 `i `uc ]
-[; ;main.c: 149: T1CONbits.TMR1ON = 1;
-"149
+[; ;main.c: 159: T1CONbits.TMR1ON = 1;
+"159
 [e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-[; ;main.c: 151: if(PORTB)
-"151
+[; ;main.c: 161: if(PORTB)
+"161
 [e $ ! != -> _PORTB `i -> -> -> 0 `i `Vuc `i 383  ]
-[; ;main.c: 152: __nop();
-"152
+[; ;main.c: 162: __nop();
+"162
 [e ( ___nop ..  ]
 [e :U 383 ]
-"153
+"163
 }
 [e :U 382 ]
-[; ;main.c: 153: }
-[; ;main.c: 154: if(PIR1bits.TMR1IF)
-"154
-[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 384  ]
-[; ;main.c: 155: {
-"155
-{
-[; ;main.c: 156: timer1OVFcount++;
-"156
-[e ++ _timer1OVFcount -> -> 1 `i `uc ]
-[; ;main.c: 157: TMR1 = 0;
-"157
-[e = _TMR1 -> -> 0 `i `us ]
-[; ;main.c: 158: if(timer1OVFcount == 10)
-"158
-[e $ ! == -> _timer1OVFcount `i -> 10 `i 385  ]
-[; ;main.c: 159: {
-"159
-{
-[; ;main.c: 160: ((volatile _io_reg*)&systemStateReg)->bit7 = 1;
-"160
-[e = . *U -> &U _systemStateReg `*VS369 7 -> -> 1 `i `uc ]
-[; ;main.c: 161: T1CONbits.TMR1ON = 0;
-"161
-[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 162: ((volatile _io_reg*)&systemStateReg)->bit5 = 1;
-"162
-[e = . *U -> &U _systemStateReg `*VS369 5 -> -> 1 `i `uc ]
+[; ;main.c: 163: }
+[; ;main.c: 164: if(PIR1bits.TMR1IF)
 "164
+[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 384  ]
+[; ;main.c: 165: {
+"165
+{
+[; ;main.c: 166: timer1OVFcount++;
+"166
+[e ++ _timer1OVFcount -> -> 1 `i `uc ]
+[; ;main.c: 167: TMR1 = 0;
+"167
+[e = _TMR1 -> -> 0 `i `us ]
+[; ;main.c: 168: if(timer1OVFcount == 10)
+"168
+[e $ ! == -> _timer1OVFcount `i -> 10 `i 385  ]
+[; ;main.c: 169: {
+"169
+{
+[; ;main.c: 170: ((volatile _io_reg*)&systemStateReg)->bit7 = 1;
+"170
+[e = . *U -> &U _systemStateReg `*VS369 7 -> -> 1 `i `uc ]
+[; ;main.c: 171: T1CONbits.TMR1ON = 0;
+"171
+[e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 172: ((volatile _io_reg*)&systemStateReg)->bit5 = 1;
+"172
+[e = . *U -> &U _systemStateReg `*VS369 5 -> -> 1 `i `uc ]
+"174
 }
 [e :U 385 ]
-[; ;main.c: 164: }
-[; ;main.c: 165: PIR1bits.TMR1IF = 0;
-"165
+[; ;main.c: 174: }
+[; ;main.c: 175: PIR1bits.TMR1IF = 0;
+"175
 [e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-"166
+"176
 }
 [e :U 384 ]
-[; ;main.c: 166: }
-[; ;main.c: 249: }
-"249
-[e :UE 381 ]
-}
-"251
-[v _initControllerIO `(v ~T0 @X0 1 ef ]
-"252
+[; ;main.c: 176: }
+[; ;main.c: 177: if(INTCONbits.TMR0IF)
+"177
+[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 386  ]
+[; ;main.c: 178: {
+"178
 {
-[; ;main.c: 251: void initControllerIO()
-[; ;main.c: 252: {
-[e :U _initControllerIO ]
-[f ]
-[; ;main.c: 253: ADCON1 = 0x0F;
-"253
-[e = _ADCON1 -> -> 15 `i `uc ]
-[; ;main.c: 254: CMCON = 0x07;
-"254
-[e = _CMCON -> -> 7 `i `uc ]
-[; ;main.c: 255: TRISAbits.RA0 = 0;
-"255
-[e = . . _TRISAbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 256: }
-"256
-[e :UE 386 ]
-}
-"258
-[v _beep `(v ~T0 @X0 1 ef ]
-"259
-{
-[; ;main.c: 258: void beep()
-[; ;main.c: 259: {
-[e :U _beep ]
-[f ]
-[; ;main.c: 260: (LATAbits.LATA0 = 1);
-"260
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 261: _delay((unsigned long)((10)*(8000000/4000.0)));
-"261
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 262: (LATAbits.LATA0 = 0);
-"262
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 263: }
-"263
-[e :UE 387 ]
-}
-"265
-[v _beep_ok `(v ~T0 @X0 1 ef ]
-"266
-{
-[; ;main.c: 265: void beep_ok()
-[; ;main.c: 266: {
-[e :U _beep_ok ]
-[f ]
-[; ;main.c: 267: (LATAbits.LATA0 = 1);
-"267
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 268: _delay((unsigned long)((2)*(8000000/4000.0)));
-"268
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 269: (LATAbits.LATA0 = 0);
-"269
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 270: _delay((unsigned long)((1)*(8000000/4000.0)));
-"270
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 271: (LATAbits.LATA0 = 1);
-"271
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 272: _delay((unsigned long)((2)*(8000000/4000.0)));
-"272
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 273: (LATAbits.LATA0 = 0);
-"273
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 274: }
-"274
-[e :UE 388 ]
-}
-"314
-[v _clear_keyArray `(v ~T0 @X0 1 ef1`*uc ]
-"315
-{
-[; ;main.c: 314: void clear_keyArray(unsigned char* arr)
-[; ;main.c: 315: {
-[e :U _clear_keyArray ]
-"314
-[v _arr `*uc ~T0 @X0 1 r1 ]
-"315
-[f ]
-[; ;main.c: 316: for(unsigned char a = 0; a < 10; a++)
-"316
-{
-[v _a `uc ~T0 @X0 1 a ]
-[e = _a -> -> 0 `i `uc ]
-[e $ < -> _a `i -> 10 `i 390  ]
-[e $U 391  ]
-"317
-[e :U 390 ]
-[; ;main.c: 317: arr[a] = 0;
-[e = *U + _arr * -> _a `ux -> -> # *U _arr `ui `ux -> -> 0 `i `uc ]
-"316
-[e ++ _a -> -> 1 `i `uc ]
-[e $ < -> _a `i -> 10 `i 390  ]
-[e :U 391 ]
-"317
-}
-[; ;main.c: 318: }
-"318
-[e :UE 389 ]
-}
-[v $root$_main `(v ~T0 @X0 0 e ]
-"320
-[v _main `(i ~T0 @X0 1 ef ]
-"321
-{
-[; ;main.c: 320: int main()
-[; ;main.c: 321: {
-[e :U _main ]
-[f ]
-"322
-[v _currentKeypadStatus `S367 ~T0 @X0 1 a ]
-"323
-[v _currentSystemState `E4103 ~T0 @X0 1 a ]
-[; ;main.c: 322: keypadStatus currentKeypadStatus;
-[; ;main.c: 323: systemState_t currentSystemState = NORMAL;
-[e = _currentSystemState . `E4103 0 ]
-"324
-[v _keypressArray `uc ~T0 @X0 -> 10 `i a ]
-"325
-[v _numOfKeysPressed `uc ~T0 @X0 1 a ]
-[; ;main.c: 324: unsigned char keypressArray[10];
-[; ;main.c: 325: unsigned char numOfKeysPressed = 0;
-[e = _numOfKeysPressed -> -> 0 `i `uc ]
-"326
-[v _locker_num `uc ~T0 @X0 1 a ]
-[; ;main.c: 326: unsigned char locker_num = 0;
-[e = _locker_num -> -> 0 `i `uc ]
-"327
-[v _addr `uc ~T0 @X0 1 a ]
-[; ;main.c: 327: unsigned char addr = 0;
-[e = _addr -> -> 0 `i `uc ]
-[; ;main.c: 328: initControllerIO();
-"328
-[e ( _initControllerIO ..  ]
-[; ;main.c: 329: initKeypad();
-"329
-[e ( _initKeypad ..  ]
-[; ;main.c: 330: initStandbyTimer();
-"330
-[e ( _initStandbyTimer ..  ]
-[; ;main.c: 332: INTCONbits.PEIE = 1;
-"332
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;main.c: 333: INTCONbits.GIE = 1;
-"333
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 346: clear_keyArray(keypressArray);
-"346
-[e ( _clear_keyArray (1 &U _keypressArray ]
-[; ;main.c: 348: writeEEPROM(0, 0x01);
-"348
-[e ( _writeEEPROM (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 349: writeEEPROM(1, 0x01);
-"349
-[e ( _writeEEPROM (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"350
-[v _a `uc ~T0 @X0 1 a ]
-[; ;main.c: 350: char a = readEEPROM(0);
-[e = _a ( _readEEPROM (1 -> -> 0 `i `uc ]
-[; ;main.c: 352: while(1)
-"352
-[e :U 395 ]
-[; ;main.c: 353: {
-"353
-{
-[; ;main.c: 355: getKey(&currentKeypadStatus);
-"355
-[e ( _getKey (1 &U _currentKeypadStatus ]
-[; ;main.c: 357: if(currentKeypadStatus.keyPressIndicator == 1)
-"357
-[e $ ! == -> . _currentKeypadStatus 0 `i -> 1 `i 397  ]
-[; ;main.c: 358: {
-"358
-{
-[; ;main.c: 359: beep();
-"359
-[e ( _beep ..  ]
-[; ;main.c: 360: if(currentKeypadStatus.keyPressed == SP_FUNC_A)
-"360
-[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 11 `i 398  ]
-[; ;main.c: 361: {
-"361
-{
-"363
-}
-[; ;main.c: 363: }
-[e $U 399  ]
-"364
-[e :U 398 ]
-[; ;main.c: 364: else if(currentKeypadStatus.keyPressed == SP_FUNC_B)
-[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 12 `i 400  ]
-[; ;main.c: 365: {
-"365
-{
-"367
-}
-[; ;main.c: 367: }
-[e $U 401  ]
-"368
-[e :U 400 ]
-[; ;main.c: 368: else if(currentKeypadStatus.keyPressed == SP_FUNC_ENTER)
-[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 15 `i 402  ]
-[; ;main.c: 369: {
-"369
-{
-[; ;main.c: 371: if(currentSystemState == NORMAL)
-"371
-[e $ ! == -> _currentSystemState `i -> . `E4103 0 `i 403  ]
-[; ;main.c: 372: {
-"372
-{
-[; ;main.c: 374: if(0 == arr_to_num(keypressArray, numOfKeysPressed, &locker_num))
-"374
-[e $ ! == -> 0 `i -> ( _arr_to_num (3 , , &U _keypressArray _numOfKeysPressed &U _locker_num `i 404  ]
-[; ;main.c: 375: {
-"375
-{
-[; ;main.c: 377: break;
-"377
-[e $U 396  ]
-"378
-}
-[; ;main.c: 378: }
-[e $U 405  ]
-"380
-[e :U 404 ]
-[; ;main.c: 380: else if(0 == check_lock_num_validity(locker_num))
-[e $ ! == -> 0 `i -> ( _check_lock_num_validity (1 _locker_num `i 406  ]
-[; ;main.c: 381: {
-"381
-{
-[; ;main.c: 383: break;
-"383
-[e $U 396  ]
-"384
-}
-[; ;main.c: 384: }
-[e $U 407  ]
-"385
-[e :U 406 ]
-[; ;main.c: 385: else
-[; ;main.c: 386: {
-"386
-{
-[; ;main.c: 387: beep_ok();
-"387
-[e ( _beep_ok ..  ]
-[; ;main.c: 388: currentSystemState = UID_ENTERED;
-"388
-[e = _currentSystemState . `E4103 1 ]
-"389
-}
-[e :U 407 ]
-[e :U 405 ]
-"390
-}
-[; ;main.c: 389: }
-[; ;main.c: 390: }
-[e $U 408  ]
-"391
-[e :U 403 ]
-[; ;main.c: 391: else if(currentSystemState == UID_ENTERED)
-[e $ ! == -> _currentSystemState `i -> . `E4103 1 `i 409  ]
-[; ;main.c: 392: {
-"392
-{
-[; ;main.c: 394: if(0 == check_password_presence(locker_num))
-"394
-[e $ ! == -> 0 `i -> ( _check_password_presence (1 _locker_num `i 410  ]
-[; ;main.c: 395: {
-"395
-{
-[; ;main.c: 397: break;
-"397
-[e $U 396  ]
-"398
-}
-[; ;main.c: 398: }
-[e $U 411  ]
-"399
-[e :U 410 ]
-[; ;main.c: 399: else
-[; ;main.c: 400: {
-"400
-{
-[; ;main.c: 401: addr = (locker_num - 1) * 10;
-"401
-[e = _addr -> * - -> _locker_num `i -> 1 `i -> 10 `i `uc ]
-[; ;main.c: 402: if(0 == passcodeCompare(keypressArray, numOfKeysPressed, addr))
-"402
-[e $ ! == -> 0 `i -> ( _passcodeCompare (3 , , &U _keypressArray _numOfKeysPressed _addr `i 412  ]
-[; ;main.c: 403: {
-"403
-{
-[; ;main.c: 405: break;
-"405
-[e $U 396  ]
-"406
-}
-[; ;main.c: 406: }
-[e $U 413  ]
-"407
-[e :U 412 ]
-[; ;main.c: 407: else
-[; ;main.c: 408: {
-"408
-{
-"410
-}
-[e :U 413 ]
-"411
-}
-[e :U 411 ]
-"412
-}
-[e :U 409 ]
-"413
-[e :U 408 ]
-[; ;main.c: 410: }
-[; ;main.c: 411: }
-[; ;main.c: 412: }
-[; ;main.c: 413: clear_keyArray(keypressArray);
-[e ( _clear_keyArray (1 &U _keypressArray ]
-[; ;main.c: 414: numOfKeysPressed = 0;
-"414
-[e = _numOfKeysPressed -> -> 0 `i `uc ]
-"415
-}
-[; ;main.c: 415: }
-[e $U 414  ]
-"416
-[e :U 402 ]
-[; ;main.c: 416: else if(currentKeypadStatus.keyPressed == SP_FUNC_OFF)
-[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 14 `i 415  ]
-[; ;main.c: 417: {
-"417
-{
-"419
-}
-[; ;main.c: 419: }
-[e $U 416  ]
-"420
-[e :U 415 ]
-[; ;main.c: 420: else if(currentKeypadStatus.keyPressed == SP_FUNC_ON)
-[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 13 `i 417  ]
-[; ;main.c: 421: {
-"421
-{
-[; ;main.c: 422: if(currentSystemState == UID_ENTERED)
-"422
-[e $ ! == -> _currentSystemState `i -> . `E4103 1 `i 418  ]
-[; ;main.c: 423: {
-"423
-{
-[; ;main.c: 425: if(0 == check_password_presence(locker_num))
-"425
-[e $ ! == -> 0 `i -> ( _check_password_presence (1 _locker_num `i 419  ]
-[; ;main.c: 426: {
-"426
-{
-[; ;main.c: 428: addr = (locker_num - 1) * 10;
-"428
-[e = _addr -> * - -> _locker_num `i -> 1 `i -> 10 `i `uc ]
-[; ;main.c: 429: eepromWriteCode(addr, numOfKeysPressed, keypressArray);
-"429
-[e ( _eepromWriteCode (3 , , _addr _numOfKeysPressed &U _keypressArray ]
-[; ;main.c: 430: break;
-"430
-[e $U 396  ]
-"431
-}
-[; ;main.c: 431: }
-[e $U 420  ]
-"432
-[e :U 419 ]
-[; ;main.c: 432: else
-[; ;main.c: 433: {
-"433
-{
-"436
-}
-[e :U 420 ]
-"437
-}
-[e :U 418 ]
-[; ;main.c: 436: }
-[; ;main.c: 437: }
-[; ;main.c: 438: clear_keyArray(keypressArray);
-"438
-[e ( _clear_keyArray (1 &U _keypressArray ]
-[; ;main.c: 439: numOfKeysPressed = 0;
-"439
-[e = _numOfKeysPressed -> -> 0 `i `uc ]
-"440
-}
-[; ;main.c: 440: }
-[e $U 421  ]
-"441
-[e :U 417 ]
-[; ;main.c: 441: else
-[; ;main.c: 442: {
-"442
-{
-[; ;main.c: 443: keypressArray[numOfKeysPressed++] = currentKeypadStatus.keyPressed;
-"443
-[e = *U + &U _keypressArray * -> ++ _numOfKeysPressed -> -> 1 `i `uc `ux -> -> # *U &U _keypressArray `ui `ux . _currentKeypadStatus 3 ]
-[; ;main.c: 444: if(numOfKeysPressed > 10)
-"444
-[e $ ! > -> _numOfKeysPressed `i -> 10 `i 422  ]
-[; ;main.c: 445: {
-"445
-{
-[; ;main.c: 446: numOfKeysPressed = 0;
-"446
-[e = _numOfKeysPressed -> -> 0 `i `uc ]
-"448
-}
-[e :U 422 ]
-"449
-}
-[e :U 421 ]
-[e :U 416 ]
-[e :U 414 ]
-[e :U 401 ]
-[e :U 399 ]
-[; ;main.c: 448: }
-[; ;main.c: 449: }
-[; ;main.c: 451: while(buttonPressedIndicator());
-"451
-[e $U 423  ]
-[e :U 424 ]
-[e :U 423 ]
-[e $ != -> ( _buttonPressedIndicator ..  `i -> -> -> 0 `i `uc `i 424  ]
-[e :U 425 ]
-"452
-}
-[e :U 397 ]
-"671
-}
-[e :U 394 ]
-"352
-[e $U 395  ]
-[e :U 396 ]
-[; ;main.c: 452: }
-[; ;main.c: 671: }
-[; ;main.c: 672: return (0);
-"672
-[e ) -> 0 `i ]
-[e $UE 393  ]
-[; ;main.c: 673: }
-"673
-[e :UE 393 ]
-}
-"675
-[v _passcodeCompare `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
-"676
-{
-[; ;main.c: 675: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr)
-[; ;main.c: 676: {
-[e :U _passcodeCompare ]
-"675
-[v _keybuffer1 `*uc ~T0 @X0 1 r1 ]
-[v _compareLenght `uc ~T0 @X0 1 r2 ]
-[v _compareAddr `uc ~T0 @X0 1 r3 ]
-"676
-[f ]
-"677
-[v _validity `uc ~T0 @X0 1 a ]
-[; ;main.c: 677: unsigned char validity = 0;
-[e = _validity -> -> 0 `i `uc ]
-"678
-[v _storedCodeLenght `uc ~T0 @X0 1 a ]
-[; ;main.c: 678: unsigned char storedCodeLenght = readEEPROM(compareAddr);
-[e = _storedCodeLenght ( _readEEPROM (1 _compareAddr ]
-[; ;main.c: 679: if(compareLenght != storedCodeLenght)
-"679
-[e $ ! != -> _compareLenght `i -> _storedCodeLenght `i 427  ]
-[; ;main.c: 680: {
-"680
-{
-[; ;main.c: 681: ((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
-"681
-[e = . *U -> &U _systemStateReg2 `*VS369 2 -> -> 0 `i `uc ]
-[; ;main.c: 682: validity = 0;
-"682
-[e = _validity -> -> 0 `i `uc ]
-"684
-}
-[; ;main.c: 684: }
-[e $U 428  ]
-"685
-[e :U 427 ]
-[; ;main.c: 685: else
-[; ;main.c: 686: {
-"686
-{
-[; ;main.c: 687: for(unsigned char i = 0; i <= (compareLenght - 1); i++)
-"687
+[; ;main.c: 179: INTCONbits.TMR0IF = 0;
+"179
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 180: beep_error();
+"180
+[e ( _beep_error ..  ]
+[; ;main.c: 181: TMR0 = 0;
+"181
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;main.c: 182: close_lock(open_lock_arr[0]);
+"182
+[e ( _close_lock (1 *U + &U _open_lock_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _open_lock_arr `ui `ux ]
+[; ;main.c: 183: num_of_doors_open--;
+"183
+[e -- _num_of_doors_open -> -> 1 `i `uc ]
+[; ;main.c: 185: for(unsigned char i = 0; i < num_of_doors_open; i++)
+"185
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 432  ]
-"688
-[e :U 429 ]
-[; ;main.c: 688: {
-{
-[; ;main.c: 689: if(*keybuffer1 == readEEPROM(++compareAddr))
-"689
-[e $ ! == -> *U _keybuffer1 `i -> ( _readEEPROM (1 =+ _compareAddr -> -> 1 `i `uc `i 433  ]
-[; ;main.c: 690: {
-"690
-{
-[; ;main.c: 691: keybuffer1++;
-"691
-[e ++ _keybuffer1 * -> -> 1 `i `x -> -> # *U _keybuffer1 `i `x ]
-[; ;main.c: 692: validity = 1;
-"692
-[e = _validity -> -> 1 `i `uc ]
-"693
-}
-[; ;main.c: 693: }
-[e $U 434  ]
-"694
-[e :U 433 ]
-[; ;main.c: 694: else
-[; ;main.c: 695: {
-"695
-{
-[; ;main.c: 696: ((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
-"696
-[e = . *U -> &U _systemStateReg2 `*VS369 2 -> -> 0 `i `uc ]
-[; ;main.c: 697: validity = 0;
-"697
-[e = _validity -> -> 0 `i `uc ]
-[; ;main.c: 698: break;
-"698
-[e $U 430  ]
-"699
-}
-[e :U 434 ]
-"700
-}
-"687
+[e $U 390  ]
+"186
+[e :U 387 ]
+[; ;main.c: 186: open_lock_arr[i] = open_lock_arr[i+1];
+[e = *U + &U _open_lock_arr * -> _i `ux -> -> # *U &U _open_lock_arr `ui `ux *U + &U _open_lock_arr * -> -> + -> _i `i -> 1 `i `ui `ux -> -> # *U &U _open_lock_arr `ui `ux ]
+"185
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 432 ]
-[e $ <= -> _i `i - -> _compareLenght `i -> 1 `i 429  ]
-[e :U 430 ]
-"700
+[e :U 390 ]
+[e $ < -> _i `i -> _num_of_doors_open `i 387  ]
+[e :U 388 ]
+"186
 }
-"701
+"187
 }
+[e :U 386 ]
+[; ;main.c: 187: }
+[; ;main.c: 270: }
+"270
+[e :UE 381 ]
+}
+"272
+[v _initControllerIO `(v ~T0 @X0 1 ef ]
+"273
+{
+[; ;main.c: 272: void initControllerIO()
+[; ;main.c: 273: {
+[e :U _initControllerIO ]
+[f ]
+[; ;main.c: 274: ADCON1 = 0x0F;
+"274
+[e = _ADCON1 -> -> 15 `i `uc ]
+[; ;main.c: 275: CMCON = 0x07;
+"275
+[e = _CMCON -> -> 7 `i `uc ]
+[; ;main.c: 276: TRISAbits.RA0 = 0;
+"276
+[e = . . _TRISAbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 278: TRISD = 0x00;
+"278
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 279: TRISC = 0x00;
+"279
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 280: TRISE = 0x00;
+"280
+[e = _TRISE -> -> 0 `i `uc ]
+[; ;main.c: 281: TRISA = 0x00;
+"281
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 283: LATD = 0x00;
+"283
+[e = _LATD -> -> 0 `i `uc ]
+[; ;main.c: 284: LATC = 0x00;
+"284
+[e = _LATC -> -> 0 `i `uc ]
+[; ;main.c: 285: LATE = 0x00;
+"285
+[e = _LATE -> -> 0 `i `uc ]
+[; ;main.c: 287: }
+"287
+[e :UE 391 ]
+}
+"289
+[v _beep `(v ~T0 @X0 1 ef ]
+"290
+{
+[; ;main.c: 289: void beep()
+[; ;main.c: 290: {
+[e :U _beep ]
+[f ]
+[; ;main.c: 291: (LATAbits.LATA0 = 1);
+"291
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 292: _delay((unsigned long)((10)*(8000000/4000.0)));
+"292
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 293: (LATAbits.LATA0 = 0);
+"293
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 294: }
+"294
+[e :UE 392 ]
+}
+"296
+[v _beep_long `(v ~T0 @X0 1 ef ]
+"297
+{
+[; ;main.c: 296: void beep_long()
+[; ;main.c: 297: {
+[e :U _beep_long ]
+[f ]
+[; ;main.c: 298: (LATAbits.LATA0 = 1);
+"298
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 299: _delay((unsigned long)((100)*(8000000/4000.0)));
+"299
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 300: (LATAbits.LATA0 = 0);
+"300
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 301: }
+"301
+[e :UE 393 ]
+}
+"303
+[v _beep_ok `(v ~T0 @X0 1 ef ]
+"304
+{
+[; ;main.c: 303: void beep_ok()
+[; ;main.c: 304: {
+[e :U _beep_ok ]
+[f ]
+[; ;main.c: 305: (LATAbits.LATA0 = 1);
+"305
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 306: _delay((unsigned long)((10)*(8000000/4000.0)));
+"306
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 307: (LATAbits.LATA0 = 0);
+"307
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 308: _delay((unsigned long)((5)*(8000000/4000.0)));
+"308
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 309: (LATAbits.LATA0 = 1);
+"309
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 310: _delay((unsigned long)((10)*(8000000/4000.0)));
+"310
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 311: (LATAbits.LATA0 = 0);
+"311
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 312: }
+"312
+[e :UE 394 ]
+}
+"314
+[v _beep_error `(v ~T0 @X0 1 ef ]
+"315
+{
+[; ;main.c: 314: void beep_error()
+[; ;main.c: 315: {
+[e :U _beep_error ]
+[f ]
+[; ;main.c: 316: (LATAbits.LATA0 = 1);
+"316
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 317: _delay((unsigned long)((100)*(8000000/4000.0)));
+"317
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 318: (LATAbits.LATA0 = 0);
+"318
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 319: _delay((unsigned long)((10)*(8000000/4000.0)));
+"319
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 320: (LATAbits.LATA0 = 1);
+"320
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 321: _delay((unsigned long)((10)*(8000000/4000.0)));
+"321
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 322: (LATAbits.LATA0 = 0);
+"322
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 323: _delay((unsigned long)((10)*(8000000/4000.0)));
+"323
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 324: (LATAbits.LATA0 = 1);
+"324
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 325: _delay((unsigned long)((10)*(8000000/4000.0)));
+"325
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 326: (LATAbits.LATA0 = 0);
+"326
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 327: }
+"327
+[e :UE 395 ]
+}
+"329
+[v _configure_door_timer `(v ~T0 @X0 1 ef ]
+"330
+{
+[; ;main.c: 329: void configure_door_timer()
+[; ;main.c: 330: {
+[e :U _configure_door_timer ]
+[f ]
+[; ;main.c: 331: setup_timer0();
+"331
+[e ( _setup_timer0 ..  ]
+[; ;main.c: 332: }
+"332
+[e :UE 396 ]
+}
+"334
+[v _start_door_timer `(v ~T0 @X0 1 ef ]
+"335
+{
+[; ;main.c: 334: void start_door_timer()
+[; ;main.c: 335: {
+[e :U _start_door_timer ]
+[f ]
+[; ;main.c: 336: state_timer0(1);
+"336
+[e ( _state_timer0 (1 -> -> 1 `i `uc ]
+[; ;main.c: 337: }
+"337
+[e :UE 397 ]
+}
+"339
+[v _stop_door_timer `(v ~T0 @X0 1 ef ]
+"340
+{
+[; ;main.c: 339: void stop_door_timer()
+[; ;main.c: 340: {
+[e :U _stop_door_timer ]
+[f ]
+[; ;main.c: 341: state_timer0(0);
+"341
+[e ( _state_timer0 (1 -> -> 0 `i `uc ]
+[; ;main.c: 342: }
+"342
+[e :UE 398 ]
+}
+"382
+[v _clear_keyArray `(v ~T0 @X0 1 ef1`*uc ]
+"383
+{
+[; ;main.c: 382: void clear_keyArray(unsigned char* arr)
+[; ;main.c: 383: {
+[e :U _clear_keyArray ]
+"382
+[v _arr `*uc ~T0 @X0 1 r1 ]
+"383
+[f ]
+[; ;main.c: 384: for(unsigned char a = 0; a < 10; a++)
+"384
+{
+[v _a `uc ~T0 @X0 1 a ]
+[e = _a -> -> 0 `i `uc ]
+[e $ < -> _a `i -> 10 `i 400  ]
+[e $U 401  ]
+"385
+[e :U 400 ]
+[; ;main.c: 385: arr[a] = 0;
+[e = *U + _arr * -> _a `ux -> -> # *U _arr `ui `ux -> -> 0 `i `uc ]
+"384
+[e ++ _a -> -> 1 `i `uc ]
+[e $ < -> _a `i -> 10 `i 400  ]
+[e :U 401 ]
+"385
+}
+[; ;main.c: 386: }
+"386
+[e :UE 399 ]
+}
+"388
+[v _open_lock `(v ~T0 @X0 1 ef1`uc ]
+"389
+{
+[; ;main.c: 388: void open_lock(unsigned char lock_num)
+[; ;main.c: 389: {
+[e :U _open_lock ]
+"388
+[v _lock_num `uc ~T0 @X0 1 r1 ]
+"389
+[f ]
+[; ;main.c: 390: switch(lock_num)
+"390
+[e $U 405  ]
+[; ;main.c: 391: {
+"391
+{
+[; ;main.c: 392: case 1: (LATCbits.LATC0) = 1;
+"392
+[e :U 406 ]
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 393: break;
+"393
+[e $U 404  ]
+[; ;main.c: 395: case 2: (LATEbits.LATE2) = 1;
+"395
+[e :U 407 ]
+[e = . . _LATEbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 396: break;
+"396
+[e $U 404  ]
+[; ;main.c: 398: case 3: (LATEbits.LATE1) = 1;
+"398
+[e :U 408 ]
+[e = . . _LATEbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 399: break;
+"399
+[e $U 404  ]
+[; ;main.c: 401: case 4: (LATEbits.LATE0) = 1;
+"401
+[e :U 409 ]
+[e = . . _LATEbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 402: break;
+"402
+[e $U 404  ]
+[; ;main.c: 404: case 5: (LATAbits.LATA5) = 1;
+"404
+[e :U 410 ]
+[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 405: break;
+"405
+[e $U 404  ]
+[; ;main.c: 407: case 6: (LATAbits.LATA4) = 1;
+"407
+[e :U 411 ]
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 408: break;
+"408
+[e $U 404  ]
+[; ;main.c: 410: case 7: (LATAbits.LATA3) = 1;
+"410
+[e :U 412 ]
+[e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 411: break;
+"411
+[e $U 404  ]
+[; ;main.c: 413: case 8: (LATDbits.LATD7) = 1;
+"413
+[e :U 413 ]
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 414: break;
+"414
+[e $U 404  ]
+[; ;main.c: 416: case 9: (LATDbits.LATD6) = 1;
+"416
+[e :U 414 ]
+[e = . . _LATDbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 417: break;
+"417
+[e $U 404  ]
+[; ;main.c: 419: case 10: (LATDbits.LATD5) = 1;
+"419
+[e :U 415 ]
+[e = . . _LATDbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 420: break;
+"420
+[e $U 404  ]
+[; ;main.c: 422: case 11: (LATDbits.LATD4) = 1;
+"422
+[e :U 416 ]
+[e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 423: break;
+"423
+[e $U 404  ]
+[; ;main.c: 425: case 12: (LATCbits.LATC7) = 1;
+"425
+[e :U 417 ]
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 426: break;
+"426
+[e $U 404  ]
+[; ;main.c: 428: case 13: (LATCbits.LATC6) = 1;
+"428
+[e :U 418 ]
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 429: break;
+"429
+[e $U 404  ]
+[; ;main.c: 434: case 15: (LATDbits.LATD2) = 1;
+"434
+[e :U 419 ]
+[e = . . _LATDbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 435: break;
+"435
+[e $U 404  ]
+[; ;main.c: 437: case 16: (LATDbits.LATD3) = 1;
+"437
+[e :U 420 ]
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 438: break;
+"438
+[e $U 404  ]
+[; ;main.c: 443: case 18: (LATCbits.LATC1) = 1;
+"443
+[e :U 421 ]
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 444: break;
+"444
+[e $U 404  ]
+[; ;main.c: 446: case 19: (LATCbits.LATC2) = 1;
+"446
+[e :U 422 ]
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 447: break;
+"447
+[e $U 404  ]
+[; ;main.c: 449: case 20: (LATDbits.LATD0) = 1;
+"449
+[e :U 423 ]
+[e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 450: break;
+"450
+[e $U 404  ]
+[; ;main.c: 452: case 21: (LATDbits.LATD1) = 1;
+"452
+[e :U 424 ]
+[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 453: break;
+"453
+[e $U 404  ]
+"454
+}
+[; ;main.c: 454: }
+[e $U 404  ]
+"390
+[e :U 405 ]
+[e [\ _lock_num , $ -> -> 1 `i `uc 406
+ , $ -> -> 2 `i `uc 407
+ , $ -> -> 3 `i `uc 408
+ , $ -> -> 4 `i `uc 409
+ , $ -> -> 5 `i `uc 410
+ , $ -> -> 6 `i `uc 411
+ , $ -> -> 7 `i `uc 412
+ , $ -> -> 8 `i `uc 413
+ , $ -> -> 9 `i `uc 414
+ , $ -> -> 10 `i `uc 415
+ , $ -> -> 11 `i `uc 416
+ , $ -> -> 12 `i `uc 417
+ , $ -> -> 13 `i `uc 418
+ , $ -> -> 15 `i `uc 419
+ , $ -> -> 16 `i `uc 420
+ , $ -> -> 18 `i `uc 421
+ , $ -> -> 19 `i `uc 422
+ , $ -> -> 20 `i `uc 423
+ , $ -> -> 21 `i `uc 424
+ 404 ]
+"454
+[e :U 404 ]
+[; ;main.c: 455: }
+"455
+[e :UE 403 ]
+}
+"457
+[v _close_lock `(v ~T0 @X0 1 ef1`uc ]
+"458
+{
+[; ;main.c: 457: void close_lock(unsigned char lock_num)
+[; ;main.c: 458: {
+[e :U _close_lock ]
+"457
+[v _lock_num `uc ~T0 @X0 1 r1 ]
+"458
+[f ]
+[; ;main.c: 459: switch(lock_num)
+"459
+[e $U 427  ]
+[; ;main.c: 460: {
+"460
+{
+[; ;main.c: 461: case 1: (LATCbits.LATC0) = 0;
+"461
 [e :U 428 ]
-[; ;main.c: 699: }
-[; ;main.c: 700: }
-[; ;main.c: 701: }
-[; ;main.c: 702: return validity;
-"702
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 462: break;
+"462
+[e $U 426  ]
+[; ;main.c: 464: case 2: (LATEbits.LATE2) = 0;
+"464
+[e :U 429 ]
+[e = . . _LATEbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 465: break;
+"465
+[e $U 426  ]
+[; ;main.c: 467: case 3: (LATEbits.LATE1) = 0;
+"467
+[e :U 430 ]
+[e = . . _LATEbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 468: break;
+"468
+[e $U 426  ]
+[; ;main.c: 470: case 4: (LATEbits.LATE0) = 0;
+"470
+[e :U 431 ]
+[e = . . _LATEbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 471: break;
+"471
+[e $U 426  ]
+[; ;main.c: 473: case 5: (LATAbits.LATA5) = 0;
+"473
+[e :U 432 ]
+[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 474: break;
+"474
+[e $U 426  ]
+[; ;main.c: 476: case 6: (LATAbits.LATA4) = 0;
+"476
+[e :U 433 ]
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 477: break;
+"477
+[e $U 426  ]
+[; ;main.c: 479: case 7: (LATAbits.LATA3) = 0;
+"479
+[e :U 434 ]
+[e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 480: break;
+"480
+[e $U 426  ]
+[; ;main.c: 482: case 8: (LATDbits.LATD7) = 0;
+"482
+[e :U 435 ]
+[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 483: break;
+"483
+[e $U 426  ]
+[; ;main.c: 485: case 9: (LATDbits.LATD6) = 0;
+"485
+[e :U 436 ]
+[e = . . _LATDbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 486: break;
+"486
+[e $U 426  ]
+[; ;main.c: 488: case 10: (LATDbits.LATD5) = 0;
+"488
+[e :U 437 ]
+[e = . . _LATDbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 489: break;
+"489
+[e $U 426  ]
+[; ;main.c: 491: case 11: (LATDbits.LATD4) = 0;
+"491
+[e :U 438 ]
+[e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 492: break;
+"492
+[e $U 426  ]
+[; ;main.c: 494: case 12: (LATCbits.LATC7) = 0;
+"494
+[e :U 439 ]
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 495: break;
+"495
+[e $U 426  ]
+[; ;main.c: 497: case 13: (LATCbits.LATC6) = 0;
+"497
+[e :U 440 ]
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 498: break;
+"498
+[e $U 426  ]
+[; ;main.c: 503: case 15: (LATDbits.LATD2) = 0;
+"503
+[e :U 441 ]
+[e = . . _LATDbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 504: break;
+"504
+[e $U 426  ]
+[; ;main.c: 506: case 16: (LATDbits.LATD3) = 0;
+"506
+[e :U 442 ]
+[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 507: break;
+"507
+[e $U 426  ]
+[; ;main.c: 512: case 18: (LATCbits.LATC1) = 0;
+"512
+[e :U 443 ]
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 513: break;
+"513
+[e $U 426  ]
+[; ;main.c: 515: case 19: (LATCbits.LATC2) = 0;
+"515
+[e :U 444 ]
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 516: break;
+"516
+[e $U 426  ]
+[; ;main.c: 518: case 20: (LATDbits.LATD0) = 0;
+"518
+[e :U 445 ]
+[e = . . _LATDbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 519: break;
+"519
+[e $U 426  ]
+[; ;main.c: 521: case 21: (LATDbits.LATD1) = 0;
+"521
+[e :U 446 ]
+[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 522: break;
+"522
+[e $U 426  ]
+"523
+}
+[; ;main.c: 523: }
+[e $U 426  ]
+"459
+[e :U 427 ]
+[e [\ _lock_num , $ -> -> 1 `i `uc 428
+ , $ -> -> 2 `i `uc 429
+ , $ -> -> 3 `i `uc 430
+ , $ -> -> 4 `i `uc 431
+ , $ -> -> 5 `i `uc 432
+ , $ -> -> 6 `i `uc 433
+ , $ -> -> 7 `i `uc 434
+ , $ -> -> 8 `i `uc 435
+ , $ -> -> 9 `i `uc 436
+ , $ -> -> 10 `i `uc 437
+ , $ -> -> 11 `i `uc 438
+ , $ -> -> 12 `i `uc 439
+ , $ -> -> 13 `i `uc 440
+ , $ -> -> 15 `i `uc 441
+ , $ -> -> 16 `i `uc 442
+ , $ -> -> 18 `i `uc 443
+ , $ -> -> 19 `i `uc 444
+ , $ -> -> 20 `i `uc 445
+ , $ -> -> 21 `i `uc 446
+ 426 ]
+"523
+[e :U 426 ]
+[; ;main.c: 524: }
+"524
+[e :UE 425 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"526
+[v _main `(i ~T0 @X0 1 ef ]
+"527
+{
+[; ;main.c: 526: int main()
+[; ;main.c: 527: {
+[e :U _main ]
+[f ]
+"528
+[v _currentKeypadStatus `S367 ~T0 @X0 1 a ]
+"529
+[v _currentSystemState `E4106 ~T0 @X0 1 a ]
+[; ;main.c: 528: keypadStatus currentKeypadStatus;
+[; ;main.c: 529: systemState_t currentSystemState = NORMAL;
+[e = _currentSystemState . `E4106 0 ]
+"530
+[v _keypressArray `uc ~T0 @X0 -> 10 `i a ]
+"531
+[v _numOfKeysPressed `uc ~T0 @X0 1 a ]
+[; ;main.c: 530: unsigned char keypressArray[10];
+[; ;main.c: 531: unsigned char numOfKeysPressed = 0;
+[e = _numOfKeysPressed -> -> 0 `i `uc ]
+"532
+[v _locker_num `uc ~T0 @X0 1 a ]
+[; ;main.c: 532: unsigned char locker_num = 0;
+[e = _locker_num -> -> 0 `i `uc ]
+"533
+[v _addr `uc ~T0 @X0 1 a ]
+[; ;main.c: 533: unsigned char addr = 0;
+[e = _addr -> -> 0 `i `uc ]
+[; ;main.c: 534: initControllerIO();
+"534
+[e ( _initControllerIO ..  ]
+[; ;main.c: 535: initKeypad();
+"535
+[e ( _initKeypad ..  ]
+[; ;main.c: 536: initStandbyTimer();
+"536
+[e ( _initStandbyTimer ..  ]
+[; ;main.c: 537: configure_door_timer();
+"537
+[e ( _configure_door_timer ..  ]
+[; ;main.c: 538: INTCONbits.PEIE = 1;
+"538
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;main.c: 539: INTCONbits.GIE = 1;
+"539
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 553: clear_keyArray(keypressArray);
+"553
+[e ( _clear_keyArray (1 &U _keypressArray ]
+[; ;main.c: 555: beep_error();
+"555
+[e ( _beep_error ..  ]
+[; ;main.c: 556: state_timer0(1);
+"556
+[e ( _state_timer0 (1 -> -> 1 `i `uc ]
+[; ;main.c: 558: while(1)
+"558
+[e :U 449 ]
+[; ;main.c: 559: {
+"559
+{
+[; ;main.c: 561: getKey(&currentKeypadStatus);
+"561
+[e ( _getKey (1 &U _currentKeypadStatus ]
+[; ;main.c: 563: if(currentKeypadStatus.keyPressIndicator == 1)
+"563
+[e $ ! == -> . _currentKeypadStatus 0 `i -> 1 `i 451  ]
+[; ;main.c: 564: {
+"564
+{
+[; ;main.c: 567: if(currentKeypadStatus.keyPressed == SP_FUNC_A)
+"567
+[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 11 `i 452  ]
+[; ;main.c: 568: {
+"568
+{
+"570
+}
+[; ;main.c: 570: }
+[e $U 453  ]
+"571
+[e :U 452 ]
+[; ;main.c: 571: else if(currentKeypadStatus.keyPressed == SP_FUNC_B)
+[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 12 `i 454  ]
+[; ;main.c: 572: {
+"572
+{
+"574
+}
+[; ;main.c: 574: }
+[e $U 455  ]
+"575
+[e :U 454 ]
+[; ;main.c: 575: else if(currentKeypadStatus.keyPressed == SP_FUNC_ENTER)
+[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 15 `i 456  ]
+[; ;main.c: 576: {
+"576
+{
+[; ;main.c: 578: if(currentSystemState == NORMAL)
+"578
+[e $ ! == -> _currentSystemState `i -> . `E4106 0 `i 457  ]
+[; ;main.c: 579: {
+"579
+{
+[; ;main.c: 581: if(0 == arr_to_num(keypressArray, numOfKeysPressed, &locker_num))
+"581
+[e $ ! == -> 0 `i -> ( _arr_to_num (3 , , &U _keypressArray _numOfKeysPressed &U _locker_num `i 458  ]
+[; ;main.c: 582: {
+"582
+{
+[; ;main.c: 584: break;
+"584
+[e $U 450  ]
+"585
+}
+[; ;main.c: 585: }
+[e $U 459  ]
+"587
+[e :U 458 ]
+[; ;main.c: 587: else if(0 == check_lock_num_validity(locker_num))
+[e $ ! == -> 0 `i -> ( _check_lock_num_validity (1 _locker_num `i 460  ]
+[; ;main.c: 588: {
+"588
+{
+[; ;main.c: 590: break;
+"590
+[e $U 450  ]
+"591
+}
+[; ;main.c: 591: }
+[e $U 461  ]
+"592
+[e :U 460 ]
+[; ;main.c: 592: else
+[; ;main.c: 593: {
+"593
+{
+[; ;main.c: 594: beep_ok();
+"594
+[e ( _beep_ok ..  ]
+[; ;main.c: 595: currentSystemState = UID_ENTERED;
+"595
+[e = _currentSystemState . `E4106 1 ]
+"596
+}
+[e :U 461 ]
+[e :U 459 ]
+"597
+}
+[; ;main.c: 596: }
+[; ;main.c: 597: }
+[e $U 462  ]
+"598
+[e :U 457 ]
+[; ;main.c: 598: else if(currentSystemState == UID_ENTERED)
+[e $ ! == -> _currentSystemState `i -> . `E4106 1 `i 463  ]
+[; ;main.c: 599: {
+"599
+{
+[; ;main.c: 601: addr = (locker_num - 1) * 10;
+"601
+[e = _addr -> * - -> _locker_num `i -> 1 `i -> 10 `i `uc ]
+[; ;main.c: 602: if(0 == passcodeCompare(keypressArray, numOfKeysPressed, addr))
+"602
+[e $ ! == -> 0 `i -> ( _passcodeCompare (3 , , &U _keypressArray _numOfKeysPressed _addr `i 464  ]
+[; ;main.c: 603: {
+"603
+{
+[; ;main.c: 606: break;
+"606
+[e $U 450  ]
+"607
+}
+[; ;main.c: 607: }
+[e $U 465  ]
+"608
+[e :U 464 ]
+[; ;main.c: 608: else
+[; ;main.c: 609: {
+"609
+{
+[; ;main.c: 610: beep_ok();
+"610
+[e ( _beep_ok ..  ]
+[; ;main.c: 611: open_lock(locker_num);
+"611
+[e ( _open_lock (1 _locker_num ]
+[; ;main.c: 612: start_door_timer();
+"612
+[e ( _start_door_timer ..  ]
+[; ;main.c: 613: open_lock_arr[num_of_doors_open++] = locker_num;
+"613
+[e = *U + &U _open_lock_arr * -> ++ _num_of_doors_open -> -> 1 `i `uc `ux -> -> # *U &U _open_lock_arr `ui `ux _locker_num ]
+"615
+}
+[e :U 465 ]
+"616
+}
+[e :U 463 ]
+"617
+[e :U 462 ]
+[; ;main.c: 615: }
+[; ;main.c: 616: }
+[; ;main.c: 617: clear_keyArray(keypressArray);
+[e ( _clear_keyArray (1 &U _keypressArray ]
+[; ;main.c: 618: numOfKeysPressed = 0;
+"618
+[e = _numOfKeysPressed -> -> 0 `i `uc ]
+"619
+}
+[; ;main.c: 619: }
+[e $U 466  ]
+"620
+[e :U 456 ]
+[; ;main.c: 620: else if(currentKeypadStatus.keyPressed == SP_FUNC_OFF)
+[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 14 `i 467  ]
+[; ;main.c: 621: {
+"621
+{
+"623
+}
+[; ;main.c: 623: }
+[e $U 468  ]
+"624
+[e :U 467 ]
+[; ;main.c: 624: else if(currentKeypadStatus.keyPressed == SP_FUNC_ON)
+[e $ ! == -> . _currentKeypadStatus 3 `i -> . `E3971 13 `i 469  ]
+[; ;main.c: 625: {
+"625
+{
+[; ;main.c: 626: if(currentSystemState == UID_ENTERED)
+"626
+[e $ ! == -> _currentSystemState `i -> . `E4106 1 `i 470  ]
+[; ;main.c: 627: {
+"627
+{
+[; ;main.c: 629: addr = (locker_num - 1) * 10;
+"629
+[e = _addr -> * - -> _locker_num `i -> 1 `i -> 10 `i `uc ]
+[; ;main.c: 630: eepromWriteCode(addr, numOfKeysPressed, keypressArray);
+"630
+[e ( _eepromWriteCode (3 , , _addr _numOfKeysPressed &U _keypressArray ]
+[; ;main.c: 631: beep_ok();
+"631
+[e ( _beep_ok ..  ]
+[; ;main.c: 632: break;
+"632
+[e $U 450  ]
+"633
+}
+[e :U 470 ]
+[; ;main.c: 633: }
+[; ;main.c: 634: clear_keyArray(keypressArray);
+"634
+[e ( _clear_keyArray (1 &U _keypressArray ]
+[; ;main.c: 635: numOfKeysPressed = 0;
+"635
+[e = _numOfKeysPressed -> -> 0 `i `uc ]
+"636
+}
+[; ;main.c: 636: }
+[e $U 471  ]
+"637
+[e :U 469 ]
+[; ;main.c: 637: else
+[; ;main.c: 638: {
+"638
+{
+[; ;main.c: 640: for(unsigned char i = 0; i < currentKeypadStatus.keyPressed; i++)
+"640
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 475  ]
+"641
+[e :U 472 ]
+[; ;main.c: 641: {
+{
+[; ;main.c: 642: beep();
+"642
+[e ( _beep ..  ]
+[; ;main.c: 643: _delay((unsigned long)((20)*(8000000/4000.0)));
+"643
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"644
+}
+"640
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 475 ]
+[e $ < -> _i `i -> . _currentKeypadStatus 3 `i 472  ]
+[e :U 473 ]
+"644
+}
+[; ;main.c: 644: }
+[; ;main.c: 646: keypressArray[numOfKeysPressed++] = currentKeypadStatus.keyPressed;
+"646
+[e = *U + &U _keypressArray * -> ++ _numOfKeysPressed -> -> 1 `i `uc `ux -> -> # *U &U _keypressArray `ui `ux . _currentKeypadStatus 3 ]
+[; ;main.c: 647: if(numOfKeysPressed > 10)
+"647
+[e $ ! > -> _numOfKeysPressed `i -> 10 `i 476  ]
+[; ;main.c: 648: {
+"648
+{
+[; ;main.c: 649: numOfKeysPressed = 0;
+"649
+[e = _numOfKeysPressed -> -> 0 `i `uc ]
+"651
+}
+[e :U 476 ]
+"652
+}
+[e :U 471 ]
+[e :U 468 ]
+[e :U 466 ]
+[e :U 455 ]
+[e :U 453 ]
+[; ;main.c: 651: }
+[; ;main.c: 652: }
+[; ;main.c: 653: while(buttonPressedIndicator());
+"653
+[e $U 477  ]
+[e :U 478 ]
+[e :U 477 ]
+[e $ != -> ( _buttonPressedIndicator ..  `i -> -> -> 0 `i `uc `i 478  ]
+[e :U 479 ]
+"654
+}
+[e :U 451 ]
+[; ;main.c: 654: }
+[; ;main.c: 657: if(((volatile _io_reg*)&systemStateReg)->bit7 == 1)
+"657
+[e $ ! == -> . *U -> &U _systemStateReg `*VS369 7 `i -> 1 `i 480  ]
+[; ;main.c: 658: {
+"658
+{
+[; ;main.c: 659: ((volatile _io_reg*)&systemStateReg)->bit7 = 0;
+"659
+[e = . *U -> &U _systemStateReg `*VS369 7 -> -> 0 `i `uc ]
+[; ;main.c: 660: beep_long();
+"660
+[e ( _beep_long ..  ]
+[; ;main.c: 661: clear_keyArray(keypressArray);
+"661
+[e ( _clear_keyArray (1 &U _keypressArray ]
+[; ;main.c: 662: numOfKeysPressed = 0;
+"662
+[e = _numOfKeysPressed -> -> 0 `i `uc ]
+[; ;main.c: 663: currentSystemState = NORMAL;
+"663
+[e = _currentSystemState . `E4106 0 ]
+"664
+}
+[e :U 480 ]
+"883
+}
+[e :U 448 ]
+"558
+[e $U 449  ]
+[e :U 450 ]
+[; ;main.c: 664: }
+[; ;main.c: 883: }
+[; ;main.c: 884: return (0);
+"884
+[e ) -> 0 `i ]
+[e $UE 447  ]
+[; ;main.c: 885: }
+"885
+[e :UE 447 ]
+}
+"887
+[v _passcodeCompare `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
+"888
+{
+[; ;main.c: 887: unsigned char passcodeCompare(char *keybuffer1, char compareLenght, unsigned char compareAddr)
+[; ;main.c: 888: {
+[e :U _passcodeCompare ]
+"887
+[v _keybuffer1 `*uc ~T0 @X0 1 r1 ]
+[v _compareLenght `uc ~T0 @X0 1 r2 ]
+[v _compareAddr `uc ~T0 @X0 1 r3 ]
+"888
+[f ]
+"889
+[v _validity `uc ~T0 @X0 1 a ]
+[; ;main.c: 889: unsigned char validity = 0;
+[e = _validity -> -> 0 `i `uc ]
+"890
+[v _storedCodeLenght `uc ~T0 @X0 1 a ]
+[; ;main.c: 890: unsigned char storedCodeLenght = readEEPROM(compareAddr);
+[e = _storedCodeLenght ( _readEEPROM (1 _compareAddr ]
+[; ;main.c: 891: if(compareLenght != storedCodeLenght)
+"891
+[e $ ! != -> _compareLenght `i -> _storedCodeLenght `i 482  ]
+[; ;main.c: 892: {
+"892
+{
+[; ;main.c: 893: ((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
+"893
+[e = . *U -> &U _systemStateReg2 `*VS369 2 -> -> 0 `i `uc ]
+[; ;main.c: 894: validity = 0;
+"894
+[e = _validity -> -> 0 `i `uc ]
+"896
+}
+[; ;main.c: 896: }
+[e $U 483  ]
+"897
+[e :U 482 ]
+[; ;main.c: 897: else
+[; ;main.c: 898: {
+"898
+{
+[; ;main.c: 899: for(unsigned char i = 0; i <= (compareLenght - 1); i++)
+"899
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $U 487  ]
+"900
+[e :U 484 ]
+[; ;main.c: 900: {
+{
+[; ;main.c: 901: if(*keybuffer1 == readEEPROM(++compareAddr))
+"901
+[e $ ! == -> *U _keybuffer1 `i -> ( _readEEPROM (1 =+ _compareAddr -> -> 1 `i `uc `i 488  ]
+[; ;main.c: 902: {
+"902
+{
+[; ;main.c: 903: keybuffer1++;
+"903
+[e ++ _keybuffer1 * -> -> 1 `i `x -> -> # *U _keybuffer1 `i `x ]
+[; ;main.c: 904: validity = 1;
+"904
+[e = _validity -> -> 1 `i `uc ]
+"905
+}
+[; ;main.c: 905: }
+[e $U 489  ]
+"906
+[e :U 488 ]
+[; ;main.c: 906: else
+[; ;main.c: 907: {
+"907
+{
+[; ;main.c: 908: ((volatile _io_reg*)&systemStateReg2)->bit2 = 0;
+"908
+[e = . *U -> &U _systemStateReg2 `*VS369 2 -> -> 0 `i `uc ]
+[; ;main.c: 909: validity = 0;
+"909
+[e = _validity -> -> 0 `i `uc ]
+[; ;main.c: 910: break;
+"910
+[e $U 485  ]
+"911
+}
+[e :U 489 ]
+"912
+}
+"899
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 487 ]
+[e $ <= -> _i `i - -> _compareLenght `i -> 1 `i 484  ]
+[e :U 485 ]
+"912
+}
+"913
+}
+[e :U 483 ]
+[; ;main.c: 911: }
+[; ;main.c: 912: }
+[; ;main.c: 913: }
+[; ;main.c: 914: return validity;
+"914
 [e ) _validity ]
-[e $UE 426  ]
-[; ;main.c: 703: }
-"703
-[e :UE 426 ]
+[e $UE 481  ]
+[; ;main.c: 915: }
+"915
+[e :UE 481 ]
 }

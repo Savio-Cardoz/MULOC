@@ -9,6 +9,7 @@
       <itemPath>Keypad4x4.h</itemPath>
       <itemPath>PWM.h</itemPath>
       <itemPath>main.h</itemPath>
+      <itemPath>timer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
